@@ -21,7 +21,7 @@ class Input extends Controller
          exit();
       }
 
-      $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
+      $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
       if (is_array($data)) {
          if (isset($data['kode_barang'])) {
             $this->form_tambah($kode_barang);
@@ -40,7 +40,7 @@ class Input extends Controller
 
    function form_tambah($kode_barang)
    {
-      $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
+      $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
       $this->view(__CLASS__ . "/form_tambah", $data);
    }
 

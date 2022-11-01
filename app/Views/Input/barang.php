@@ -30,7 +30,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="deskripsi" style="text-transform:uppercase;" placeholder="Deskripsi" required>
+                            <input type="text" class="form-control form-control-sm" name="deskripsi" style="text-transform:uppercase;" placeholder="Deskripsi">
                         </div>
                     </div>
                     <div class="row mb-2">

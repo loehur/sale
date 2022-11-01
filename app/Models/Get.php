@@ -23,8 +23,8 @@ class Get
         return $this->db->get_where_row($table, $where);
     }
 
-    // function sum_where($table, $col, $where)
-    // {
-    //     return $this->db->get_sum_where($table, $col, $where);
-    // }
+    function count_where($table, $where)
+    {
+        return $this->db->count_where($table, $where);
+    }
 }

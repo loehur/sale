@@ -162,12 +162,15 @@ class Database extends DB_Config
         $this->mysqli->query($query);
     }
 
+// =================================================
     public function update($table, $set, $where)
     {
         $query = "UPDATE $table SET $set WHERE $where";
         $run = $this->mysqli->query($query);
         return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
     }
+
+    //============================================
 
     public function count_where($table, $where)
     {
@@ -181,6 +184,23 @@ class Database extends DB_Config
             return array('query' => $query, 'info' => $this->mysqli->error);
         }
     }
+
+    //============================================
+
+    public function sum_col_where($table, $col, $where)
+    {
+        $query = "SELECT SUM($col) as Total FROM $table WHERE $where";
+        $result = $this->mysqli->query($query);
+
+        $reply = $result->fetch_assoc();
+        if ($result) {
+            return $reply["Total"];
+        } else {
+            return array('query' => $query, 'info' => $this->mysqli->error);
+        }
+    }
+
+    //========================================
 
     public function query($query)
     {

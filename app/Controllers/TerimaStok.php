@@ -22,7 +22,12 @@ class TerimaStok extends Controller
       }
 
       $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
-      $id_barang = $data['id'];
+      if (isset($data['id'])) {
+         $id_barang = $data['id'];
+      } else {
+         exit();
+      }
+
 
       $data_ = $this->model("Get")->where("barang_masuk", "id_master = '" . $this->userData['id_master'] . "' AND id_barang = " . $id_barang . " AND id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
       if (is_array($data_)) {
@@ -40,5 +45,19 @@ class TerimaStok extends Controller
       }
 
       $this->view(__CLASS__ . "/cek_masuk", $data);
+   }
+
+   function terima($terima, $id)
+   {
+      $where = "id_user = '" . $this->userData['id_user'] . "' AND id = " . $id;
+      $set = "op_status = " . $terima;
+      $do =     $this->model('Update')->update("barang_masuk", $set, $where);
+      if ($do['errno'] == 0) {
+         $id_barang = $this->modul("Main")->id_barang_masuk($id);
+         $this->modul("Main")->update_stok($id_barang);
+         echo $terima;
+      } else {
+         echo $do['error'];
+      }
    }
 }
