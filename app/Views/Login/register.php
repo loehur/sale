@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MDL | Register</title>
-    <link rel="icon" href="<?= $this->ASSETS_URL ?>icon/logo.png">
+    <link rel="icon" href="<?= $this->ASSETS_URL ?>icon/logo1.png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= $this->ASSETS_URL ?>css/ionicons.min.css">
@@ -25,7 +25,7 @@
 <body class="login-page" style="min-height: 496.781px;">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#">MDL <b>Payment</b></a>
+            <a href="#">MDL <b>Sale</b></a>
         </div>
         <div class="card">
             <div class="card-body register-card-body small">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control" id="HP" name="HP" placeholder="Nomor HP" required>
+                            <input type="text" class="form-control" id="HP" name="HP" placeholder="Nomor HP / ID Usaha" required>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -55,16 +55,6 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col">
-                            <input type="password" class="form-control" minlength="6" id="pin" name="pin" placeholder="PIN Transaksi" required>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
-                            <input type="password" class="form-control" minlength="6" id="repin" name="repin" placeholder="Ulangi PIN Transaksi" required>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary btn-block">
                                 Register
@@ -75,7 +65,7 @@
                         </div>
                     </div>
                 </form>
-                <a href="<?= $this->BASE_URL ?>Login" class="text-center">Sudah memiliki Akun dan LOGIN</a>
+                <a href="<?= $this->BASE_URL ?>Login" class="text-center float-right">Sudah memiliki Akun dan LOGIN</a>
                 <div class="error"><span></span></div>
             </div>
         </div>
@@ -122,7 +112,7 @@
                         $("#info").hide();
                         $('form').trigger("reset");
                         $("#info").fadeIn(1000);
-                        $("#info").html('<div class="alert alert-success" role="alert">Registrasi Berhasil, hubungi MDL-Payment Support untuk Aktivasi</div>')
+                        $("#info").html('<div class="alert alert-success" role="alert">Registrasi Berhasil, hubungi MDL Support untuk Aktivasi</div>')
                         $("#spinner").hide();
                     } else {
                         $("#info").hide();

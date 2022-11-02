@@ -28,7 +28,7 @@
 </div>
 <hr>
 <?php
-if (isset($data['merk'])) { ?>
+if (isset($data['merk']) && $data['stok'] > 0) { ?>
     <div class="content" id="form_tambah">
         <div class="container-fluid">
             <div class="row">

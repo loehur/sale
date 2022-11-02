@@ -162,7 +162,7 @@ class Database extends DB_Config
         $this->mysqli->query($query);
     }
 
-// =================================================
+    // =================================================
     public function update($table, $set, $where)
     {
         $query = "UPDATE $table SET $set WHERE $where";
@@ -212,9 +212,11 @@ class Database extends DB_Config
         }
     }
 
-    public function innerJoin1($table, $tb_join, $join_where)
+    //=====================================================
+
+    public function innerJoin1($table, $tb_join, $on)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $join_where";
+        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $on";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];
@@ -226,9 +228,9 @@ class Database extends DB_Config
         }
     }
 
-    public function innerJoin2($table, $tb_join1, $join_where1, $tb_join2, $join_where2)
+    public function innerJoin2($table, $tb_join1, $on1, $tb_join2, $on2)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join1 ON $join_where1 INNER JOIN $tb_join2 ON $join_where2";
+        $query = "SELECT * FROM $table INNER JOIN $tb_join1 ON $on1 INNER JOIN $tb_join2 ON $on2";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];
@@ -240,9 +242,9 @@ class Database extends DB_Config
         }
     }
 
-    public function innerJoin2_where($table, $tb_join1, $join_where1, $tb_join2, $join_where2, $where)
+    public function innerJoin2_where($table, $tb_join1, $on1, $tb_join2, $on2, $where)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join1 ON $join_where1 INNER JOIN $tb_join2 ON $join_where2 WHERE $where";
+        $query = "SELECT * FROM $table INNER JOIN $tb_join1 ON $on1 INNER JOIN $tb_join2 ON $on2 WHERE $where";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];
@@ -254,9 +256,9 @@ class Database extends DB_Config
         }
     }
 
-    public function innerJoin1_where($table, $tb_join, $join_where, $where)
+    public function innerJoin1_where($table, $tb_join, $on, $where)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $join_where WHERE $where";
+        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $on WHERE $where";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];
@@ -267,9 +269,9 @@ class Database extends DB_Config
             return FALSE;
         }
     }
-    public function innerJoin1_orderBy($table, $tb_join, $join_where, $orderBy)
+    public function innerJoin1_orderBy($table, $tb_join, $on, $orderBy)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $join_where ORDER BY $orderBy";
+        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $on ORDER BY $orderBy";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];

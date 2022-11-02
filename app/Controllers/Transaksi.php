@@ -13,7 +13,8 @@ class Transaksi extends Controller
    {
       $this->view_layout(["title" => __CLASS__]);
       $this->keranjang();
-      $this->view($this->content);
+      $data = $this->modul("Main")->list_stok();
+      $this->view($this->content, $data);
    }
 
    function cek($kode_barang)
@@ -29,16 +30,14 @@ class Transaksi extends Controller
             $id_barang = $data['id'];
             //HITUNG STOK
             $stok = $this->modul("Main")->stok_dikurang_cart($id_barang);
-            if ($stok > 0) {
-               $this->form_tambah($kode_barang, $stok);
-            }
+            $this->form_tambah($kode_barang, $stok);
          }
       }
    }
 
    function keranjang()
    {
-      $data = $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
+      $data = $this->modul("Main")->data_keranjang();
       $this->view(__CLASS__ . "/keranjang", $data);
    }
 
@@ -54,7 +53,7 @@ class Transaksi extends Controller
       $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
 
       $tambah = $_POST["tambah"];
-      $desc = $d['model'];
+      $desc = $d['merk'] . " " . $d['model'];
       $harga = $d['harga'] * $tambah;
       $margin = $d['margin'];
       $margin_rp = $harga * ($margin / 100);
@@ -81,8 +80,17 @@ class Transaksi extends Controller
 
    function cekOut()
    {
-      $update = $this->model("Update")->update("barang_jual", "op_status = 1", "op_status = 0 AND id_user ='" . $this->userData['id_user'] . "'");
+
+      $rand = rand(10000, 99999);
+      $date = date('Ymd');
+      $ref = $date . "-" . $rand;
+
+      $data = $this->modul("Main")->data_keranjang();
+      $update = $this->model("Update")->update("barang_jual", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND id_user ='" . $this->userData['id_user'] . "'");
       if ($update['errno'] == 0) {
+         foreach ($data as $a) {
+            $this->modul("Main")->update_stok($a['id_barang']);
+         }
          header("location: " . $this->BASE_URL);
       }
    }

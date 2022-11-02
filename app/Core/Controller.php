@@ -49,29 +49,38 @@ class Controller extends Variables
 
     public function data()
     {
-        $this->userData = $_SESSION['user_data'];
-        $this->masterData = $_SESSION['master_data'];
-        $this->stafData = $_SESSION['staf_data'];
-        $this->log['toko'] = $_SESSION['log']['toko'];
+        if (isset($_SESSION['login_sale'])) {
+            if ($_SESSION['login_sale'] == TRUE) {
+                $this->userData = $_SESSION['user_data'];
+                $this->masterData = $_SESSION['master_data'];
+                $this->stafData = $_SESSION['staf_data'];
+                $this->setting['toko'] = $_SESSION['setting']['toko'];
+            }
+        }
     }
 
     public function synchrone()
     {
+        //USER
         unset($_SESSION['user_data']);
+        $where = "id_user = '" . $this->userData['id_user'] . "'";
+        $_SESSION['user_data'] = $this->model('Get')->where_row('user', $where);
+
         //MASTER
-        $where = "id_user = " . $this->userData['id_master'];
+        unset($_SESSION['master_data']);
+        $where = "id_user = '" . $this->userData['id_master'] . "'";
         $_SESSION['master_data'] = $this->model('Get')->where_row('user', $where);
 
-        unset($_SESSION['master_data']);
         //MASTER
-        $where = "id_master = " . $this->userData['id_master'];
+        unset($_SESSION['staf_data']);
+        $where = "id_master = '" . $this->userData['id_master'] . "'";
         $_SESSION['staf_data'] = $this->model('Get')->where('user', $where);
 
-        $_SESSION['log']['toko'] = $this->userData['id_user'];
+        $_SESSION['setting']['toko'] = $this->userData['id_user'];
     }
 
     public function synchrone_non_db($log_toko)
     {
-        $_SESSION['log']['toko'] = $log_toko;
+        $_SESSION['setting']['toko'] = $log_toko;
     }
 }

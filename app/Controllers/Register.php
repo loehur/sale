@@ -9,22 +9,22 @@ class Register extends Controller
 
    function index()
    {
-      if (isset($_SESSION['login_payment'])) {
-         if ($_SESSION['login_payment'] == TRUE) {
+      if (isset($_SESSION['login_sale'])) {
+         if ($_SESSION['login_sale'] == TRUE) {
             header('Location: ' . $this->BASE_URL . "Home");
          }
       }
-      $this->view('login/register');
+      $this->view('Login/register');
    }
 
    function reset_pass()
    {
-      if (isset($_SESSION['login_payment'])) {
-         if ($_SESSION['login_payment'] == TRUE) {
+      if (isset($_SESSION['login_sale'])) {
+         if ($_SESSION['login_sale'] == TRUE) {
             header('Location: ' . $this->BASE_URL . "Home");
          }
       }
-      $this->view('login/forget_pass');
+      $this->view('login/forget');
    }
 
    function insert()
@@ -46,12 +46,12 @@ class Register extends Controller
       $table = "user";
       $columns = 'id_user, nama, password, user_tipe, id_master';
       $values = "'" . $_POST["HP"] . "','" . $_POST["nama"] . "','" . md5($pass) . "',1,'" . $_POST["HP"] . "'";
-      $do = $this->model('M_DB_1')->insertCols($table, $columns, $values);
+      $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
          echo 1;
       } else {
-         print_r($do);
+         print_r($do['error']);
       }
    }
 
@@ -76,29 +76,6 @@ class Register extends Controller
 
    function ganti_password()
    {
-      $nomor = "";
-      if (isset($_POST["no_user"])) {
-         $nomor = $_POST["no_user"];
-      } else {
-         $nomor = $this->userData['no_user'];
-      }
-      $code_reset_pass = md5($_POST["reset_code"]);
-
-      $where = "no_user = '" . $this->userData['no_user'] . "' AND reset_code = '" . $code_reset_pass . "' AND jenis = 1";
-      $reset_code = $this->model('M_DB_1')->get_where_row('reset_code', $where);
-      if (!isset($reset_code['reset_code'])) {
-         echo "Reset Code Salah!";
-         exit();
-      }
-
-      $where = "no_user = '" . $nomor . "'";
-      $reset_code_old = $this->model('M_DB_1')->get_where_row('user', $where)['pass_reset_code'];
-
-      if ($reset_code['reset_code'] == $reset_code_old) {
-         echo "Reset Code Expired!";
-         exit();
-      }
-
       $pass = $_POST["password"];
       $repass = $_POST["repass"];
 
@@ -112,10 +89,37 @@ class Register extends Controller
          exit();
       }
 
-      $where = "id_user = " . $this->userData['id_user'];
+      $nomor = "";
+      if (isset($_POST["id_user"])) {
+         $nomor = $_POST["id_user"];
+      } else {
+         $nomor = $this->userData['id_user'];
+      }
+      $code_reset_pass = md5($_POST["reset_code"]);
+
+      $where = "id_user = '" . $nomor . "' AND reset_code = '" . $code_reset_pass . "' AND jenis = 1";
+      $reset_code = $this->model('Get')->where_row('reset_code', $where);
+      if (!isset($reset_code['reset_code'])) {
+         echo "Reset Code Salah!";
+         exit();
+      }
+
+      $where = "id_user = '" . $nomor . "'";
+      $reset_code_old = $this->model('Get')->where_row('user', $where)['pass_reset_code'];
+
+      if ($reset_code['reset_code'] == $reset_code_old) {
+         echo "Reset Code Expired!";
+         exit();
+      }
+
+      $where = "id_user = '" . $nomor . "'";
       $set = "password = '" . md5($pass) . "', pass_reset_code = '" . $reset_code['reset_code'] . "'";
-      $this->model('M_DB_1')->update("user", $set, $where);
-      echo 1;
+      $update = $this->model('Update')->update("user", $set, $where);
+      if ($update['errno'] == 0) {
+         echo 1;
+      } else {
+         echo $update['error'];
+      }
    }
 
    function ganti_password_first()

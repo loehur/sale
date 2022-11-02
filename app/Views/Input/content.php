@@ -8,7 +8,7 @@
                         <select id="toko" class="form-control form-control-sm" name="user_tipe" required>
                             <?php
                             foreach ($this->stafData as $a) { ?>
-                                <option value="<?= $a['id_user'] ?>" <?= ($this->log['toko'] == $a['id_user'] ? "selected" : "") ?>><?= $a['nama'] ?></option>
+                                <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= $a['nama'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -27,6 +27,17 @@
                 <input id="kode_barang" type="text" class="form-control form-control-sm" style="text-transform:uppercase;" maxlength="30" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
+        <div class="row mt-2">
+            <div class="col mt-auto" style="width:100%; max-width:380px">
+                <label><b>Nama Barang</b></label>
+                <select class="tize form-control form-control-sm p-0 m-0" required>
+                    <option value="" selected disabled>...</option>
+                    <?php foreach ($data as $a) { ?>
+                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk']) ?> | <?= $a['model'] ?> | <?= $a['deskripsi'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
     </div>
 </div>
 <hr>
@@ -34,18 +45,27 @@
 
 <!-- SCRIPT -->
 <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
-<script src="<?= $this->ASSETS_URL ?>js/popper.min.js"></script>
 <script src="<?= $this->ASSETS_URL ?>plugins/bootstrap-5.1/bootstrap.bundle.min.js"></script>
+<script src="<?= $this->ASSETS_URL ?>js/selectize.min.js"></script>
 
 <script>
     $(document).ready(function() {
         $("#info").hide();
+        $('select.tize').selectize();
         $('input#kode_barang').focus();
     });
 
     $('input#kode_barang').keypress(function(event) {
         if (event.keyCode == 13 && ($(this).val()).length > 0) {
             $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + $(this).val());
+        }
+    });
+
+    $('select.tize').selectize({
+        onChange: function(value) {
+            $('input#kode_barang').val(value);
+            var kode_barang = $('input#kode_barang').val();
+            $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + kode_barang);
         }
     });
 

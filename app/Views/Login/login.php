@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MDL PAYMENT</title>
+    <title>MDL SALE</title>
 
-    <link rel="icon" href="<?= $this->ASSETS_URL ?>icon/logo.png">
+    <link rel="icon" href="<?= $this->ASSETS_URL ?>icon/logo1.png">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <link rel="stylesheet" href="<?= $this->ASSETS_URL ?>plugins/bootstrap-4.6/bootstrap.min.css">
@@ -24,7 +24,7 @@
 <body class="login-page small" style="min-height: 496.781px;">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#">MDL | <b><span class="text-success">Payment</span></b></a><br>
+            <a href="#">MDL | <b><span class="text-primary">Sale</span></b></a><br>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -60,13 +60,19 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-0">
-                    <a href="<?= $this->BASE_URL ?>Register" class="text-center">Daftar Baru</a>
-                    <a href="<?= $this->BASE_URL ?>Register/reset_pass" class="text-center text-info float-right">Lupa Password</a>
-                </p>
+                <div class="mb-0">
+                    <div class="row">
+                        <div class="col mr-auto">
+                            <a href="<?= $this->BASE_URL ?>Register" class="text-center">Daftar Baru</a>
+                        </div>
+                        <div class="col">
+                            <a href="<?= $this->BASE_URL ?>Register/reset_pass" class="text-right text-info">Lupa Password</a>
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <p class="text-center">
-                    MDL-Payment Support<br>081268098300 / 085278114125 (Whatsapp Only)
+                    MDL-Sale Support<br>081268098300 / 085278114125 (Whatsapp Only)
                 </p>
             </div>
         </div>

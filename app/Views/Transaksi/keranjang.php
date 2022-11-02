@@ -10,6 +10,7 @@
                             $harga_jual = $d['harga_jual'];
                         ?>
                             <tr>
+                                <td>#<?= $d['id_barang'] ?></td>
                                 <td><?= strtoupper($d['deskripsi']) ?></td>
                                 <td><?= $d['jumlah'] ?></td>
                                 <td>Rp<?= number_format($harga_jual) ?></td>
@@ -22,8 +23,9 @@
                         <?php
                         if ($total > 0) { ?>
                             <tr>
-                                <td colspan="1" align="right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="rounded border-light"><b>Cek Out</b></button></a></td>
-                                <td colspan="2" align="right"><b>Rp<?= number_format($total) ?></b></td>
+                                <td></td>
+                                <td colspan="2" align="right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="rounded border-light"><b>Cek Out</b></button></a></td>
+                                <td colspan="1" align="right"><b>Rp<?= number_format($total) ?></b></td>
                             </tr>
                         <?php }
                         ?>

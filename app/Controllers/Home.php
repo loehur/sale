@@ -12,6 +12,8 @@ class Home extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $this->view($this->content);
+      $data['kas'] = $this->modul('Main')->kas();
+      $data['riwayat'] = $this->modul('Main')->riwayat_jual(10);
+      $this->view($this->content, $data);
    }
 }

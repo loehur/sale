@@ -12,7 +12,8 @@ class Input extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $this->view($this->content);
+      $data = $this->modul("Main")->list_stok();
+      $this->view($this->content, $data);
    }
 
    function cek($kode_barang)
@@ -77,10 +78,15 @@ class Input extends Controller
          exit();
       }
 
+      $op = 0;
+      if ($this->setting['toko'] == $this->userData['id_user']) {
+         $op = 1;
+      }
+
       $tambah = $_POST["tambah"];
       $table = "barang_masuk";
-      $columns = 'id_master, id_barang, jumlah, id_user';
-      $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->log['toko'] . "'";
+      $columns = 'id_master, id_barang, jumlah, id_user, op_status';
+      $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->setting['toko'] . "'," . $op;
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {

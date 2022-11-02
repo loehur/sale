@@ -34,9 +34,42 @@ class Main extends Controller
       }
    }
 
+   function list_stok()
+   {
+      $table = "barang_stok";
+      $tb_join = "barang_data";
+      $on = "barang_stok.id_barang = barang_data.id";
+      $where = "barang_stok.id_barang = '" . $this->userData['id_user'] . "'";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
    function id_barang_masuk($id)
    {
       $id_barang = $this->model("Get")->where_row("barang_masuk", "id = " . $id);
       return $id_barang['id_barang'];
+   }
+
+   function data_keranjang()
+   {
+      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
+   }
+
+   function kas()
+   {
+      $kas['total'] = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $kas['fee'] = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $kas['sup'] = $kas['total'] - $kas['fee'];
+      return $kas;
+   }
+
+   function riwayat_jual()
+   {
+      $date = date("Y-m-d");
+      $data = [];
+      $get = $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND updateTime LIKE '%" . $date . "%'");
+      foreach ($get as $g) {
+         $data[$g['ref']][$g['id']] = $g;
+      }
+      return $data;
    }
 }

@@ -31,29 +31,21 @@ class Login extends Controller
          $where = "id_user = '" . $_POST["HP"] . "' AND password = '" . $pass . "'";
       }
 
-      $userData = $this->model('Get')->where_row('user', $where);
+      $this->userData = $this->model('Get')->where_row('user', $where);
 
-      if (empty($userData)) {
+      if (empty($this->userData)) {
          echo "No HP dan Password tidak cocok!";
          exit();
       } else {
-         if ($userData['en'] <> 1) {
+         if ($this->userData['en'] <> 1) {
             echo "User belum terverifikasi!";
             exit();
          } else {
             //LOGIN
             $_SESSION['login_sale'] = TRUE;
-            $_SESSION['user_data'] = $userData;
+            $_SESSION['user_data'] = $this->userData;
 
-            //MASTER
-            $where = "id_user = " . $userData['id_master'];
-            $_SESSION['master_data'] = $this->model('Get')->where_row('user', $where);
-
-            //MASTER
-            $where = "id_master = " . $userData['id_master'];
-            $_SESSION['staf_data'] = $this->model('Get')->where('user', $where);
-
-            $_SESSION['log']['toko'] = $userData['id_user'];
+            $this->synchrone();
             echo 1;
          }
       }

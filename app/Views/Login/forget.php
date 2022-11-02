@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MDL | Lupa Password</title>
 
-    <link rel="icon" href="<?= $this->ASSETS_URL ?>icon/logo.png">
+    <link rel="icon" href="<?= $this->ASSETS_URL ?>icon/logo1.png">
     <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
 
     <!-- Google Font: Source Sans Pro -->
@@ -32,7 +32,7 @@
 <body class="login-page" style="min-height: 496.781px;">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#">MDL <b>Payment</b></a>
+            <a href="#">MDL <b>Sale</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -45,7 +45,7 @@
                 <form id="form" action="<?= $this->BASE_URL ?>Register/ganti_password" method="post">
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control" name="no_user" placeholder="No HP">
+                            <input type="text" class="form-control" name="id_user" placeholder="No HP / ID Usaha">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="password" class="form-control" id="repass" name="repass" placeholder="Retype password">
+                            <input type="password" class="form-control" id="repass" name="repass" placeholder="Ulang Password">
                         </div>
                     </div>
                     <div class="row mb-2">
