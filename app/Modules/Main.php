@@ -16,7 +16,7 @@ class Main extends Controller
       return $sisa_stok;
    }
 
-   function update_stok($id_barang)
+   function update_stok($id_barang, $rak = "")
    {
       //update stok
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
@@ -24,11 +24,24 @@ class Main extends Controller
       $sisa_stok = $stok_masuk - $stok_jual;
 
       $id_stok = $this->userData['id_user'] . "_" . $id_barang;
-      $cols = "id,id_master,id_user,id_barang,stok";
-      $vals = "'" . $id_stok . "','" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . "," . $sisa_stok;
+
+      if ($rak <> "") {
+         $cols = "id,id_master,id_user,id_barang,stok,rak";
+         $vals = "'" . $id_stok . "','" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . "," . $sisa_stok . ",'" . $rak . "'";
+      } else {
+         $cols = "id,id_master,id_user,id_barang,stok";
+         $vals = "'" . $id_stok . "','" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . "," . $sisa_stok;
+      }
+
       $update_stok = $this->model("Insert")->cols("barang_stok", $cols, $vals);
+
       if ($update_stok['errno'] == "1062") {
-         $set = "stok = " . $sisa_stok;
+         if ($rak <> "") {
+            $set = "stok = " . $sisa_stok . ", rak = '" . $rak . "'";
+         } else {
+            $set = "stok = " . $sisa_stok;
+         }
+         
          $where = "id = '" . $id_stok . "'";
          $this->model("Update")->update("barang_stok", $set, $where);
       }

@@ -49,12 +49,13 @@ class TerimaStok extends Controller
 
    function terima($terima, $id)
    {
+      $rak = $_POST['rak'];
       $where = "id_user = '" . $this->userData['id_user'] . "' AND id = " . $id;
       $set = "op_status = " . $terima;
       $do =     $this->model('Update')->update("barang_masuk", $set, $where);
       if ($do['errno'] == 0) {
          $id_barang = $this->modul("Main")->id_barang_masuk($id);
-         $this->modul("Main")->update_stok($id_barang);
+         $this->modul("Main")->update_stok($id_barang, $rak);
          echo $terima;
       } else {
          echo $do['error'];

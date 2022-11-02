@@ -92,6 +92,8 @@ class Transaksi extends Controller
             $this->modul("Main")->update_stok($a['id_barang']);
          }
          header("location: " . $this->BASE_URL);
+      } else {
+         print_r($update);
       }
    }
 }

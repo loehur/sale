@@ -25,8 +25,10 @@
                     ?>
                             <hr>
                             <div class="mt-2">
-                                <a class="terima" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
                                 <a class="terima" href="<?= $this->BASE_URL ?>TerimaStok/terima/2/<?= $a['id'] ?>"><button class="rounded border-light">Batal</button></a>
+                                <span> ---- </span>
+                                <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak">
+                                <a class="terima" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
                             </div>
                     <?php
                         }
@@ -46,9 +48,12 @@
     $('a.terima').on("click", function(e) {
         e.preventDefault();
         var href = $(this).attr('href');
+        var rak_ = $("input[name=rak").val();
         $.ajax({
             url: href,
-            data: {},
+            data: {
+                rak: rak_
+            },
             type: "POST",
             success: function(res) {
                 $("div#terima").hide();
