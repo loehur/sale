@@ -15,6 +15,6 @@ class Join
 
     function join1_where($table, $tb_join, $on, $where)
     {
-        return $this->db->innerJoin1($table, $tb_join, $on, $where);
+        return $this->db->innerJoin1_where($table, $tb_join, $on, $where);
     }
 }

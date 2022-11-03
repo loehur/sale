@@ -12,7 +12,7 @@ class Input extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $data = $this->modul("Main")->list_stok();
+      $data = $this->modul("Main")->list_stok_all();
       $this->view($this->content, $data);
    }
 
@@ -37,6 +37,12 @@ class Input extends Controller
    function barang_baru($kode_barang)
    {
       $this->view(__CLASS__ . "/barang", $kode_barang);
+   }
+
+   function barang_edit($kode_barang)
+   {
+      $data = $this->modul("Main")->barang_tunggal($kode_barang);
+      $this->view(__CLASS__ . "/barang_edit", $data);
    }
 
    function form_tambah($kode_barang)
@@ -71,6 +77,32 @@ class Input extends Controller
       }
    }
 
+   function update_barang($id)
+   {
+      if ($this->userData['user_tipe'] <> 1) {
+         echo "Forbidden Access";
+         exit();
+      }
+
+      $kode_barang = $_POST["kode_barang"];
+      $merk = $_POST["merk"];
+      $model = $_POST["model"];
+      $deskripsi = $_POST["deskripsi"];
+      $harga = $_POST["harga"];
+      $margin = $_POST["margin"];
+
+      $table = "barang_data";
+      $set = "kode_barang = '" . $kode_barang . "', merk = '" . $merk . "', model = '" . $model . "', deskripsi = '" . $deskripsi . "', harga = " . $harga . ", margin =" . $margin;
+      $where = "id_master = '" . $this->userData['id_user'] . "' AND id = " . $id;
+
+      $do = $this->model('Update')->update($table, $set, $where);
+      if ($do['errno'] == 0) {
+         echo 1;
+      } else {
+         print_r($do);
+      }
+   }
+
    function tambah_stok($id_barang)
    {
       if ($this->userData['user_tipe'] <> 1) {
@@ -78,18 +110,23 @@ class Input extends Controller
          exit();
       }
 
+      $rak = $_POST["rak"];
+      $tambah = $_POST["tambah"];
+
       $op = 0;
       if ($this->setting['toko'] == $this->userData['id_user']) {
          $op = 1;
       }
 
-      $tambah = $_POST["tambah"];
       $table = "barang_masuk";
       $columns = 'id_master, id_barang, jumlah, id_user, op_status';
       $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->setting['toko'] . "'," . $op;
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
+         if ($this->setting['toko'] == $this->userData['id_user']) {
+            $this->modul("Main")->update_stok($id_barang, $rak);
+         }
          echo "+" . $tambah . " Stok, SUKSES!";
       } else {
          print_r($do);

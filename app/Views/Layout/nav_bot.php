@@ -32,7 +32,7 @@
 		<?php } ?>
 
 		<?php
-		if (isset($this->userData['user_tipe']) && $this->userData['user_tipe'] == 10) {
+		if (isset($this->userData['user_tipe']) && $this->userData['user_tipe'] >= 10) {
 		?>
 
 			<b>

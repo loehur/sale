@@ -16,6 +16,11 @@ class Main extends Controller
       return $sisa_stok;
    }
 
+   function barang_tunggal($kode_barang)
+   {
+      return $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
+   }
+
    function update_stok($id_barang, $rak = "")
    {
       //update stok
@@ -41,7 +46,7 @@ class Main extends Controller
          } else {
             $set = "stok = " . $sisa_stok;
          }
-         
+
          $where = "id = '" . $id_stok . "'";
          $this->model("Update")->update("barang_stok", $set, $where);
       }
@@ -52,7 +57,16 @@ class Main extends Controller
       $table = "barang_stok";
       $tb_join = "barang_data";
       $on = "barang_stok.id_barang = barang_data.id";
-      $where = "barang_stok.id_barang = '" . $this->userData['id_user'] . "'";
+      $where = "barang_stok.id_user = '" . $this->userData['id_user'] . "'";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
+   function list_stok_all()
+   {
+      $table = "barang_stok";
+      $tb_join = "barang_data";
+      $on = "barang_stok.id_barang = barang_data.id";
+      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "'";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 

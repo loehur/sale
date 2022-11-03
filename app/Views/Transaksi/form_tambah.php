@@ -3,14 +3,16 @@
         <div class="row">
             <div class="col-auto mr-auto">
                 <div class="alert alert-success">
-                    <?php
-                    if (isset($data['merk'])) {
-                        echo "<b>" . strtoupper($data['merk']) . "<br> <span class='text-danger'>" . strtoupper($data['model']) . "<br>" . strtoupper($data['deskripsi']) . "</span></b>";
-                        echo "<br><b>Harga -> Rp" . number_format($data['harga'] + ($data['harga'] * ($data['margin'] / 100))) . "</b>";
-                    } else {
-                        echo "Tidak ada Data";
-                    }
-                    ?>
+                    <b>
+                        <table>
+                            <tr>
+                                <td><?= strtoupper($data['merk']) ?><br><span class="text-danger"><?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="right">Rp<?= number_format($data['harga'] + ($data['harga'] * ($data['margin'] / 100))) ?></td>
+                            </tr>
+                        </table>
+                    </b>
                 </div>
             </div>
         </div>

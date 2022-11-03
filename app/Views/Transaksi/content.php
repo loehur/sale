@@ -12,7 +12,7 @@
                 <select class="tize form-control form-control-sm p-0 m-0" required>
                     <option value="" selected disabled>...</option>
                     <?php foreach ($data as $a) { ?>
-                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk']) ?> | <?= $a['model'] ?> | <?= $a['deskripsi'] ?></option>
+                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></option>
                     <?php } ?>
                 </select>
             </div>

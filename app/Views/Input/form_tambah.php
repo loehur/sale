@@ -3,22 +3,20 @@
         <div class="row">
             <div class="col-auto mr-auto">
                 <div class="alert alert-success">
-                    <?php
-                    echo "<b>" . strtoupper($data['merk']) . "<br> <span class='text-danger'>" . strtoupper($data['model']) . "<br>" . strtoupper($data['deskripsi']) . "</span></b>";
-                    echo "<br><b>Harga -> Rp" . number_format($data['harga']) . "</b>";
-                    echo "<br><b>Margin -> Rp" . number_format($data['harga'] * $data['margin'] / 100) . "</b>";
-                    ?>
+                    <b>
+                        <table>
+                            <tr>
+                                <td><?= strtoupper($data['merk']) ?></td>
+                                <td class="text-danger"><?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
+                                <td align="right"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) . " " . strtoupper($data['deskripsi']) ?></td>
+                            </tr>
+                        </table>
+                    </b>
+                    <div class="ml-auto p-1 float-right"><button data-kode_barang="<?= $data['kode_barang'] ?>" id="barang_edit" class="rounded border-light"><b>Edit</b></button></div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-auto mr-auto">
-                <div id="info"></div>
             </div>
         </div>
     </div>
@@ -31,7 +29,10 @@
                 <form class="tambah" action="<?= $this->BASE_URL ?>Input/tambah_stok/<?= $data['id'] ?>" method="post">
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="number" class="form-control form-control-sm" name="tambah" placeholder="Stok +" required>
+                            <input type="number" class="form-control form-control-sm" name="tambah" min="1" placeholder="Stok +" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control form-control-sm" name="rak" min="1" placeholder="Rak (Master Only)">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -42,6 +43,16 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <div id="info"></div>
             </div>
         </div>
     </div>
@@ -75,6 +86,11 @@
                     $("input#kode_barang").focus();
                 },
             });
+        });
+
+        $('button#barang_edit').click(function() {
+            var kode = $(this).attr("data-kode_barang");
+            $("div#load").load("<?= $this->BASE_URL ?>Input/barang_edit/" + kode);
         });
     });
 </script>

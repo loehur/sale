@@ -1,19 +1,18 @@
-    <div class="content">
+    <div class="content mb-2">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-auto mr-auto">
+                <div class="col-auto mr-auto border pb-2 pt-2">
                     <label class="text-info"><b>Keranjang Belanja</b></label>
-                    <table class="table table-sm">
+                    <table class="table table-sm table-light rounded">
                         <?php
                         $total = 0;
                         foreach ($data as $d) {
                             $harga_jual = $d['harga_jual'];
                         ?>
                             <tr>
-                                <td>#<?= $d['id_barang'] ?></td>
                                 <td><?= strtoupper($d['deskripsi']) ?></td>
-                                <td><?= $d['jumlah'] ?></td>
-                                <td>Rp<?= number_format($harga_jual) ?></td>
+                                <td>[<?= $d['jumlah'] ?>]</td>
+                                <td align="right">Rp<?= number_format($harga_jual) ?></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Transaksi/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>
                         <?php
@@ -24,17 +23,16 @@
                         if ($total > 0) { ?>
                             <tr>
                                 <td></td>
-                                <td colspan="2" align="right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="rounded border-light"><b>Cek Out</b></button></a></td>
-                                <td colspan="1" align="right"><b>Rp<?= number_format($total) ?></b></td>
+                                <td colspan="2" align="right"><b>Rp<?= number_format($total) ?></b></td>
                             </tr>
                         <?php }
                         ?>
                     </table>
+                    <div class="ml-auto p-1 float-right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="rounded border-light"><b>Cek Out</b></button></a></div>
                 </div>
             </div>
         </div>
     </div>
-    <hr>
 
     <!-- SCRIPT -->
     <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>

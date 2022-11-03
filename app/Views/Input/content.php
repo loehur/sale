@@ -8,7 +8,7 @@
                         <select id="toko" class="form-control form-control-sm" name="user_tipe" required>
                             <?php
                             foreach ($this->stafData as $a) { ?>
-                                <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= $a['nama'] ?></option>
+                                <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -33,7 +33,7 @@
                 <select class="tize form-control form-control-sm p-0 m-0" required>
                     <option value="" selected disabled>...</option>
                     <?php foreach ($data as $a) { ?>
-                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk']) ?> | <?= $a['model'] ?> | <?= $a['deskripsi'] ?></option>
+                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></option>
                     <?php } ?>
                 </select>
             </div>
