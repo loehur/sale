@@ -88,6 +88,13 @@ class Main extends Controller
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
+   function list_barang()
+   {
+      $table = "barang_data";
+      $where = "id_master = '" . $this->userData['id_user'] . "'";
+      return $this->model("Get")->where($table, $where);
+   }
+
    function id_barang_masuk($id)
    {
       $id_barang = $this->model("Get")->where_row("barang_masuk", "id = " . $id);

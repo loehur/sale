@@ -100,7 +100,6 @@
                         $("#info").hide();
                         $("#info").fadeIn(1000);
                         $("#info").html('<div class="alert alert-danger" role="alert">' + res + '</div>')
-                        $("#spinner").hide();
                     }
                 },
             });

@@ -12,7 +12,7 @@ class Input extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $data = $this->modul("Main")->list_stok_all();
+      $data = $this->modul("Main")->list_barang();
       $this->view($this->content, $data);
    }
 
