@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content border pt-2 pb-2">
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto pr-0 pb-1">
@@ -19,7 +19,6 @@
         </div>
     </div>
 </div>
-<hr>
 <div id="load"></div>
 
 <!-- SCRIPT -->

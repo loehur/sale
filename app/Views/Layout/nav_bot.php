@@ -10,10 +10,10 @@
 							<a href="<?= $this->BASE_URL ?>Staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-users"></i><br>Staff</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Input Stock</a>
+							<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stock Input</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Approval</a>
+							<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stock Sub</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">

@@ -84,6 +84,7 @@
 
                     $("input#kode_barang").val("");
                     $("input#kode_barang").focus();
+                    $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
                 },
             });
         });

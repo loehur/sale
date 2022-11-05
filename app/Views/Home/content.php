@@ -40,7 +40,7 @@
                     <table class="table table-borderless table-sm mb-0 pb-0">
                         <?php foreach ($value as $k) { ?>
                             <tr>
-                                <td><small>#<?= $k['id'] ?></small> - <?= $k['deskripsi'] ?></td>
+                                <td><small>#<?= $k['id'] ?></small> - <?= strtoupper($k['deskripsi']) ?></td>
                                 <td align="right"><?= $k['jumlah'] ?></td>
                                 <td align="right"><?= number_format($k['harga_jual']) ?></td>
                             </tr>

@@ -12,7 +12,8 @@ class TerimaStok extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $this->view($this->content);
+      $data = $this->modul("Main")->list_stok_masuk();
+      $this->view($this->content, $data);
    }
 
    function cek($kode_barang)
@@ -52,7 +53,7 @@ class TerimaStok extends Controller
       $rak = $_POST['rak'];
       $where = "id_user = '" . $this->userData['id_user'] . "' AND id = " . $id;
       $set = "op_status = " . $terima;
-      $do =     $this->model('Update')->update("barang_masuk", $set, $where);
+      $do =  $this->model('Update')->update("barang_masuk", $set, $where);
       if ($do['errno'] == 0) {
          $id_barang = $this->modul("Main")->id_barang_masuk($id);
          $this->modul("Main")->update_stok($id_barang, $rak);

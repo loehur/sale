@@ -133,6 +133,23 @@ class Input extends Controller
       }
    }
 
+   function list_input()
+   {
+      $data = $this->modul("Main")->list_input_master();
+      $this->view(__CLASS__ . "/list_input", $data);
+   }
+
+   function hapus_list($id)
+   {
+      $del = $this->model("Delete")->where("barang_masuk", "id = " . $id . " AND op_status <> 1");
+      if ($del['errno'] == 0) {
+         $this->index();
+      } else {
+         print_r($del['error']);
+         $this->index();
+      }
+   }
+
    function updateLogToko()
    {
       $id_user = $_POST['toko'];

@@ -160,6 +160,7 @@ class Database extends DB_Config
     {
         $query = "DELETE FROM $table WHERE $where";
         $this->mysqli->query($query);
+        return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
     }
 
     // =================================================

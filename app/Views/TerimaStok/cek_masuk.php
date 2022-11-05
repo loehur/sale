@@ -2,39 +2,29 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
-                <div id="info"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="content" id="terima">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-auto mr-auto">
-                <div class="alert alert-success">
-                    <?php
-                    if (count($data) == 0) {
-                        echo "Sudah Update!";
-                    } else {
-                        foreach ($data as $a) {
-                            echo "<small>Barang</small><br>";
-                            echo "<b>" . strtoupper($a['desc']) . "</b><br>";
-                            echo "<small>Jumlah</small><br>";
-                            echo "<span class='text-danger'><b>" . strtoupper($a['jumlah']) . "</span></b><br>";
-                    ?>
-                            <hr>
-                            <div class="mt-2">
-                                <a class="terima" href="<?= $this->BASE_URL ?>TerimaStok/terima/2/<?= $a['id'] ?>"><button class="rounded border-light">Batal</button></a>
-                                <span> ---- </span>
-                                <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak">
-                                <a class="terima" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
-                            </div>
-                    <?php
-                        }
+                <?php
+                if (count($data) == 0) {
+                    echo "Sudah Update!";
+                } else {
+                    foreach ($data as $a) {
+                        echo "<div class='t" . $a['id'] . " border mb-2 p-1'>";
+                        echo "<small>Barang</small><br>";
+                        echo "<b>" . strtoupper($a['desc']) . "</b><br>";
+                        echo "<small>Jumlah</small><br>";
+                        echo "<span class='text-danger'><b>" . strtoupper($a['jumlah']) . "</span></b><br>";
+                ?>
+                        <hr class="p-0 m-0">
+                        <div class="mt-2">
+                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/2/<?= $a['id'] ?>"><button class="rounded border-light">Batal</button></a>
+                            <span> ---- </span>
+                            <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
+                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
+                        </div>
+                <?php
+                        echo "</div>";
                     }
-                    ?>
-                </div>
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -48,7 +38,8 @@
     $('a.terima').on("click", function(e) {
         e.preventDefault();
         var href = $(this).attr('href');
-        var rak_ = $("input[name=rak").val();
+        var id = $(this).attr("data-id");
+        var rak_ = $("input[name=rak" + id).val();
         $.ajax({
             url: href,
             data: {
@@ -56,18 +47,16 @@
             },
             type: "POST",
             success: function(res) {
-                $("div#terima").hide();
-
-                $("#info").hide();
-                $("#info").fadeIn(1000);
+                $("div.t" + id).hide();
                 $("input#kode_barang").val("");
                 if (res == 1) {
-                    $("#info").html('<div class="alert alert-success" role="alert">SUKSES TERIMA!</div>')
+                    $("div.t" + id).html('<b class="text-success">SUKSES TERIMA</b>')
                 } else if (res == 2) {
-                    $("#info").html('<div class="alert alert-warning" role="alert">DIBATALKAN!</div>')
+                    $("div.t" + id).html('<b class="text-warning">DIBATALKAN!</b>')
                 } else {
-                    $("#info").html('<div class="alert alert-danger" role="alert">' + res + '</div>')
+                    $("div.t" + id).html('<b class="text-danger">' + res + '</b>')
                 }
+                $("div.t" + id).fadeIn(1000);
                 $("input#kode_barang").focus();
             },
         });

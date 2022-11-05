@@ -1,9 +1,9 @@
     <div class="content mb-2">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-auto mr-auto border pb-2 pt-2">
+                <div class="col mr-auto pb-2 pt-2">
                     <label class="text-info"><b>Keranjang Belanja</b></label>
-                    <table class="table table-sm table-light rounded">
+                    <table class="table table-striped table-sm table-light rounded">
                         <?php
                         $total = 0;
                         foreach ($data as $d) {
@@ -21,9 +21,10 @@
 
                         <?php
                         if ($total > 0) { ?>
-                            <tr>
-                                <td></td>
+                            <tr class="table-info">
+                                <td><b>TOTAL</b></td>
                                 <td colspan="2" align="right"><b>Rp<?= number_format($total) ?></b></td>
+                                <td><b></b></td>
                             </tr>
                         <?php }
                         ?>

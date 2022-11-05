@@ -42,6 +42,7 @@
 </div>
 <hr>
 <div id="load"></div>
+<div id="load2"></div>
 
 <!-- SCRIPT -->
 <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
@@ -53,6 +54,7 @@
         $("#info").hide();
         $('select.tize').selectize();
         $('input#kode_barang').focus();
+        $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
     });
 
     $('input#kode_barang').keypress(function(event) {

@@ -61,6 +61,24 @@ class Main extends Controller
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
+   function list_stok_masuk()
+   {
+      $table = "barang_masuk";
+      $tb_join = "barang_data";
+      $on = "barang_masuk.id_barang = barang_data.id";
+      $where = "barang_masuk.id_user = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status = 0";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
+   function list_input_master()
+   {
+      $table = "barang_data";
+      $tb_join = "barang_masuk";
+      $on = "barang_masuk.id_barang = barang_data.id";
+      $where = "barang_masuk.id_master = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status <> 1 ORDER BY barang_masuk.id DESC";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
    function list_stok_all()
    {
       $table = "barang_stok";

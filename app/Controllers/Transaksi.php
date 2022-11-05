@@ -50,9 +50,14 @@ class Transaksi extends Controller
 
    function cart($id_barang)
    {
+      $tambah = $_POST["tambah"];
+      if ($tambah < 1) {
+         echo "Tidak dapat Order 0";
+         exit();
+      }
       $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
 
-      $tambah = $_POST["tambah"];
+
       $desc = $d['merk'] . " " . $d['model'];
       $harga = $d['harga'] * $tambah;
       $margin = $d['margin'];
