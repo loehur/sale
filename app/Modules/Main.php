@@ -63,10 +63,10 @@ class Main extends Controller
 
    function list_stok_masuk()
    {
-      $table = "barang_masuk";
-      $tb_join = "barang_data";
+      $table = "barang_data";
+      $tb_join = "barang_masuk";
       $on = "barang_masuk.id_barang = barang_data.id";
-      $where = "barang_masuk.id_user = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status = 0";
+      $where = "barang_masuk.id_user = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status <> 1 ORDER BY barang_masuk.id DESC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 

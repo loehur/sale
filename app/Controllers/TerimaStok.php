@@ -30,7 +30,7 @@ class TerimaStok extends Controller
       }
 
 
-      $data_ = $this->model("Get")->where("barang_masuk", "id_master = '" . $this->userData['id_master'] . "' AND id_barang = " . $id_barang . " AND id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
+      $data_ = $this->model("Get")->where("barang_masuk", "id_master = '" . $this->userData['id_master'] . "' AND id_barang = " . $id_barang . " AND id_user = '" . $this->userData['id_user'] . "' AND op_status <> 1");
       if (is_array($data_)) {
          $this->cek_terima($data_);
       } else {

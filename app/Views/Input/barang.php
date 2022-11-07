@@ -85,6 +85,7 @@
 
     $(document).ready(function() {
         $("#info").hide();
+        $('input[name=merk]').focus();
 
         $("form.barang").on("submit", function(e) {
             e.preventDefault();

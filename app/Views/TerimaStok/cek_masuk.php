@@ -1,31 +1,24 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-auto mr-auto">
-                <?php
-                if (count($data) == 0) {
-                    echo "Sudah Update!";
-                } else {
-                    foreach ($data as $a) {
-                        echo "<div class='t" . $a['id'] . " border mb-2 p-1'>";
-                        echo "<small>Barang</small><br>";
-                        echo "<b>" . strtoupper($a['desc']) . "</b><br>";
-                        echo "<small>Jumlah</small><br>";
-                        echo "<span class='text-danger'><b>" . strtoupper($a['jumlah']) . "</span></b><br>";
-                ?>
-                        <hr class="p-0 m-0">
-                        <div class="mt-2">
-                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/2/<?= $a['id'] ?>"><button class="rounded border-light">Batal</button></a>
-                            <span> ---- </span>
-                            <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
-                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
-                        </div>
-                <?php
-                        echo "</div>";
-                    }
-                }
-                ?>
-            </div>
+            <?php
+            foreach ($data as $a) {
+                echo "<div class='col-md-6'> <div class='t" . $a['id'] . " border mb-2 p-1'>";
+                echo "<b>" . strtoupper($a['desc']) . "</b><br>";
+                echo "<small>Jumlah</small><br>";
+                echo "<span class='text-danger'><b>" . strtoupper($a['jumlah']) . "</span></b><br>";
+            ?>
+                <hr class="p-0 m-0">
+                <div class="mt-2">
+                    <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/2/<?= $a['id'] ?>"><button class="rounded border-light">Batal</button></a>
+                    <span> ---- </span>
+                    <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
+                    <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
+                </div>
+            <?php
+                echo "</div></div>";
+            }
+            ?>
         </div>
     </div>
 </div>
@@ -49,10 +42,8 @@
             success: function(res) {
                 $("div.t" + id).hide();
                 $("input#kode_barang").val("");
-                if (res == 1) {
-                    $("div.t" + id).html('<b class="text-success">SUKSES TERIMA</b>')
-                } else if (res == 2) {
-                    $("div.t" + id).html('<b class="text-warning">DIBATALKAN!</b>')
+                if (res == 1 || res == 2) {
+                    location.reload(true);
                 } else {
                     $("div.t" + id).html('<b class="text-danger">' + res + '</b>')
                 }
