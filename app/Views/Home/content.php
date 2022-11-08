@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <table class="table table-sm float-right">
                     <tr>
-                        <td align="right"><b>Kas</b></td>
+                        <td align="right"><b>Kas Toko</b></td>
                         <td align="right"><b><?= number_format($d['total']) ?></b></td>
                     </tr>
                     <?php if ($this->userData['user_tipe'] == 10) {
@@ -16,10 +16,6 @@
                         <tr>
                             <td align="right">Supplier</td>
                             <td align="right"><?= number_format($d['sup']) ?></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Fee</td>
-                            <td align="right"><?= number_format($d['fee']) ?></td>
                         </tr>
                     <?php } ?>
                 </table>

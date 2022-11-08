@@ -84,7 +84,7 @@ class Main extends Controller
       $table = "barang_stok";
       $tb_join = "barang_data";
       $on = "barang_stok.id_barang = barang_data.id";
-      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "'";
+      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' ORDER BY barang_stok.stok ASC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
@@ -108,15 +108,29 @@ class Main extends Controller
 
    function kas()
    {
-      $kas['total'] = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
-      $kas['fee'] = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
-      $kas['sup'] = $kas['total'] - $kas['fee'];
+      $totalTarikFee = $this->model("Sum")->col_where("kas", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND kas_mutasi = 0 AND kas_status <> 2 AND kas_jenis = 1");
+      $totalTarikSup = $this->model("Sum")->col_where("kas", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND kas_mutasi = 0 AND kas_status <> 2 AND kas_jenis = 0");
+
+      $kasJualTotal = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $kasFeeTotal = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $kasSupTotal = $kasJualTotal - $kasFeeTotal;
+
+      $kas['total'] = $kasJualTotal - $totalTarikFee - $totalTarikSup;
+      $kas['fee'] = $kasFeeTotal - $totalTarikFee;
+      $kas['sup'] = $kasSupTotal - $totalTarikSup;
+
+      $kas['riwayat'] = $this->model("Get")->where("kas", "id_user = '" . $this->userData['id_user'] . "' ORDER BY id DESC LIMIT 10");
       return $kas;
+   }
+
+   function rekap($month)
+   {
+      return $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_master'] . "' AND op_status = 1 AND insertTime LIKE '%" . $month . "%'");
    }
 
    function riwayat_jual()
    {
-      $date = date("Y-m-d");
+      $date = date("Y-m");
       $data = [];
       $get = $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND updateTime LIKE '%" . $date . "%'");
       foreach ($get as $g) {

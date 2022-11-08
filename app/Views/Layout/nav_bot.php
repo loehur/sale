@@ -16,12 +16,12 @@
 							<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stock Sub</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">
+							<a href="<?= $this->BASE_URL ?>StokData" class="nav-link text-secondary text-nowrap">
 								<i class="fas fa-wallet"></i><br>Stok Data
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">
+							<a href="<?= $this->BASE_URL ?>Rekap" class="nav-link text-secondary text-nowrap">
 								<i class="fas fa-chart-line"></i><br>Rekap
 							</a>
 						</li>
@@ -32,7 +32,7 @@
 		<?php } ?>
 
 		<?php
-		if (isset($this->userData['user_tipe']) && $this->userData['user_tipe'] >= 10) {
+		if (isset($this->userData['user_tipe']) && $this->userData['user_tipe'] == 10) {
 		?>
 
 			<b>
@@ -53,7 +53,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Rekap" class="nav-link text-secondary text-nowrap">
+							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">
 								<i class="fas fa-chart-line"></i><br>Rekap
 							</a>
 						</li>
