@@ -2,33 +2,24 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <label><b>Terlaris</b></label>
-                <table class="table table-sm table-striped">
-                    <?php
-                    foreach ($data['laris'] as $d) {
-                    ?>
-                        <tr>
-                            <td>
-                                <?php
-                                foreach ($data['stok'] as $s) {
-                                    if ($s['id_barang'] == $d['id_barang']) {
-                                        $kode = $s['kode_barang'];
-                                    }
-                                }
-                                ?>
-                                <?= strtoupper($kode) . " <span class='float-right'>" . $d['jumlah'] . "x</span>" ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </table>
-                <label><b>Stok Data</b></label>
-                <table class="table table-sm table-striped table-responsive" style="max-height: 300px;">
+                <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
+                <table class="table table-sm table-striped table-responsive" style="max-height: 589px;">
                     <?php
                     foreach ($data['stok'] as $d) { ?>
                         <tr>
                             <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                 <br>
-                                <?= strtoupper($d['kode_barang']) . " <span class='float-right'>" . $d['stok'] . "</span>" ?>
+                                <?= strtoupper($d['kode_barang']) ?>
+                            </td>
+                            <td align="right">
+                                <?= $d['stok'] ?><br>
+                                <?php
+                                foreach ($data['laris'] as $s) {
+                                    if ($s['id_barang'] == $d['id_barang']) {
+                                        echo $s['jumlah'] . "x";
+                                    }
+                                }
+                                ?>
                             </td>
                         </tr>
                     <?php  } ?>
