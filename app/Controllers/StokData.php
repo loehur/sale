@@ -12,7 +12,8 @@ class StokData extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $data = $this->modul("Main")->list_stok_all();
+      $data['stok'] = $this->modul("Main")->list_stok_all();
+      $data['laris'] = $this->modul("Main")->terlaris();
       $this->view($this->content, $data);
    }
 }

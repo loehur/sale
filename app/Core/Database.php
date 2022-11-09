@@ -64,38 +64,49 @@ class Database extends DB_Config
         }
     }
 
-    public function get_cols_where($table, $cols, $where, $row)
-    {
-        $reply = [];
-        $query = "SELECT $cols FROM $table WHERE $where";
-        $result = $this->mysqli->query($query);
-        if ($result) {
-            switch ($row) {
-                case "0":
-                    $reply = $result->fetch_assoc();
-                    return $reply;
-                    break;
-                case "1";
-                    while ($data = $result->fetch_assoc())
-                        $reply[] = $data;
-                    return $reply;
-                    break;
-            }
-        } else {
-            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
-        }
-    }
-
     public function get_cols_groubBy($table, $cols, $groupBy)
     {
         $reply = [];
         $query = "SELECT $cols FROM $table GROUP BY $groupBy";
         $result = $this->mysqli->query($query);
 
-        while ($row = $result->fetch_assoc())
-            $reply[] = $row;
+        if ($result) {
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
+            return $reply;
+        } else {
+            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
+        }
+    }
 
-        return $reply;
+    public function get_cols_groubBy_orderBy($table, $cols, $groupBy, $orderBy)
+    {
+        $reply = [];
+        $query = "SELECT $cols FROM $table GROUP BY $groupBy ORDER BY $orderBy";
+        $result = $this->mysqli->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
+            return $reply;
+        } else {
+            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
+        }
+    }
+
+    public function get_cols_where_groubBy_orderBy($table, $cols, $where, $groupBy, $orderBy)
+    {
+        $reply = [];
+        $query = "SELECT $cols FROM $table WHERE $where GROUP BY $groupBy ORDER BY $orderBy";
+        $result = $this->mysqli->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
+            return $reply;
+        } else {
+            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
+        }
     }
 
     public function get_order($table, $order)
@@ -121,19 +132,6 @@ class Database extends DB_Config
             $reply[] = $row;
 
         return $reply;
-    }
-
-    public function get_where_row_col($table, $where, $col)
-    {
-        $reply = [];
-        $query = "SELECT $col FROM $table WHERE $where";
-        $result = $this->mysqli->query($query);
-        $reply = $result->fetch_assoc();
-        if (is_array($reply)) {
-            return $reply[$col];
-        } else {
-            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
-        }
     }
 
     //========================================================================================
