@@ -125,7 +125,12 @@ class Main extends Controller
 
    function rekap($month)
    {
-      return $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_master'] . "' AND op_status = 1 AND insertTime LIKE '%" . $month . "%'");
+
+      $table = "barang_jual";
+      $tb_join = "barang_data";
+      $on = "barang_jual.id_barang = barang_data.id";
+      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' AND barang_jual.op_status = 1 AND barang_jual.insertTime LIKE '%" . $month . "%'";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
    function riwayat_jual()

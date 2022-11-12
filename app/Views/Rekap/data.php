@@ -21,7 +21,7 @@
                             $margin = $dp['harga_jual'] - $dp['harga'] - $dp['fee'];
                         ?>
                             <tr>
-                                <td class="">#<?= $dp['id_barang'] ?></td>
+                                <td class="">#<?= $dp['kode_barang'] ?></td>
                                 <td class="text-right"><?= number_format($dp['harga']) ?></td>
                                 <td class="text-right"><?= number_format($dp['harga_jual']) ?></td>
                                 <td class="text-right"><?= number_format($dp['fee']) ?></td>

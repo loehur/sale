@@ -6,12 +6,11 @@
                     <b>
                         <table>
                             <tr>
-                                <td><?= strtoupper($data['merk']) ?></td>
-                                <td class="text-danger"><?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></td>
+                                <td colspan="2" class="text-danger"><?= strtoupper($data['merk']) ?> <?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></td>
                             </tr>
                             <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
-                                <td align="right"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) . " " . strtoupper($data['deskripsi']) ?></td>
+                                <td align="right"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
                             </tr>
                         </table>
                     </b>

@@ -9,7 +9,7 @@
                         <tr>
                             <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                 <br>
-                                <?= strtoupper($d['kode_barang']) ?>
+                                <?= strtoupper($d['kode_barang']) . " Rp" . number_format($d['harga']) ?>
                             </td>
                             <td align="right">
                                 <?= $d['stok'] ?><br>
