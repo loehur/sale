@@ -14,42 +14,31 @@
             <div class="col-auto mr-auto">
                 <form class="barang" action="<?= $this->BASE_URL ?>Input/simpan_barang_baru" method="post">
                     <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
                             <input type="text" class="form-control form-control-sm" name="kode_barang" value="<?= $data ?>" style="text-transform:uppercase;font-weight:bold;" readonly required>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
                             <input type="text" class="form-control form-control-sm" name="merk" style="text-transform:uppercase;" placeholder="Merk" required>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
                             <input type="text" class="form-control form-control-sm" name="model" style="text-transform:uppercase;" placeholder="Model" required>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
                             <input type="text" class="form-control form-control-sm" name="deskripsi" style="text-transform:uppercase;" placeholder="Deskripsi">
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
                             <input type="number" class="form-control form-control-sm" name="harga" placeholder="Harga" required>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
                             <input type="number" class="form-control form-control-sm" name="margin" placeholder="Margin (%)" required>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
-                            <input type="number" class="form-control form-control-sm" name="margin_rp" placeholder="Margin (Rp)" readonly required>
+                        <div class="col-auto mb-2">
+                            <input type="text" class="form-control form-control-sm" name="margin_rp" placeholder="Margin (Rp)" readonly required>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                        <div class="col-auto mb-2">
+                            <input type="text" class="form-control form-control-sm" name="harga_jual" placeholder="Harga Jual (Rp)" readonly required>
+                        </div>
+                        <div class="col-auto mb-2">
                             <select class="form-control form-control-sm" name="satuan" required>
                                 <?php
                                 foreach ($this->listSatuan as $a) { ?>
@@ -87,11 +76,18 @@
     function margin_rp() {
         var harga = $("input[name=harga]").val()
         var margin = $("input[name=margin").val()
+
+        if (margin == "" || harga == "") {
+            $("input[name=margin_rp]").val("");
+            $("input[name=harga_jual]").val("");
+        }
+
         var margin_rp = (parseInt(harga) * parseInt(margin)) / 100;
+        var jual = parseFloat(harga) + parseFloat(margin_rp);
         if (harga != "" && margin != "") {
             $("input[name=margin_rp]").val(margin_rp);
+            $("input[name=harga_jual]").val(jual);
         }
-        return;
     }
 
     $(document).ready(function() {
