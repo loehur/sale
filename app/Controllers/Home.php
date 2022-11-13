@@ -13,7 +13,7 @@ class Home extends Controller
    {
       $this->view_layout(["title" => __CLASS__]);
       $data['kas'] = $this->modul('Main')->kas();
-      $data['riwayat'] = $this->modul('Main')->riwayat_jual(10);
+      $data['riwayat'] = $this->modul('Main')->riwayat_jual();
       $this->view($this->content, $data);
    }
 }

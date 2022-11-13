@@ -50,16 +50,6 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <select class="form-control form-control-sm" name="satuan" required>
-                                <?php
-                                foreach ($this->listSatuan as $a) { ?>
-                                    <option value="<?= $a['id'] ?>" <?= ($data['satuan'] == $a['id']) ? "selected" : "" ?>><?= $a['satuan'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
                             <button type="submit" class="btn btn-sm btn-primary btn-block">
                                 Simpan Barang
                             </button>

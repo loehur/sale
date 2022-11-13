@@ -1,6 +1,6 @@
 <?php
 
-class Input extends Controller
+class StokSub extends Controller
 {
    function __construct()
    {
@@ -26,20 +26,11 @@ class Input extends Controller
       if (is_array($data)) {
          if (isset($data['kode_barang'])) {
             $this->form_tambah($kode_barang);
-         } else {
-            $this->barang_baru($kode_barang);
          }
-      } else {
-         $this->barang_baru($kode_barang);
       }
    }
 
-   function barang_baru($kode_barang)
-   {
-      $this->view(__CLASS__ . "/barang", $kode_barang);
-   }
-
-   function barang_edit($kode_barang)
+   function sub_edit($kode_barang)
    {
       $data = $this->modul("Main")->barang_tunggal($kode_barang);
       $this->view(__CLASS__ . "/barang_edit", $data);
@@ -48,37 +39,11 @@ class Input extends Controller
    function form_tambah($kode_barang)
    {
       $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
+      $data['list_sub'] = $this->modul("Main")->list_sub($data['id']);
       $this->view(__CLASS__ . "/form_tambah", $data);
    }
 
-   function simpan_barang_baru()
-   {
-      if ($this->userData['user_tipe'] <> 1) {
-         echo "Forbidden Access";
-         exit();
-      }
-
-      $kode_barang = $_POST["kode_barang"];
-      $merk = $_POST["merk"];
-      $model = $_POST["model"];
-      $deskripsi = $_POST["deskripsi"];
-      $harga = $_POST["harga"];
-      $margin = $_POST["margin"];
-      $satuan = $_POST["satuan"];
-
-      $table = "barang_data";
-      $columns = 'id_master, kode_barang, merk, model, deskripsi, harga, margin, satuan';
-      $values = "'" . $this->userData['id_master'] . "','" . $kode_barang . "','" . $merk . "','" . $model . "','" . $deskripsi . "'," . $harga . "," . $margin . "," . $satuan;
-      $do = $this->model('Insert')->cols($table, $columns, $values);
-
-      if ($do['errno'] == 0) {
-         echo 1;
-      } else {
-         print_r($do);
-      }
-   }
-
-   function update_barang($id)
+   function update_sub($id)
    {
       if ($this->userData['user_tipe'] <> 1) {
          echo "Forbidden Access";
@@ -104,37 +69,30 @@ class Input extends Controller
       }
    }
 
-   function tambah_stok($id_barang)
+   function tambah_sub($id_barang)
    {
       if ($this->userData['user_tipe'] <> 1) {
          echo "Forbidden Access";
          exit();
       }
 
-      $rak = $_POST["rak"];
-      $tambah = $_POST["tambah"];
+      $jumlah = $_POST["jumlah"];
+      $margin = $_POST["margin"];
 
-      $op = 0;
-      if ($this->setting['toko'] == $this->userData['id_user']) {
-         $op = 1;
-      }
 
-      $table = "barang_masuk";
-      $columns = 'id_master, id_barang, jumlah, id_user, op_status';
-      $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->setting['toko'] . "'," . $op;
+      $table = "barang_sub";
+      $columns = 'id, id_master, id_barang, jumlah, margin';
+      $values = "'" . $id_barang . $jumlah . "','" . $this->userData['id_master'] . "','" . $id_barang . "'," . $jumlah . "," . $margin;
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
-         if ($this->setting['toko'] == $this->userData['id_user']) {
-            $this->modul("Main")->update_stok($id_barang, $rak);
-         }
-         echo "+" . $tambah . " Stok, SUKSES!";
+         echo "+ Sub, SUKSES!";
       } else {
          print_r($do);
       }
    }
 
-   function list_input()
+   function list_input($id_barang)
    {
       $data = $this->modul("Main")->list_input_master();
       $this->view(__CLASS__ . "/list_input", $data);

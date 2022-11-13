@@ -30,7 +30,7 @@ class Transaksi extends Controller
             $id_barang = $data['id'];
             //HITUNG STOK
             $stok = $this->modul("Main")->stok_dikurang_cart($id_barang);
-            $this->form_tambah($kode_barang, $stok);
+            $this->form_tambah($kode_barang, $stok, $id_barang);
          }
       }
    }
@@ -41,10 +41,11 @@ class Transaksi extends Controller
       $this->view(__CLASS__ . "/keranjang", $data);
    }
 
-   function form_tambah($kode_barang, $stok)
+   function form_tambah($kode_barang, $stok, $id_barang)
    {
-      $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
-      $data['stok'] = $stok;
+      $data['stok'] = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
+      $data['sisa'] = $stok;
+      $data['sub'] = $this->modul("Main")->list_sub($id_barang);
       $this->view(__CLASS__ . "/form_tambah", $data);
    }
 
@@ -58,7 +59,7 @@ class Transaksi extends Controller
       $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
 
 
-      $desc = $d['merk'] . " " . $d['model'];
+      $desc = $d['merk'] . " " . $d['model'] . " " . $d['deskripsi'];
       $harga = $d['harga'] * $tambah;
       $margin = $d['margin'];
       $margin_rp = $harga * ($margin / 100);
@@ -72,6 +73,30 @@ class Transaksi extends Controller
 
       if ($do['errno'] == 0) {
          echo "+" . $tambah . " Keranjang, SUKSES!";
+      } else {
+         print_r($do);
+      }
+   }
+
+   function cart_sub($id_barang, $id_sub)
+   {
+      $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
+      $e = $this->model("Get")->where_row("barang_sub", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_sub . "'");
+
+      $desc = $d['merk'] . " " . $d['model'] . " " . $d['deskripsi'];
+      $harga = $d['harga'] * $e['jumlah'];
+      $margin = $e['margin'];
+      $margin_rp = $harga * ($margin / 100);
+      $fee = $margin_rp * ($this->userData['fee'] / 100);
+      $jual = $harga + $margin_rp;
+
+      $table = "barang_jual";
+      $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, harga_jual, fee, op_status';
+      $values = "'" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . ",'" . $desc . "'," . $e['jumlah'] . "," . $harga . "," . $jual . "," . $fee . ",0";
+      $do = $this->model('Insert')->cols($table, $columns, $values);
+
+      if ($do['errno'] == 0) {
+         $this->index();
       } else {
          print_r($do);
       }

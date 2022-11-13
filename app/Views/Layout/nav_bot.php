@@ -13,7 +13,7 @@
 							<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stock Input</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stock Sub</a>
+							<a href="<?= $this->BASE_URL ?>StokSub" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stock Sub</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>StokData" class="nav-link text-secondary text-nowrap">

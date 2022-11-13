@@ -88,6 +88,24 @@ class Main extends Controller
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
+   function list_sub($id_barang)
+   {
+      $table = "barang_data";
+      $tb_join = "barang_sub";
+      $on = "barang_sub.id_barang = barang_data.id";
+      $where = "barang_sub.id_master = '" . $this->userData['id_master'] . "' AND barang_sub.id_barang = '" . $id_barang . "'";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
+   function list_sub_all()
+   {
+      $table = "barang_sub";
+      $tb_join = "barang_data";
+      $on = "barang_sub.id_barang = barang_data.id";
+      $where = "barang_sub.id_master = '" . $this->userData['id_user'] . "'";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
    function list_barang()
    {
       $table = "barang_data";
@@ -137,7 +155,13 @@ class Main extends Controller
    {
       $date = date("Y-m");
       $data = [];
-      $get = $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND updateTime LIKE '%" . $date . "%'");
+
+      $table = "barang_jual";
+      $tb_join = "barang_data";
+      $on = "barang_jual.id_barang = barang_data.id";
+      $where = "barang_jual.id_user = '" . $this->userData['id_user'] . "' AND barang_jual.op_status = 1 AND barang_jual.updateTime LIKE '%" . $date . "%' ORDER BY barang_jual.id DESC";
+      $get = $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+
       foreach ($get as $g) {
          $data[$g['ref']][$g['id']] = $g;
       }

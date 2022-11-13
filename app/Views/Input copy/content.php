@@ -42,7 +42,6 @@
 </div>
 <hr>
 <div id="load"></div>
-<div id="load2" style="padding-bottom: 70px;"></div>
 
 <!-- SCRIPT -->
 <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
@@ -54,12 +53,11 @@
         $("#info").hide();
         $('select.tize').selectize();
         $('input#kode_barang').focus();
-        $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
     });
 
     $('input#kode_barang').keypress(function(event) {
         if (event.keyCode == 13 && ($(this).val()).length > 0) {
-            $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + $(this).val());
+            $("div#load").load("<?= $this->BASE_URL ?>StokSub/cek/" + $(this).val());
         }
     });
 
@@ -67,14 +65,14 @@
         onChange: function(value) {
             $('input#kode_barang').val(value);
             var kode_barang = $('input#kode_barang').val();
-            $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + kode_barang);
+            $("div#load").load("<?= $this->BASE_URL ?>StokSub/cek/" + kode_barang);
         }
     });
 
     $('select#toko').on("change", function(event) {
         var val = $(this).val();
         $.ajax({
-            url: "<?= $this->BASE_URL ?>Input/updateLogToko/",
+            url: "<?= $this->BASE_URL ?>StokSub/updateLogToko/",
             data: {
                 toko: val
             },

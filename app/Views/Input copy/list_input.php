@@ -3,18 +3,12 @@
             <div class="row">
                 <div class="col mr-auto pb-2 pt-2">
                     <label class="text-primary"><b>Proses Input</b></label>
-                    <table class="table table-striped table-sm table-light rounded table-responsive" style="max-height: 200px;">
+                    <table class="table table-striped table-sm table-light rounded">
                         <?php
-                        foreach ($data as $d) {
-                            $sat = "PCS";
-                            foreach ($this->listSatuan as $ls) {
-                                if ($ls['id'] == $d['satuan']) {
-                                    $sat = $ls['satuan'];
-                                }
-                            } ?>
+                        foreach ($data as $d) { ?>
                             <tr>
                                 <td><small>[<?= $d['id_user'] ?>]</small><br><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
-                                <td>[<?= $d['jumlah'] . $sat ?>]</td>
+                                <td>[<?= $d['jumlah'] ?>]</td>
                                 <td align="right"></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Input/hapus_list/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>

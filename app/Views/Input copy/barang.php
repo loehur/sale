@@ -12,50 +12,40 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
-                <form class="barang" action="<?= $this->BASE_URL ?>Input/update_barang/<?= $data['id'] ?>" method="post">
+                <form class="barang" action="<?= $this->BASE_URL ?>Input/simpan_barang_baru" method="post">
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="kode_barang" value="<?= $data['kode_barang'] ?>" style="text-transform:uppercase;font-weight:bold;" required>
+                            <input type="text" class="form-control form-control-sm" name="kode_barang" value="<?= $data ?>" style="text-transform:uppercase;font-weight:bold;" readonly required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="merk" value="<?= $data['merk'] ?>" style="text-transform:uppercase;" placeholder="Merk" required>
+                            <input type="text" class="form-control form-control-sm" name="merk" style="text-transform:uppercase;" placeholder="Merk" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="model" value="<?= $data['model'] ?>" style="text-transform:uppercase;" placeholder="Model" required>
+                            <input type="text" class="form-control form-control-sm" name="model" style="text-transform:uppercase;" placeholder="Model" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="deskripsi" value="<?= $data['deskripsi'] ?>" style="text-transform:uppercase;" placeholder="Deskripsi">
+                            <input type="text" class="form-control form-control-sm" name="deskripsi" style="text-transform:uppercase;" placeholder="Deskripsi">
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="number" class="form-control form-control-sm" name="harga" value="<?= $data['harga'] ?>" placeholder="Harga" required>
+                            <input type="number" class="form-control form-control-sm" name="harga" placeholder="Harga" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="number" class="form-control form-control-sm" name="margin" value="<?= $data['margin'] ?>" placeholder="Margin (%)" required>
+                            <input type="number" class="form-control form-control-sm" name="margin" placeholder="Margin (%)" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
                             <input type="number" class="form-control form-control-sm" name="margin_rp" placeholder="Margin (Rp)" readonly required>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
-                            <select class="form-control form-control-sm" name="satuan" required>
-                                <?php
-                                foreach ($this->listSatuan as $a) { ?>
-                                    <option value="<?= $a['id'] ?>" <?= ($data['satuan'] == $a['id']) ? "selected" : "" ?>><?= $a['satuan'] ?></option>
-                                <?php } ?>
-                            </select>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -95,7 +85,7 @@
 
     $(document).ready(function() {
         $("#info").hide();
-        margin_rp();
+        $('input[name=merk]').focus();
 
         $("form.barang").on("submit", function(e) {
             e.preventDefault();
@@ -106,12 +96,11 @@
                 type: $(this).attr("method"),
                 success: function(res) {
                     if (res == 1) {
-                        location.reload(true);
+                        $("div#load").load("<?= $this->BASE_URL ?>Input/form_tambah/" + kode_barang);
                     } else {
                         $("#info").hide();
                         $("#info").fadeIn(1000);
                         $("#info").html('<div class="alert alert-danger" role="alert">' + res + '</div>')
-                        $("#spinner").hide();
                     }
                 },
             });

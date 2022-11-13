@@ -1,22 +1,50 @@
+<?php
+$a = $data['stok'];
+$b = $data['sub'];
+?>
 <div class="content pt-2 pb-2">
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto mb-2">
+                <table class="table table-sm table-striped">
+                    <tr>
+                        <th>Barang</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th></th>
+                    </tr>
+                    <?php
+                    foreach ($b as $s) {
+                        if ($data['sisa'] >= $s['jumlah']) {
+                    ?>
+                            <tr>
+                                <td><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></td>
+                                <td align="right"><?= number_format($s['jumlah'], 2) ?></td>
+                                <td align="right"><?= number_format(($a['harga'] * $s['jumlah']) * ($s['margin'] / 100) + ($a['harga'] * $s['jumlah'])) ?></td>
+                                <td><a href="<?= $this->BASE_URL ?>Transaksi/cart_sub/<?= $a['id'] ?>/<?= $s['id'] ?>"><i class="text-success fas fa-plus-square"></i></a></td>
+                            </tr>
+                    <?php }
+                    } ?>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto mr-auto mb-2">
                 <b>
-                    <?= strtoupper($data['merk']) ?> | <span class="text-danger"><?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></span>
-                    | Rp<?= number_format($data['harga'] + ($data['harga'] * ($data['margin'] / 100))) ?>
-                    | Sisa: <?= $data['stok'] ?>
+                    <?= strtoupper($a['merk']) ?> | <span class="text-danger"><?= strtoupper($a['model']) . " " . strtoupper($a['deskripsi']) ?></span>
+                    | Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?>
+                    | Sisa: <?= $data['sisa'] ?>
                 </b>
             </div>
         </div>
         <?php
-        if (isset($data['merk']) && $data['stok'] > 0) { ?>
+        if (isset($a['merk']) && $data['sisa'] > 0) { ?>
             <div class="row" id="form_tambah">
                 <div class="col-auto mr-auto">
-                    <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart/<?= $data['id'] ?>" method="post">
+                    <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
                             <div class="col-auto">
-                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['stok'] ?>" placeholder="" required>
+                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $a['stok'] ?>" placeholder="" required>
                             </div>
                             <div class="col pl-0">
                                 <button type="submit" class="btn btn-sm btn-success btn-block">

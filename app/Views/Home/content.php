@@ -1,4 +1,4 @@
-<?php $d = $data['kas'] ?>
+<?php $d = $data['kas']; ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -29,15 +29,22 @@
     <div class="container-fluid">
         <div class="row">
             <?php
-            foreach ($data['riwayat'] as $key => $value) {
+            foreach ($data['riwayat'] as $k => $value) {
                 $total = 0;
             ?>
                 <div class="col-md-6 border pb-1">
                     <table class="table table-borderless table-sm mb-0 pb-0">
-                        <?php foreach ($value as $k) { ?>
+                        <?php foreach ($value as $k) {
+                            $sat = "PCS";
+                            foreach ($this->listSatuan as $ls) {
+                                if ($ls['id'] == $k['satuan']) {
+                                    $sat = $ls['satuan'];
+                                }
+                            }
+                        ?>
                             <tr>
                                 <td><small>#<?= $k['id'] ?></small> - <?= strtoupper($k['deskripsi']) ?></td>
-                                <td align="right"><?= $k['jumlah'] ?></td>
+                                <td align="right"><?= $k['jumlah'] . " <small>" . $sat . "</small>" ?></td>
                                 <td align="right"><?= number_format($k['harga_jual']) ?></td>
                             </tr>
                         <?php

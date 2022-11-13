@@ -55,6 +55,7 @@ class Controller extends Variables
                 $this->masterData = $_SESSION['master_data'];
                 $this->stafData = $_SESSION['staf_data'];
                 $this->setting['toko'] = $_SESSION['setting']['toko'];
+                $this->listSatuan = $_SESSION['list']['satuan'];
             }
         }
     }
@@ -77,6 +78,7 @@ class Controller extends Variables
         $_SESSION['staf_data'] = $this->model('Get')->where('user', $where);
 
         $_SESSION['setting']['toko'] = $this->userData['id_user'];
+        $_SESSION['list']['satuan'] = $this->model('Get')->all('barang_satuan');
     }
 
     public function synchrone_non_db($log_toko)
