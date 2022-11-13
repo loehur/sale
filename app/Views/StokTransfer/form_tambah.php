@@ -1,33 +1,8 @@
 <?php
 $a = $data['stok'];
-$b = $data['sub'];
 ?>
 <div class="content pt-2 pb-2">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-auto mr-auto mb-2">
-                <table class="table table-sm table-striped">
-                    <tr>
-                        <th>Barang</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th></th>
-                    </tr>
-                    <?php
-                    foreach ($b as $s) {
-                        if ($data['sisa'] >= $s['jumlah']) {
-                    ?>
-                            <tr>
-                                <td><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></td>
-                                <td align="right"><?= number_format($s['jumlah'], 2) ?></td>
-                                <td align="right"><?= number_format(($a['harga'] * $s['jumlah']) * ($s['margin'] / 100) + ($a['harga'] * $s['jumlah'])) ?></td>
-                                <td><a href="<?= $this->BASE_URL ?>Transaksi/cart_sub/<?= $a['id'] ?>/<?= $s['id'] ?>"><i class="text-success fas fa-plus-square"></i></a></td>
-                            </tr>
-                    <?php }
-                    } ?>
-                </table>
-            </div>
-        </div>
         <div class="row">
             <div class="col-auto mr-auto mb-2">
                 <b>
@@ -37,18 +12,35 @@ $b = $data['sub'];
                 </b>
             </div>
         </div>
+        <hr>
         <?php
         if (isset($a['merk']) && $data['sisa'] > 0) { ?>
             <div class="row" id="form_tambah">
                 <div class="col-auto mr-auto">
-                    <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart/<?= $a['id'] ?>" method="post">
+                    <form class="tambah" action="<?= $this->BASE_URL ?>StokTransfer/cart/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
                             <div class="col-auto">
-                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" placeholder="" required>
+                                <label>Jumlah</label>
+                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" required>
                             </div>
-                            <div class="col pl-0">
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-auto">
+                                <label>Tujuan</label>
+                                <select class="form-control form-control-sm" name="tujuan" required>
+                                    <?php
+                                    foreach ($this->stafData as $a) {
+                                        if ($a['id_user'] <> $this->userData['id_user']) { ?>
+                                            <option value="<?= $a['id_user'] ?>"> <?= strtoupper($a['nama']) ?></option>
+                                    <?php }
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
                                 <button type="submit" class="btn btn-sm btn-success btn-block">
-                                    Tambah
+                                    Transfer
                                 </button>
                             </div>
                         </div>

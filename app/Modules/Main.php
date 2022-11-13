@@ -11,8 +11,9 @@ class Main extends Controller
    function stok_dikurang_cart($id_barang)
    {
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $stok_transfer = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_sumber = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status <> 2");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status <> 2");
-      $sisa_stok = $stok_masuk - $stok_jual;
+      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual;
       return $sisa_stok;
    }
 
@@ -122,6 +123,15 @@ class Main extends Controller
    function data_keranjang()
    {
       return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
+   }
+
+   function data_transfer_keluar()
+   {
+      $table = "barang_data";
+      $tb_join = "barang_masuk";
+      $on = "barang_masuk.id_barang = barang_data.id";
+      $where = "barang_masuk.id_sumber = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status = 0";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
    function kas()

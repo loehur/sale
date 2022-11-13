@@ -91,9 +91,10 @@ class Input extends Controller
       $deskripsi = $_POST["deskripsi"];
       $harga = $_POST["harga"];
       $margin = $_POST["margin"];
+      $satuan = $_POST["satuan"];
 
       $table = "barang_data";
-      $set = "kode_barang = '" . $kode_barang . "', merk = '" . $merk . "', model = '" . $model . "', deskripsi = '" . $deskripsi . "', harga = " . $harga . ", margin =" . $margin;
+      $set = "kode_barang = '" . $kode_barang . "', merk = '" . $merk . "', model = '" . $model . "', deskripsi = '" . $deskripsi . "', harga = " . $harga . ", margin =" . $margin . ", satuan =" . $satuan;
       $where = "id_master = '" . $this->userData['id_user'] . "' AND id = " . $id;
 
       $do = $this->model('Update')->update($table, $set, $where);
