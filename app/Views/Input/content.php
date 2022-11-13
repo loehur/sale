@@ -22,9 +22,12 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-auto mr-auto">
+            <div class="col-auto pr-0 mr-0">
                 <label><b>Kode Barang</b></label>
                 <input id="kode_barang" type="text" class="form-control form-control-sm" style="text-transform:uppercase;" maxlength="30" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="col-auto mt-auto pl-2">
+                <button class="btn btn-sm btn-outline-primary" id="cekBarang">Cek Kode Barang</button>
             </div>
         </div>
         <div class="row mt-2">
@@ -61,6 +64,10 @@
         if (event.keyCode == 13 && ($(this).val()).length > 0) {
             $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + $(this).val());
         }
+    });
+
+    $('button#cekBarang').click(function() {
+        $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + $('input#kode_barang').val());
     });
 
     $('select.tize').selectize({
