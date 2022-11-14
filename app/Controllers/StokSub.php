@@ -55,7 +55,7 @@ class StokSub extends Controller
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
-         echo "+ Sub, SUKSES!";
+         echo 1;
       } else {
          print_r($do);
       }

@@ -9,7 +9,8 @@
                                 <td colspan="2" class="text-danger"><?= strtoupper($data['merk']) ?> <?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></td>
                             </tr>
                             <tr>
-                                <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
+                                <td align="right"><small>Modal</small><br><?= number_format($data['harga']) ?></td>
+                                <td align="right"><small>Harga</small><br><?= number_format($data['harga'] + ($data['harga'] * ($data['margin']) / 100)) ?></td>
                             </tr>
                         </table>
                     </b>
@@ -128,15 +129,7 @@
                 data: $(this).serialize(),
                 type: $(this).attr("method"),
                 success: function(res) {
-                    $("#info").hide();
-                    $("div#form_tambah").hide();
-                    $("#info").fadeIn(1000);
-                    $("#info").html('<div class="alert alert-success" role="alert">' + res + '</div>')
-                    $("input[name=tambah]").focus();
-
-                    $("input#kode_barang").val("");
-                    $("input#kode_barang").focus();
-                    $("div#load2").load("<?= $this->BASE_URL ?>StokSub/list_input");
+                    $('button#cekBarang').click();
                 },
             });
         });
