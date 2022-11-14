@@ -20,7 +20,7 @@
     </div>
 </div>
 <hr>
-<div id="load">
+<div id="load" style="padding-bottom: 70px;">
     <div class="content">
         <div class="container-fluid">
             <div class="row">

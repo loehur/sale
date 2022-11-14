@@ -5,7 +5,7 @@ class Login extends Controller
    {
       if (isset($_SESSION['login_sale'])) {
          if ($_SESSION['login_sale'] == TRUE) {
-            header('Location: ' . $this->BASE_URL . "Home");
+            header('Location: ' . $this->BASE_URL . $this->BASE_CONTROLLER);
          } else {
             $this->view('Login/login');
          }
@@ -18,7 +18,7 @@ class Login extends Controller
    {
       if (isset($_SESSION['login_sale'])) {
          if ($_SESSION['login_sale'] == TRUE) {
-            header('Location: ' . $this->BASE_URL . "Home");
+            header('Location: ' . $this->BASE_URL . $this->BASE_CONTROLLER);
          }
       }
 
