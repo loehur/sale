@@ -154,8 +154,8 @@ class Main extends Controller
    function rekap($month)
    {
 
-      $table = "barang_jual";
-      $tb_join = "barang_data";
+      $table = "barang_data";
+      $tb_join = "barang_jual";
       $on = "barang_jual.id_barang = barang_data.id";
       $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' AND barang_jual.op_status = 1 AND barang_jual.insertTime LIKE '%" . $month . "%'";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
