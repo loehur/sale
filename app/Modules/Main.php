@@ -166,12 +166,13 @@ class Main extends Controller
       $date = date("Y-m");
       $data = [];
 
-      $table = "barang_jual";
-      $tb_join = "barang_data";
+      $table = "barang_data";
+      $tb_join = "barang_jual";
       $on = "barang_jual.id_barang = barang_data.id";
       $where = "barang_jual.id_user = '" . $this->userData['id_user'] . "' AND barang_jual.op_status = 1 AND barang_jual.updateTime LIKE '%" . $date . "%' ORDER BY barang_jual.id DESC";
       $get = $this->model("Join")->join1_where($table, $tb_join, $on, $where);
 
+      $no = 0;
       foreach ($get as $g) {
          $data[$g['ref']][$g['id']] = $g;
       }
