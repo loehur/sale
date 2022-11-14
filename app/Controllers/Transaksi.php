@@ -100,7 +100,7 @@ class Transaksi extends Controller
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
-         $this->index();
+         header("location: " . $this->BASE_URL);
       } else {
          print_r($do);
       }

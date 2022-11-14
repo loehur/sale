@@ -49,6 +49,11 @@
                         </div>
                     </div>
                     <div class="row mb-2">
+                        <div class="col-auto mb-2">
+                            <input type="text" class="form-control form-control-sm" name="harga_jual" placeholder="Harga Jual (Rp)" readonly required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
                         <div class="col">
                             <select class="form-control form-control-sm" name="satuan" required>
                                 <?php
@@ -86,9 +91,17 @@
     function margin_rp() {
         var harga = $("input[name=harga]").val()
         var margin = $("input[name=margin").val()
+
+        if (margin == "" || harga == "") {
+            $("input[name=margin_rp]").val("");
+            $("input[name=harga_jual]").val("");
+        }
+
         var margin_rp = (parseInt(harga) * parseInt(margin)) / 100;
+        var jual = parseFloat(harga) + parseFloat(margin_rp);
         if (harga != "" && margin != "") {
             $("input[name=margin_rp]").val(margin_rp);
+            $("input[name=harga_jual]").val(jual);
         }
         return;
     }

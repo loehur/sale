@@ -28,10 +28,10 @@
                 <form class="tambah" action="<?= $this->BASE_URL ?>Input/tambah_stok/<?= $data['id'] ?>" method="post">
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="number" class="form-control form-control-sm" name="tambah" min="1" placeholder="Stok +" required>
+                            <input type="number" class="form-control form-control-sm" name="tambah" step="0.01" placeholder="Stok +" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="rak" min="1" placeholder="Rak (Master Only)">
+                            <input type="text" class="form-control form-control-sm" name="rak" placeholder="Rak (Master Only)">
                         </div>
                     </div>
                     <div class="row mb-2">
