@@ -2,6 +2,7 @@
 class Route extends Controller
 {
 
+    public $controller = $this->BASE_CONTROLLER;
     protected $method = 'index';
     protected $param = [];
 
@@ -13,22 +14,22 @@ class Route extends Controller
         if (isset($_GET['url'])) {
             $url = explode('/', filter_var(trim($_GET['url']), FILTER_SANITIZE_URL));
         } else {
-            $url[0] = $this->BASE_CONTROLLER;
+            $url[0] = $this->controller;
         }
 
         if (file_exists('app/Controllers/' . $url[0] . '.php')) {
             date_default_timezone_set("Asia/Jakarta");
-            $this->BASE_CONTROLLER = $url[0];
+            $this->controller = $url[0];
         } else {
             require_once "app/Views/Error/404.php";
             exit();
         }
 
-        require_once 'app/Controllers/' . $this->BASE_CONTROLLER . '.php';
-        $this->BASE_CONTROLLER =  new $this->BASE_CONTROLLER;
+        require_once 'app/Controllers/' . $this->controller . '.php';
+        $this->controller =  new $this->controller;
 
         if (isset($url[1])) {
-            if (method_exists($this->BASE_CONTROLLER, $url[1])) {
+            if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
             }
         }
@@ -39,6 +40,6 @@ class Route extends Controller
         $this->param = $url;
 
         //PANGGIL CLASS(yg sudah di panggil init/core beserta fungsi dan parameter)
-        call_user_func_array([$this->BASE_CONTROLLER, $this->method], $this->param);
+        call_user_func_array([$this->controller, $this->method], $this->param);
     }
 }
