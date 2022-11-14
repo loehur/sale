@@ -2,13 +2,15 @@
 class Route extends Controller
 {
 
-    public $controller = $this->BASE_CONTROLLER;
+    public $controller = '';
     protected $method = 'index';
     protected $param = [];
 
 
     public function __construct()
     {
+        $this->controller = $this->BASE_CONTROLLER;
+
         session_start();
 
         if (isset($_GET['url'])) {
