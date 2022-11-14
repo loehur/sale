@@ -58,13 +58,17 @@ class Transaksi extends Controller
       }
       $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
 
-
       $desc = $d['merk'] . " " . $d['model'] . " " . $d['deskripsi'];
       $harga = $d['harga'] * $tambah;
       $margin = $d['margin'];
       $margin_rp = $harga * ($margin / 100);
       $fee = $margin_rp * ($this->userData['fee'] / 100);
       $jual = $harga + $margin_rp;
+
+      if (!is_array($d)) {
+         print_r($d);
+         exit();
+      }
 
       $table = "barang_jual";
       $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, harga_jual, fee, op_status';
@@ -121,7 +125,7 @@ class Transaksi extends Controller
          foreach ($data as $a) {
             $this->modul("Main")->update_stok($a['id_barang']);
          }
-         header("location: " . $this->BASE_URL);
+         header("location: " . $this->BASE_URL . "Home");
       } else {
          print_r($update);
       }

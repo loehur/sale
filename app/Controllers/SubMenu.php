@@ -14,4 +14,9 @@ class SubMenu extends Controller
       $this->view_layout(["title" => __CLASS__]);
       $this->view(__CLASS__ . "/" . __FUNCTION__);
    }
+   public function rekap()
+   {
+      $this->view_layout(["title" => __CLASS__]);
+      $this->view(__CLASS__ . "/" . __FUNCTION__);
+   }
 }

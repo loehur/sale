@@ -1,6 +1,6 @@
 <?php
 
-class Rekap extends Controller
+class RekapMonth extends Controller
 {
    function __construct()
    {
@@ -22,10 +22,10 @@ class Rekap extends Controller
          exit();
       }
 
-      $month = $_POST['y'] . "-" . $_POST['m'] . "-" . $_POST['d'];
+      $month = $_POST['y'] . "-" . $_POST['m'];
 
       $data['data'] = $this->modul("Main")->rekap($month);
-      $data['mon'] = array($_POST['y'], $_POST['m'], $_POST['d']);
+      $data['mon'] = array($_POST['y'], $_POST['m']);
 
       $this->index();
       $this->view(__CLASS__ . "/data", $data);

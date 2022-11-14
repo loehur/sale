@@ -13,7 +13,7 @@
 							<a href="<?= $this->BASE_URL ?>SubMenu/stok" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Rekap" class="nav-link text-secondary text-nowrap">
+							<a href="<?= $this->BASE_URL ?>SubMenu/rekap" class="nav-link text-secondary text-nowrap">
 								<i class="fas fa-chart-line"></i><br>Rekap
 							</a>
 						</li>
