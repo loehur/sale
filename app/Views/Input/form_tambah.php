@@ -74,12 +74,8 @@
                 data: $(this).serialize(),
                 type: $(this).attr("method"),
                 success: function(res) {
-                    $("#info").hide();
-                    $("div#form_tambah").hide();
-                    $("#info").fadeIn(1000);
-                    $("#info").html('<div class="alert alert-success" role="alert">' + res + '</div>')
+                    $('button#cekBarang').click();
                     $("input[name=tambah]").focus();
-
                     $("input#kode_barang").val("");
                     $("input#kode_barang").focus();
                     $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
