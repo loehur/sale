@@ -1,3 +1,5 @@
+<?php $sub = $data['sub']; ?>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -36,7 +38,6 @@
                             <td align="right"><?= number_format(($data['harga'] * $a['jumlah'])) ?></td>
                             <td align="right"><?= number_format($a['margin']) ?>%</td>
                             <td align="right"><?= number_format(($data['harga'] * $a['jumlah']) * ($a['margin'] / 100) + ($data['harga'] * $a['jumlah'])) ?></td>
-                            <td align="center"><button class="btn btn-sm p-0 border-0" data-id_sub="<?= $a['id'] ?>" data-kode_barang="<?= $data['kode_barang'] ?>" id="barang_edit"><i class="fas fa-edit"></i></button></td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -49,13 +50,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
-                <form class="tambah" action="<?= $this->BASE_URL ?>StokSub/tambah_sub/<?= $data['id'] ?>" method="post">
+                <form class="tambah" action="<?= $this->BASE_URL ?>StokSub/update_sub/<?= $data['id'] ?>/<?= $sub['id'] ?>" method="post">
                     <div class="row mb-2">
                         <div class="col-md-4">
                             Jumlah
                         </div>
                         <div class="col-md-8">
-                            <input type="number" class="form-control form-control-sm text-right" name="jumlah" step="0.01" placeholder="Jumlah" required>
+                            <input type="number" class="form-control form-control-sm text-right" value="<?= $sub['jumlah'] ?>" name="jumlah" step="0.01" placeholder="Jumlah" required>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -71,7 +72,7 @@
                             Margin %
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control form-control-sm text-right" name="margin" min="1" placeholder="Margin %">
+                            <input type="text" class="form-control form-control-sm text-right" value="<?= $sub['margin'] ?>" name="margin" min="1" placeholder="Margin %">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -91,8 +92,8 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <button type="submit" class="btn btn-sm btn-success btn-block">
-                                Tambah Sub
+                            <button type="submit" class="btn btn-sm btn-primary btn-block">
+                                Update Sub Stok
                             </button>
                         </div>
                     </div>
@@ -135,10 +136,12 @@
             });
         });
 
+        margin_rp();
+        harga_jual();
+
         $('button#barang_edit').click(function() {
             var kode = $(this).attr("data-kode_barang");
-            var sub = $(this).attr("data-id_sub");
-            $("div#load").load("<?= $this->BASE_URL ?>StokSub/sub_edit/" + kode + "/" + sub);
+            $("div#load").load("<?= $this->BASE_URL ?>StokSub/barang_edit/" + kode);
         });
 
         $("input[name=margin]").on("change, keyup", function() {

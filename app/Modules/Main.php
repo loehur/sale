@@ -22,6 +22,11 @@ class Main extends Controller
       return $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
    }
 
+   function sub_tunggal($id_sub)
+   {
+      return $this->model("Get")->where_row("barang_sub", "id_master = '" . $this->userData['id_user'] . "' AND id = '" . $id_sub . "'");
+   }
+
    function update_stok($id_barang, $rak = "")
    {
       //update stok
