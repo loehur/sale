@@ -9,14 +9,14 @@
                         <tr>
                             <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                 <br>
-                                <?= strtoupper($d['kode_barang']) . " Rp" . number_format($d['harga']) ?>
+                                <?= "[" . strtoupper($d['id_user'] . "] [" . $d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
                             </td>
                             <td align="right">
                                 <?= $d['stok'] ?><br>
                                 <?php
                                 foreach ($data['laris'] as $s) {
                                     if ($s['id_barang'] == $d['id_barang']) {
-                                        echo $s['jumlah'] . "x";
+                                        echo "Terjual " . number_format($s['jumlah'], 2);
                                     }
                                 }
                                 ?>

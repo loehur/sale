@@ -112,7 +112,7 @@ foreach ($data as $s) {
                                                                 } ?>>31</option>
                     </select>
                 </div>
-                <div class="col-auto pr-0">
+                <div class="col-auto pr-0 pl-1">
                     <label>Month</label>
                     <select name="m" class="form-control form-control-sm" onchange="hideAll()" style="width: auto;">
                         <option class="text-right" value="01" <?php if ($currentMonth == '01') {
@@ -153,7 +153,7 @@ foreach ($data as $s) {
                                                                 } ?>>12</option>
                     </select>
                 </div>
-                <div class="col-auto pr-0">
+                <div class="col-auto pr-0 pl-1">
                     <label>Year</label>
                     <select name="y" class="form-control form-control-sm" onchange="hideAll()" style="width: auto;">
                         <?php
@@ -168,7 +168,7 @@ foreach ($data as $s) {
                         ?>
                     </select>
                 </div>
-                <div class="col pr-0 mr-auto">
+                <div class="col pr-0 pl-1 mr-auto">
                     <button type="submit" class="btn btn-sm btn-primary position-absolute" style="bottom:0">Cek</button>
                 </div>
                 <div class="col">
