@@ -48,6 +48,7 @@ class Input extends Controller
    function form_tambah($kode_barang)
    {
       $data = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND kode_barang = '" . $kode_barang . "'");
+      $data['stok'] = $this->modul("Main")->stok_toko($data['id'], $this->setting['toko']);
       $this->view(__CLASS__ . "/form_tambah", $data);
    }
 

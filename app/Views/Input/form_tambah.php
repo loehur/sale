@@ -1,16 +1,15 @@
+<?php $stok = $data['stok']; ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
-                <div class="alert alert-success">
+                <div class="alert alert-light border-success rounded">
                     <b>
                         <table>
                             <tr>
-                                <td colspan="2" class="text-danger"><?= strtoupper($data['merk']) ?> <?= strtoupper($data['model']) . " " . strtoupper($data['deskripsi']) ?></td>
-                            </tr>
-                            <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
-                                <td align="right"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
+                                <td align="right" class="pl-2"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
+                                <td align="right" class="pl-2"><small>Stok</small><br><?= $stok['sisa'] ?> <span class="text-danger">(+<?= $stok['antri'] ?>)</span></td>
                             </tr>
                         </table>
                     </b>

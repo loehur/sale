@@ -17,6 +17,19 @@ class Main extends Controller
       return $sisa_stok;
    }
 
+   function stok_toko($id_barang, $toko)
+   {
+      $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $stok_transfer = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_sumber = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual;
+
+      $stok_masuk_antri = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 0");
+      $stok['sisa'] = $sisa_stok;
+      $stok['antri'] = $stok_masuk_antri;
+      return $stok;
+   }
+
    function barang_tunggal($kode_barang)
    {
       return $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
