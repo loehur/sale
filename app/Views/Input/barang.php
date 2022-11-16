@@ -104,6 +104,7 @@
                 success: function(res) {
                     if (res == 1) {
                         $("div#load").load("<?= $this->BASE_URL ?>Input/form_tambah/" + kode_barang);
+                        $("input[name=tambah]").focus();
                     } else {
                         $("#info").hide();
                         $("#info").fadeIn(1000);

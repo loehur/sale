@@ -117,19 +117,13 @@ class Input extends Controller
       $tambah = $_POST["tambah"];
 
       $op = 0;
-      if ($this->setting['toko'] == $this->userData['id_user']) {
-         $op = 1;
-      }
-
+    
       $table = "barang_masuk";
       $columns = 'id_master, id_barang, jumlah, id_user, op_status';
       $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->setting['toko'] . "'," . $op;
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
-         if ($this->setting['toko'] == $this->userData['id_user']) {
-            $this->modul("Main")->update_stok($id_barang, $rak);
-         }
          echo "+" . $tambah . " Stok, SUKSES!";
       } else {
          print_r($do);

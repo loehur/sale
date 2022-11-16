@@ -77,14 +77,19 @@
                 data: $(this).serialize(),
                 type: $(this).attr("method"),
                 success: function(res) {
-                    $('button#cekBarang').click();
-                    $("input[name=tambah]").focus();
-                    $("input#kode_barang").val("");
-                    $("input#kode_barang").focus();
                     $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
+                    $('button#cekBarang').click();
+                    $("input#kode_barang").val("");
+
+                    setTimeout(kodeBarangFocus, 2000);
+
                 },
             });
         });
+
+        function kodeBarangFocus() {
+            $("input#kode_barang").focus();
+        }
 
         $('button#barang_edit').click(function() {
             var kode = $(this).attr("data-kode_barang");

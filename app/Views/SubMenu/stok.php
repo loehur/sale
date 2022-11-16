@@ -24,6 +24,10 @@
 						<a href="<?= $this->BASE_URL ?>StokTransfer" class="nav-link text-secondary text-nowrap">
 							<i class="fas fa-random"></i><br>Stok Transfer</a>
 					</li>
+					<li class="nav-item">
+						<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap">
+							<i class="fas fa-download"></i><br>Stok Masuk</a>
+					</li>
 				</ul>
 			</nav>
 		</b>

@@ -25,17 +25,17 @@
             <div class="col-auto mr-auto">
                 <table class="table table-sm">
                     <tr>
-                        <th align="right">Jumlah</th>
-                        <th align="right">Modal</th>
-                        <th align="right">Margin</th>
-                        <th align="right">Harga</th>
+                        <th class="text-right">Jumlah</th>
+                        <th class="text-right">Modal</th>
+                        <th class="text-right">Margin</th>
+                        <th class="text-right">Harga</th>
                     </tr>
                     <?php foreach ($data['list_sub'] as $a) { ?>
                         <tr>
-                            <td align="right"><?= number_format($a['jumlah'], 2) ?></td>
-                            <td align="right"><?= number_format(($data['harga'] * $a['jumlah'])) ?></td>
-                            <td align="right"><?= number_format($a['margin']) ?>%</td>
-                            <td align="right"><?= number_format(($data['harga'] * $a['jumlah']) * ($a['margin'] / 100) + ($data['harga'] * $a['jumlah'])) ?></td>
+                            <td class="text-right"><?= number_format($a['jumlah'], 2) ?></td>
+                            <td class="text-right"><?= number_format(($data['harga'] * $a['jumlah'])) ?></td>
+                            <td class="text-right"><?= number_format($a['margin']) ?>%</td>
+                            <td class="text-right"><?= number_format(($data['harga'] * $a['jumlah']) * ($a['margin'] / 100) + ($data['harga'] * $a['jumlah'])) ?></td>
                             <td align="center"><button class="btn btn-sm p-0 border-0" data-id_sub="<?= $a['id'] ?>" data-kode_barang="<?= $data['kode_barang'] ?>" id="barang_edit"><i class="fas fa-edit"></i></button></td>
                         </tr>
                     <?php } ?>
