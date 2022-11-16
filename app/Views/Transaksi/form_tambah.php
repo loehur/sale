@@ -32,6 +32,9 @@ foreach ($this->listSatuan as $ls) {
             <div class="col-auto mr-auto">
                 <table class="table table-sm">
                     <tr>
+                        <td colspan="2"><?= "<b>" . strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) . "</b>" ?></td>
+                    </tr>
+                    <tr>
                         <td>Harga: Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?></td>
                         <td>Stok: <b><?= number_format($data['sisa'], 2) . "</b> " . $sat ?></td>
                     </tr>

@@ -3,9 +3,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
-                <div class="alert alert-light border-success rounded">
+                <div class="alert border-success rounded">
                     <b>
                         <table>
+                            <tr>
+                                <td colspan="3"><?= "<b>" . strtoupper($data['merk'] . " " . $data['model'] . " " . $data['deskripsi']) . "</b>" ?></td>
+                            </tr>
                             <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
                                 <td align="right" class="pl-2"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
