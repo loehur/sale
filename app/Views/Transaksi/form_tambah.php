@@ -11,16 +11,19 @@ foreach ($this->listSatuan as $ls) {
 ?>
 <div class="content pt-2 pb-2">
     <div class="container-fluid">
+        <h6><?= "<b>" . strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) . "</b>" ?>,<br>Harga/<?= $sat ?>: Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?>, Stok: <b><?= number_format($data['sisa'], 2) . "</b> " . $sat ?></h6>
+        <hr>
+        <h6>Penjualan Paket</h6>
         <div class="row">
-            <div class="col-auto mr-auto">
-                <table class="table table-sm table-borderless table-striped">
+            <div class="col-md-4">
+                <table class="table table-sm mb-0">
                     <?php
                     foreach ($b as $s) {
                         if ($data['sisa'] >= $s['jumlah']) {
                     ?>
                             <tr>
-                                <td align="right"><?= number_format($s['jumlah'], 2) . " " . $sat  ?></td>
-                                <td align="right"><?= number_format(($a['harga'] * $s['jumlah']) * ($s['margin'] / 100) + ($a['harga'] * $s['jumlah'])) ?></td>
+                                <td align="right">Jumlah <?= number_format($s['jumlah'], 2) . " " . $sat  ?></td>
+                                <td align="right">Rp<?= number_format(($a['harga'] * $s['jumlah']) * ($s['margin'] / 100) + ($a['harga'] * $s['jumlah'])) ?></td>
                                 <td><a href="<?= $this->BASE_URL ?>Transaksi/cart_sub/<?= $a['id'] ?>/<?= $s['id'] ?>"><i class="text-success fas fa-plus-square"></i></a></td>
                             </tr>
                     <?php }
@@ -28,31 +31,38 @@ foreach ($this->listSatuan as $ls) {
                 </table>
             </div>
         </div>
-        <div class="row">
-            <div class="col-auto mr-auto">
-                <table class="table table-sm">
-                    <tr>
-                        <td colspan="2"><?= "<b>" . strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) . "</b>" ?></td>
-                    </tr>
-                    <tr>
-                        <td>Harga: Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?></td>
-                        <td>Stok: <b><?= number_format($data['sisa'], 2) . "</b> " . $sat ?></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <hr>
         <?php
         if (isset($a['merk']) && $data['sisa'] > 0) { ?>
-            <div class="row" id="form_tambah" style="padding-bottom: 70px;">
-                <div class="col-auto mr-auto">
+            <h6>Penjualan Non Paket</h6>
+            <div class="row" id="form_tambah">
+                <div class="col-md-4">
                     <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
-                            <div class="col-auto">
+                            <div class="col">
                                 <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" placeholder="" required>
                             </div>
                             <div class="col pl-0">
                                 <button type="submit" class="btn btn-sm btn-success btn-block">
-                                    <i class="fas fa-plus-square"></i>
+                                    <i class="fas fa-plus-square"></i> Keranjang
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <h6>Pemakaian Operasional Usaha</h6>
+            <div class="row" id="form_tambah" style="padding-bottom: 70px;">
+                <div class="col-md-4">
+                    <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart_pakai/<?= $a['id'] ?>" method="post">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" placeholder="" required>
+                            </div>
+                            <div class="col pl-0">
+                                <button type="submit" class="btn btn-sm btn-danger btn-block">
+                                    <i class="fas fa-plus-square"></i> Pakai
                                 </button>
                             </div>
                         </div>

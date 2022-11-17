@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col mr-auto pb-2 pt-2">
                     <label class="text-info"><b>Keranjang Belanja</b></label>
-                    <table class="table table-striped table-sm table-light rounded">
+                    <table class="table table-sm rounded">
                         <?php
                         $total = 0;
                         foreach ($data as $d) {
@@ -29,7 +29,7 @@
                         <?php }
                         ?>
                     </table>
-                    <div class="ml-auto p-1 float-right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="rounded border-light"><b>Cek Out</b></button></a></div>
+                    <div class="ml-auto p-1 float-right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="rounded border-light"><b>Check Out</b></button></a></div>
                 </div>
             </div>
         </div>

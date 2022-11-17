@@ -82,6 +82,39 @@ class Transaksi extends Controller
       }
    }
 
+   function cart_pakai($id_barang)
+   {
+      $tambah = $_POST["tambah"];
+      if ($tambah < 1) {
+         echo "Tidak dapat Order 0";
+         exit();
+      }
+      $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
+
+      $desc = $d['merk'] . " " . $d['model'] . " " . $d['deskripsi'];
+      $harga = $d['harga'] * $tambah;
+      $margin = $d['margin'];
+      $margin_rp = $harga * ($margin / 100);
+      $fee = $margin_rp * ($this->userData['fee'] / 100);
+      $jual = $harga + $margin_rp;
+
+      if (!is_array($d)) {
+         print_r($d);
+         exit();
+      }
+
+      $table = "barang_jual";
+      $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, harga_jual, fee, op_status, used';
+      $values = "'" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . ",'" . $desc . "'," . $tambah . "," . $harga . "," . $jual . "," . $fee . ",0,1";
+      $do = $this->model('Insert')->cols($table, $columns, $values);
+
+      if ($do['errno'] == 0) {
+         echo "+" . $tambah . " Pakai, SUKSES!";
+      } else {
+         print_r($do);
+      }
+   }
+
    function cart_sub($id_barang, $id_sub)
    {
       $d = $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_master'] . "' AND id = '" . $id_barang . "'");
@@ -108,7 +141,7 @@ class Transaksi extends Controller
 
    function hapusCart($id)
    {
-      $this->model("Delete")->where("barang_jual", "id =" . $id);
+      $this->model("Delete")->where("barang_jual", "id =" . $id . " AND op_status = 0");
       $this->index();
    }
 
@@ -120,12 +153,31 @@ class Transaksi extends Controller
       $ref = $date . "-" . $rand;
 
       $data = $this->modul("Main")->data_keranjang();
-      $update = $this->model("Update")->update("barang_jual", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND id_user ='" . $this->userData['id_user'] . "'");
+      $update = $this->model("Update")->update("barang_jual", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND used = 0 AND id_user ='" . $this->userData['id_user'] . "'");
       if ($update['errno'] == 0) {
          foreach ($data as $a) {
             $this->modul("Main")->update_stok($a['id_barang']);
          }
          header("location: " . $this->BASE_URL . "Home");
+      } else {
+         print_r($update);
+      }
+   }
+
+   function cekOut_pakai()
+   {
+
+      $rand = rand(10000, 99999);
+      $date = date('Ymd');
+      $ref = $date . "-" . $rand;
+
+      $data = $this->modul("Main")->data_keranjang();
+      $update = $this->model("Update")->update("barang_jual", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND used = 1 AND id_master ='" . $this->userData['id_user'] . "'");
+      if ($update['errno'] == 0) {
+         foreach ($data as $a) {
+            $this->modul("Main")->update_stok($a['id_barang']);
+         }
+         header("location: " . $this->BASE_URL . "StokPakai");
       } else {
          print_r($update);
       }

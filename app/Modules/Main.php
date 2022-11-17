@@ -140,7 +140,12 @@ class Main extends Controller
 
    function data_keranjang()
    {
-      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
+      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 0");
+   }
+
+   function data_pakai()
+   {
+      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
    }
 
    function data_transfer_keluar()
@@ -157,8 +162,8 @@ class Main extends Controller
       $totalTarikFee = $this->model("Sum")->col_where("kas", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND kas_mutasi = 0 AND kas_status <> 2 AND kas_jenis = 1");
       $totalTarikSup = $this->model("Sum")->col_where("kas", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND kas_mutasi = 0 AND kas_status <> 2 AND kas_jenis = 0");
 
-      $kasJualTotal = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
-      $kasFeeTotal = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $kasJualTotal = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND used = 0");
+      $kasFeeTotal = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND used = 0");
       $kasSupTotal = $kasJualTotal - $kasFeeTotal;
 
       $kas['total'] = $kasJualTotal - $totalTarikFee - $totalTarikSup;
