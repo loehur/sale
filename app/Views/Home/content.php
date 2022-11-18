@@ -25,7 +25,7 @@
 </div>
 <hr>
 
-<div class="content">
+<div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
         <div class="row">
             <?php
