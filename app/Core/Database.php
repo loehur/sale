@@ -268,6 +268,21 @@ class Database extends DB_Config
             return FALSE;
         }
     }
+
+    public function fullJoin1_where($table, $tb_join, $on, $where)
+    {
+        $query = "SELECT * FROM $table JOIN $tb_join ON $on WHERE $where";
+        $result = $this->mysqli->query($query);
+        if ($result) {
+            $reply = [];
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
+            return $reply;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function innerJoin1_orderBy($table, $tb_join, $on, $orderBy)
     {
         $query = "SELECT * FROM $table INNER JOIN $tb_join ON $on ORDER BY $orderBy";

@@ -7,11 +7,18 @@
                         <?php
                         $total = 0;
                         foreach ($data as $d) {
+                            $sat = "PCS";
+                            foreach ($this->listSatuan as $ls) {
+                                if ($ls['id'] == $d['satuan']) {
+                                    $sat = $ls['satuan'];
+                                }
+                            }
+
                         ?>
                             <tr>
-                                <td>-> <?= strtoupper($d['id_user']) ?></td>
+                                <td><i class="fas fa-angle-double-right"></i> <?= strtoupper($d['id_user']) ?></td>
                                 <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
-                                <td>[<?= $d['jumlah'] ?>]</td>
+                                <td><?= $d['jumlah'] . " " . $sat ?></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>StokTransfer/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>
                         <?php

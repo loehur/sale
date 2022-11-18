@@ -4,10 +4,34 @@
             <?php
             foreach ($data as $a) {
                 echo "<div class='col-md-6'> <div class='t" . $a['id'] . " border mb-2 p-1'>";
-                echo "<b>" . strtoupper($a['desc']) . "</b><br>";
-                echo "<small>Jumlah</small><br>";
-                echo "<span class='text-danger'><b>" . strtoupper($a['jumlah']) . "</span></b><br>";
+                echo "<div class='pl-2 pt-2'><b>" . strtoupper($a['desc']) . "</b></div>";
+
+                $sat = "PCS";
+                foreach ($this->listSatuan as $ls) {
+                    if ($ls['id'] == $a['satuan']) {
+                        $sat = $ls['satuan'];
+                    }
+                }
+
+                $sumber = "";
+
+                if ($a['id_sumber'] == "") {
+                    $sumber = "SUPPLIER";
+                } else {
+                    foreach ($this->stafData as $sd) {
+                        if ($sd['id_user'] == $a['id_sumber']) {
+                            $sumber = $sd['nama'];
+                        }
+                    }
+                }
+
+
             ?>
+                <div class="d-flex flex-row pt-0">
+                    <div class="p-2"><span class='text-success'>Tanggal/Jam</span><br><?= $a['insertTime'] ?></div>
+                    <div class="p-2"><span class='text-success'>Sumber</span><br><b><?= strtoupper($sumber) ?></b></div>
+                    <div class="p-2 text-right"><span class='text-success'>Jumlah</span><br><b><?= strtoupper($a['jumlah']) . " " . $sat ?></b></div>
+                </div>
                 <hr class="p-0 m-0">
                 <div class="mt-2">
                     <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">

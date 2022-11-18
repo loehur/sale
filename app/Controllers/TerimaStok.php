@@ -43,6 +43,7 @@ class TerimaStok extends Controller
       foreach ($data as $key => $b) {
          $barang = $this->model("Get")->where_row("barang_data", "id = " . $b['id_barang']);
          $data[$key]['desc'] = $barang['merk'] . " " . $barang['model'] . " " . $barang['deskripsi'];
+         $data[$key]['satuan'] = $barang['satuan'];
       }
 
       $this->view(__CLASS__ . "/cek_masuk", $data);

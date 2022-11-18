@@ -72,7 +72,7 @@ class Controller extends Variables
         $where = "id_user = '" . $this->userData['id_master'] . "'";
         $_SESSION['master_data'] = $this->model('Get')->where_row('user', $where);
 
-        //MASTER
+        //ALL USER ON MASTER
         unset($_SESSION['staf_data']);
         $where = "id_master = '" . $this->userData['id_master'] . "'";
         $_SESSION['staf_data'] = $this->model('Get')->where('user', $where);

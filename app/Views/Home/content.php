@@ -37,6 +37,7 @@
                     <span class="text-info"><?= "Transaction. " . $ak; ?></span>
                     <?php
                     $tr_print = "";
+                    $classUse = 'success';
                     foreach ($value as $k) {
                         $sat = "PCS";
                         foreach ($this->listSatuan as $ls) {
@@ -44,14 +45,16 @@
                                 $sat = $ls['satuan'];
                             }
                         }
-
+                        if ($k['used'] == 1) {
+                            $classUse = "danger";
+                        }
                         $tr_print = $tr_print . "<tr><td>" . strtoupper($k['deskripsi']) . "</td><tr><td align='right'> " . $k['jumlah'] . $sat . ", Rp" . number_format($k['harga_jual']) . "</td><tr>";
 
                     ?>
 
                         <table class="table table-borderless table-sm mb-0 pb-0">
                             <tr>
-                                <td><small>#<?= $k['id'] ?></small> - <?= strtoupper($k['deskripsi']) ?></td>
+                                <td><small>#<?= $k['id'] ?></small> <?= strtoupper($k['deskripsi']) ?> <small><i class="far fa-check-circle text-<?= $classUse ?>"></i></small></td>
                                 <td align="right"><?= $k['jumlah'] . " <small>" . $sat . "</small>" ?></td>
                                 <td align="right"><?= number_format($k['harga_jual']) ?></td>
                             </tr>

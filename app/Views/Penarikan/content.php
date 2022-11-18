@@ -41,16 +41,25 @@
                 <div class="col-md-6">
                     <form action="<?= $this->BASE_URL ?>Penarikan/tarik/1" method="post">
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Jumlah</label>
+                            </div>
                             <div class="col">
                                 <input type="number" class="form-control form-control-sm" name="jumlah" placeholder="Jumlah" required>
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Keterangan</label>
+                            </div>
                             <div class="col">
                                 <input type="text" class="form-control form-control-sm" name="ket" placeholder="Keterangan">
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Password</label>
+                            </div>
                             <div class="col">
                                 <input type="password" class="form-control form-control-sm" name="pass" placeholder="Password" required>
                             </div>
@@ -67,16 +76,25 @@
                 <div class="col-md-6">
                     <form action="<?= $this->BASE_URL ?>Penarikan/tarik/0" method="post">
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Jumlah</label>
+                            </div>
                             <div class="col">
                                 <input type="number" class="form-control form-control-sm" name="jumlah" placeholder="Jumlah" required>
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Keterangan</label>
+                            </div>
                             <div class="col">
                                 <input type="text" class="form-control form-control-sm" name="ket" placeholder="Keterangan">
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Password</label>
+                            </div>
                             <div class="col">
                                 <input type="password" class="form-control form-control-sm" name="pass" placeholder="Password" required>
                             </div>
@@ -100,16 +118,25 @@
                 <div class="col-md-6">
                     <form action="<?= $this->BASE_URL ?>Penarikan/tarik/0" method="post">
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Jumlah</label>
+                            </div>
                             <div class="col">
                                 <input type="number" class="form-control form-control-sm" name="jumlah" placeholder="Jumlah" required>
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Keterangan</label>
+                            </div>
                             <div class="col">
                                 <input type="text" class="form-control form-control-sm" name="ket" placeholder="Keterangan">
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Password</label>
+                            </div>
                             <div class="col">
                                 <input type="password" class="form-control form-control-sm" name="pass" placeholder="Password" required>
                             </div>

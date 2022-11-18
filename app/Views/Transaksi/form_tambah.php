@@ -58,7 +58,7 @@ foreach ($this->listSatuan as $ls) {
                     <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart_pakai/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
                             <div class="col">
-                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" placeholder="" required>
+                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah_pakai" max="<?= $data['sisa'] ?>" placeholder="" required>
                             </div>
                             <div class="col pl-0">
                                 <button type="submit" class="btn btn-sm btn-danger btn-block">
