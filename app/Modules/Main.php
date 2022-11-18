@@ -145,7 +145,7 @@ class Main extends Controller
 
    function data_pakai()
    {
-      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
+      return $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
    }
 
    function data_transfer_keluar()
