@@ -9,7 +9,7 @@
                         foreach ($data as $d) {
                         ?>
                             <tr>
-                                <td><?= strtoupper($d['kode_barang']) ?></td>
+                                <td>-> <?= strtoupper($d['id_user']) ?></td>
                                 <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
                                 <td>[<?= $d['jumlah'] ?>]</td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>StokTransfer/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>

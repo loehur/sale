@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
-                <table class="table table-sm table-striped table-responsive" style="max-height: 589px;">
+                <table class="table table-sm table-striped" style="max-height: 589px;">
                     <?php
                     foreach ($data['stok'] as $d) { ?>
                         <tr>
@@ -16,7 +16,7 @@
                                 <?php
                                 foreach ($data['laris'] as $s) {
                                     if ($s['id_barang'] == $d['id_barang']) {
-                                        echo "Terjual " . number_format($s['jumlah'], 2);
+                                        echo "T-" . number_format($s['jumlah'], 2);
                                     }
                                 }
                                 ?>
