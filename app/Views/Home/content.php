@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <?= $this->userData['nama'] ?>
+                <p class="h6 text-danger"><strong><?= $this->userData['nama'] ?></strong></p>
             </div>
             <div class="col-md-6">
                 <table class="table table-sm float-right">
