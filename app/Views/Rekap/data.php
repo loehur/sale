@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-md-12 pb-1">
                 <b><span class="text-success">Penjualan: <?php echo $data['mon'][2] . "-" . $data['mon'][1] . "-" . $data['mon'][0]; ?></span></b>
-                <table class="mt-1 table table-sm table-borderless table-striped">
-                    <thead class="border">
+                <table class="mt-1 table table-sm">
+                    <thead class="table-borderless">
                         <tr>
                             <th class="">Toko/Barang</th>
                             <th class="text-right">Harga (Modal)</th>
@@ -46,8 +46,8 @@
             </div>
             <div class="col-md-12 pb-1">
                 <b><span class="text-danger">Pemakaian: <?php echo $data['mon'][2] . "-" . $data['mon'][1] . "-" . $data['mon'][0]; ?></span></b>
-                <table class="mt-1 table table-sm table-borderless table-striped">
-                    <thead class="border">
+                <table class="mt-1 table table-sm">
+                    <thead class="table-borderless">
                         <tr>
                             <th class="">Toko/Barang</th>
                             <th class="text-right">Biaya</th>
