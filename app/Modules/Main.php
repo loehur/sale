@@ -148,6 +148,11 @@ class Main extends Controller
       return $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
    }
 
+   function data_pakai_user()
+   {
+      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
+   }
+
    function data_transfer_keluar()
    {
       $table = "barang_data";

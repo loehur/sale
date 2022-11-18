@@ -13,6 +13,7 @@ class Transaksi extends Controller
    {
       $this->view_layout(["title" => __CLASS__]);
       $this->keranjang();
+      $this->keranjang_pakai();
       $data = $this->modul("Main")->list_stok();
       $this->view($this->content, $data);
    }
@@ -39,6 +40,12 @@ class Transaksi extends Controller
    {
       $data = $this->modul("Main")->data_keranjang();
       $this->view(__CLASS__ . "/keranjang", $data);
+   }
+
+   function keranjang_pakai()
+   {
+      $data = $this->modul("Main")->data_pakai();
+      $this->view(__CLASS__ . "/pakai", $data);
    }
 
    function form_tambah($kode_barang, $stok, $id_barang)
