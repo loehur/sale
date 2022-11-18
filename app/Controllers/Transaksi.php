@@ -44,7 +44,7 @@ class Transaksi extends Controller
 
    function keranjang_pakai()
    {
-      $data = $this->modul("Main")->data_pakai();
+      $data = $this->modul("Main")->data_pakai_user();
       $this->view(__CLASS__ . "/pakai", $data);
    }
 
