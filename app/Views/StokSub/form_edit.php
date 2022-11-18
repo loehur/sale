@@ -103,7 +103,7 @@
     </div>
 </div>
 <hr>
-<div class="content">
+<div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
