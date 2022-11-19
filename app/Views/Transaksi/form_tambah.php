@@ -22,7 +22,7 @@ foreach ($this->listSatuan as $ls) {
                         if ($data['sisa'] >= $s['jumlah']) {
                     ?>
                             <tr>
-                                <td><?= $s['nama_sub'] ?></td>
+                                <td><?= strtoupper($a['nama_sub']) ?></td>
                                 <td align="right" nowrap><?= number_format($s['jumlah'], 2) . " " . $sat  ?></td>
                                 <td align="right">Rp<?= number_format(($a['harga'] * $s['jumlah']) * ($s['margin'] / 100) + ($a['harga'] * $s['jumlah'])) ?></td>
                                 <td><a href="<?= $this->BASE_URL ?>Transaksi/cart_sub/<?= $a['id'] ?>/<?= $s['id'] ?>"><i class="text-success fas fa-plus-square"></i></a></td>
