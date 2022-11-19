@@ -35,7 +35,7 @@
                     </tr>
                     <?php foreach ($data['list_sub'] as $a) { ?>
                         <tr>
-                            <td><?= $a['nama_sub'] ?></td>
+                            <td><?= strtoupper($a['nama_sub']) ?></td>
                             <td align="right"><?= number_format($a['jumlah'], 2) ?></td>
                             <td align="right"><?= number_format(($data['harga'] * $a['jumlah'])) ?></td>
                             <td align="right"><?= number_format($a['margin']) ?>%</td>
