@@ -55,11 +55,11 @@ class StokSub extends Controller
 
       $jumlah = $_POST["jumlah"];
       $margin = $_POST["margin"];
-
+      $nama = $_POST["nama"];
 
       $table = "barang_sub";
-      $columns = 'id, id_master, id_barang, jumlah, margin';
-      $values = "'" . $id_barang . $jumlah . "','" . $this->userData['id_master'] . "','" . $id_barang . "'," . $jumlah . "," . $margin;
+      $columns = 'id, id_master, id_barang, jumlah, margin, nama_sub';
+      $values = "'" . $id_barang . $jumlah . "','" . $this->userData['id_master'] . "','" . $id_barang . "'," . $jumlah . "," . $margin . ",'" . $nama . "'";
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
@@ -78,9 +78,10 @@ class StokSub extends Controller
 
       $jumlah = $_POST["jumlah"];
       $margin = $_POST["margin"];
+      $nama = $_POST["nama"];
 
       $table = "barang_sub";
-      $set = "id = '" . $id_barang . $jumlah . "', id_master = '" . $this->userData['id_master'] . "', jumlah = " . $jumlah . ", margin = " . $margin;
+      $set = "id = '" . $id_barang . $jumlah . "', id_master = '" . $this->userData['id_master'] . "', jumlah = " . $jumlah . ", margin = " . $margin . ", nama_sub = '" . $nama . "'";
       $where = "id_master = '" . $this->userData['id_user'] . "' AND id = " . $id;
 
       $do = $this->model('Update')->update($table, $set, $where);

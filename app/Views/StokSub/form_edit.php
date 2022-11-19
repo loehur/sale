@@ -27,6 +27,7 @@
             <div class="col-auto mr-auto">
                 <table class="table table-sm">
                     <tr>
+                        <th>Nama Sub</th>
                         <th align="right">Jumlah</th>
                         <th align="right">Modal</th>
                         <th align="right">Margin</th>
@@ -34,6 +35,7 @@
                     </tr>
                     <?php foreach ($data['list_sub'] as $a) { ?>
                         <tr>
+                            <td><?= $a['nama_sub'] ?></td>
                             <td align="right"><?= number_format($a['jumlah'], 2) ?></td>
                             <td align="right"><?= number_format(($data['harga'] * $a['jumlah'])) ?></td>
                             <td align="right"><?= number_format($a['margin']) ?>%</td>
@@ -53,6 +55,14 @@
                 <form class="tambah" action="<?= $this->BASE_URL ?>StokSub/update_sub/<?= $data['id'] ?>/<?= $sub['id'] ?>" method="post">
                     <div class="row mb-2">
                         <div class="col-md-4">
+                            Nama Sub
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control form-control-sm" value="<?= $sub['nama_sub'] ?>" name="nama" placeholder="Nama Sub" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4">
                             Jumlah
                         </div>
                         <div class="col-md-8">
@@ -61,7 +71,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-4">
-                            Harga Rp
+                            Modal Rp
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control form-control-sm text-right" name="harga" value="<?= $data['harga'] ?>" readonly>
@@ -136,6 +146,7 @@
             });
         });
 
+        modal();
         margin_rp();
         harga_jual();
 
@@ -150,14 +161,16 @@
         })
         $("input[name=jumlah]").on("change, keyup", function() {
             margin_rp();
+            modal();
+        })
 
+        function modal() {
             var harga = "<?= $data['harga'] ?>"
             var jumlah = $("input[name=jumlah").val()
 
             var total = harga * jumlah;
             $("input[name=harga]").val(total);
-
-        })
+        }
 
         function margin_rp() {
             var harga = "<?= $data['harga'] ?>"

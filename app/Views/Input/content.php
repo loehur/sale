@@ -86,7 +86,9 @@
                 toko: val
             },
             type: "POST",
-            success: function() {},
+            success: function() {
+                location.reload(true);
+            },
         });
     });
 </script>

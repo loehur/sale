@@ -25,6 +25,7 @@
             <div class="col-auto mr-auto">
                 <table class="table table-sm">
                     <tr>
+                        <th>Nama Sub</th>
                         <th class="text-right">Jumlah</th>
                         <th class="text-right">Modal</th>
                         <th class="text-right">Margin</th>
@@ -32,6 +33,7 @@
                     </tr>
                     <?php foreach ($data['list_sub'] as $a) { ?>
                         <tr>
+                            <td><?= $a['nama_sub'] ?></td>
                             <td class="text-right"><?= number_format($a['jumlah'], 2) ?></td>
                             <td class="text-right"><?= number_format(($data['harga'] * $a['jumlah'])) ?></td>
                             <td class="text-right"><?= number_format($a['margin']) ?>%</td>
@@ -52,6 +54,14 @@
                 <form class="tambah" action="<?= $this->BASE_URL ?>StokSub/tambah_sub/<?= $data['id'] ?>" method="post">
                     <div class="row mb-2">
                         <div class="col-md-4">
+                            Nama Sub
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control form-control-sm" name="nama" placeholder="Nama Sub" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4">
                             Jumlah
                         </div>
                         <div class="col-md-8">
@@ -60,7 +70,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-4">
-                            Harga Rp
+                            Modal Rp
                         </div>
                         <div class="col-md-8">
                             <input type="text" class="form-control form-control-sm text-right" name="harga" value="<?= $data['harga'] ?>" readonly>

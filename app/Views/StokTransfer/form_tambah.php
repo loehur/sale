@@ -19,14 +19,18 @@ $a = $data['stok'];
                 <div class="col-auto mr-auto">
                     <form class="tambah" action="<?= $this->BASE_URL ?>StokTransfer/cart/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
-                            <div class="col-auto">
+                            <div class="col">
                                 <label>Jumlah</label>
-                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" value="1" min="0.01" step="0.01" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" required>
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-auto">
+                            <div class="col">
                                 <label>Tujuan</label>
+                            </div>
+                            <div class="col-auto">
                                 <select class="form-control form-control-sm" name="tujuan" required>
                                     <?php
                                     foreach ($this->stafData as $a) {
