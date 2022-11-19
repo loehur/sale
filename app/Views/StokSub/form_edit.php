@@ -58,7 +58,7 @@
                             Nama Sub
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control form-control-sm" value="<?= $sub['nama_sub'] ?>" name="nama" placeholder="Nama Sub" required>
+                            <input type="text" class="form-control form-control-sm" style="text-transform:uppercase;" value="<?= $sub['nama_sub'] ?>" name="nama" placeholder="Nama Sub" required>
                         </div>
                     </div>
                     <div class="row mb-2">
