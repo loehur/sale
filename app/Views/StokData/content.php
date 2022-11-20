@@ -1,60 +1,45 @@
 <div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
         <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
+
         <div class="row">
-
-
             <?php
             $id_user = "";
+            $counter = 0;
             $run = false;
-            foreach ($data['stok'] as $d) {
-                if ($id_user <> $d['id_user']) {
-                    if ($run == true) { ?>
-                        </table>
-        </div>
 
-    <?php } else {
-                        $run = true;
-                    }
-    ?>
-    <div class="col-auto">
-        <table class="table table-sm">
-            <tr class="table-borderless">
-                <td colspan="2"></td>
-            </tr>
-            <tr class="table-success">
-                <td colspan="2"><b><?= strtoupper($d['id_user']) ?></b></td>
-            </tr>
-        <?php }
-                $laku = 0;
-                foreach ($data['laris'] as $s) {
-                    if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
-                        $laku = $s['jumlah'];
-                    }
-                }
-                if ($laku > 0) { ?>
-            <tr>
-                <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
-                    <br>
-                    <?= "[" . strtoupper($d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
-                </td>
-                <td align="right">
-                    <b><?= $d['stok'] ?></b><br>
-                    <?php
-                    foreach ($data['laris'] as $s) {
-                        if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
-                            echo "T-" . number_format($s['jumlah'], 2);
-                        }
-                    }
-                    ?>
-                </td>
-            </tr>
-        <?php }
-        ?>
-    <?php
-                $id_user = $d['id_user'];
-            } ?>
-    </div>
+            foreach ($data as $colom) {
+                echo '<div class="col-md-6">';
+                foreach ($colom as $id_user => $val) { ?>
+                    <div>
+                        <table class="table table-sm p-0 m-0">
+                            <tr class="table-borderless">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr class="table-success">
+                                <td colspan="2"><b><?= strtoupper($id_user) ?></b></td>
+                            </tr>
+                            <?php foreach ($val as $d) { ?>
+                                <tr>
+                                    <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
+                                        <br>
+                                        <?= "[" . strtoupper($d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
+                                    </td>
+                                    <td align="right">
+                                        <b><?= $d['stok'] ?></b><br>
+                                        <?php
+                                        echo "T-" . number_format($d['laris'], 2);
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
+            <?php }
+                echo "</div>";
+            }
+            ?>
+        </div>
     </div>
 </div>
 
