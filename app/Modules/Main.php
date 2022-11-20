@@ -134,7 +134,7 @@ class Main extends Controller
       $table = "barang_stok";
       $tb_join = "barang_data";
       $on = "barang_stok.id_barang = barang_data.id";
-      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' ORDER BY barang_stok.stok ASC";
+      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
