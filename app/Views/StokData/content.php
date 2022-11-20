@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
                 <table class="table table-sm table-striped" style="max-height: 589px;">
-                    <?php
+                    <?php print_r($data['laris']);
                     foreach ($data['stok'] as $d) {
                         $laku = 0;
                         foreach ($data['laris'] as $s) {
