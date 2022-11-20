@@ -6,15 +6,9 @@
             <?php
             $id_user = "";
             $counter = 0;
-            $run = false;
-
-            foreach ($data as $colom => $col) {
-                if ($colom == 1) {
-                    echo '<div class="col-md-6 pr-2">';
-                } else {
-                    echo '<div class="col-md-6 pl-1">';
-                }
-
+                $run = false;
+                foreach ($data as $colom => $col) {
+                echo '<div class="col-md-6">';
                 foreach ($col as $id_user => $val) { ?>
                     <div>
                         <table class="table table-sm p-0 m-0">
