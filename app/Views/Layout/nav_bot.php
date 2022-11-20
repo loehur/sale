@@ -10,10 +10,13 @@
 							<a href="<?= $this->BASE_URL ?>Staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-users"></i><br>Staff</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>SubMenu/stok" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/stok" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>SubMenu/rekap" class="nav-link text-secondary text-nowrap">
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/approval" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Approval</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/rekap" class="nav-link text-secondary text-nowrap">
 								<i class="fas fa-chart-line"></i><br>Rekap
 							</a>
 						</li>
@@ -37,7 +40,7 @@
 							<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stok Masuk</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Approval</a>
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/pengajuan" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Pengajuan</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">
@@ -67,6 +70,9 @@
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>StokTransfer" class="nav-link text-secondary text-nowrap">
 								<i class="fas fa-random"></i><br>Stok Transfer</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/pengajuan" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Pengajuan</a>
 						</li>
 					</ul>
 				</nav>

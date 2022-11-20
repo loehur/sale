@@ -9,15 +9,9 @@ class SubMenu extends Controller
       $this->data();
    }
 
-   public function stok()
+   public function i($subMenu)
    {
-      $this->view_layout(["title" => __CLASS__]);
-      $this->view(__CLASS__ . "/" . __FUNCTION__);
-   }
-
-   public function rekap()
-   {
-      $this->view_layout(["title" => __CLASS__]);
-      $this->view(__CLASS__ . "/" . __FUNCTION__);
+      $this->view_layout(["title" => $subMenu]);
+      $this->view(__CLASS__ . "/" . $subMenu);
    }
 }

@@ -35,32 +35,31 @@
                 <div class="col-md-6 border pb-1 pt-1 mb-2">
                     <a href="" class="text-primary" onclick="Print('<?= $ak ?>')"><i class="fas fa-print"></i></a>
                     <span class="text-info"><?= "Transaction. " . $ak; ?></span>
-                    <?php
-                    $tr_print = "";
-                    $classUse = 'success';
-                    foreach ($value as $k) {
-                        $sat = "PCS";
-                        foreach ($this->listSatuan as $ls) {
-                            if ($ls['id'] == $k['satuan']) {
-                                $sat = $ls['satuan'];
+                    <table class="table table-borderless table-sm mb-0 pb-0">
+                        <?php
+                        $tr_print = "";
+                        $classUse = 'success';
+                        foreach ($value as $k) {
+                            $sat = "PCS";
+                            foreach ($this->listSatuan as $ls) {
+                                if ($ls['id'] == $k['satuan']) {
+                                    $sat = $ls['satuan'];
+                                }
                             }
-                        }
-                        if ($k['used'] == 1) {
-                            $classUse = "danger";
-                        }
-                        $tr_print = $tr_print . "<tr><td>" . strtoupper($k['deskripsi']) . "</td><tr><td align='right'> " . $k['jumlah'] . $sat . ", Rp" . number_format($k['harga_jual']) . "</td><tr>";
+                            if ($k['used'] == 1) {
+                                $classUse = "danger";
+                            }
+                            $tr_print = $tr_print . "<tr><td>" . strtoupper($k['deskripsi']) . "</td><tr><td align='right'> " . $k['jumlah'] . $sat . ", Rp" . number_format($k['harga_jual']) . "</td><tr>";
 
-                    ?>
-
-                        <table class="table table-borderless table-sm mb-0 pb-0">
+                        ?>
                             <tr>
                                 <td><small>#<?= $k['id'] ?></small> <?= strtoupper($k['deskripsi']) ?> <small><i class="far fa-check-circle text-<?= $classUse ?>"></i></small></td>
                                 <td align="right"><?= $k['jumlah'] . " <small>" . $sat . "</small>" ?></td>
                                 <td align="right"><?= number_format($k['harga_jual']) ?></td>
                             </tr>
                         <?php
-                        $total += $k['harga_jual'];
-                    } ?>
+                            $total += $k['harga_jual'];
+                        } ?>
                         <tr class="border-top">
                             <td colspan="2"><b>TOTAL</b></td>
                             <td align="right"><b><?= number_format($total) ?></b></td>
@@ -125,7 +124,7 @@
                             </td>
                         </tr>
 
-                        </table>
+                    </table>
                 </div>
             <?php } ?>
         </div>
@@ -147,4 +146,25 @@
         window.print();
         location.reload(true);
     }
+
+    $("a.hapusRef").on('dblclick', function(e) {
+        e.preventDefault();
+        var refNya = $(this).attr('data-ref');
+        $.ajax({
+            url: '<?= $this->BASE_URL ?>Home/hapus',
+            data: {
+                ref: refNya,
+            },
+            type: "POST",
+            beforeSend: function() {
+                $(".loaderDiv").fadeIn("fast");
+            },
+            success: function(response) {
+                loadDiv();
+            },
+            complete: function() {
+                $(".loaderDiv").fadeOut("slow");
+            }
+        });
+    });
 </script>
