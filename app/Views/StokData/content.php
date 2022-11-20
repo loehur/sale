@@ -17,7 +17,7 @@
                         $run = true;
                     }
     ?>
-    <div class="col-md-6">
+    <div class="col-auto">
         <table class="table table-sm">
             <tr class="table-borderless">
                 <td colspan="2"></td>
