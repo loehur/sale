@@ -8,7 +8,7 @@
                     foreach ($data['stok'] as $d) {
                         $laku = 0;
                         foreach ($data['laris'] as $s) {
-                            if ($s['id_barang'] == $d['id_barang']) {
+                            if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
                                 $laku = $s['jumlah'];
                                 break;
                             }
