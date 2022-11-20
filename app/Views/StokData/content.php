@@ -4,13 +4,12 @@
             <div class="col-md-12">
                 <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
                 <table class="table table-sm table-striped" style="max-height: 589px;">
-                    <?php print_r($data['laris']);
+                    <?php
                     foreach ($data['stok'] as $d) {
                         $laku = 0;
                         foreach ($data['laris'] as $s) {
                             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
                                 $laku = $s['jumlah'];
-                                break;
                             }
                         }
                         if ($laku > 0) { ?>
@@ -23,7 +22,7 @@
                                     <?= $d['stok'] ?><br>
                                     <?php
                                     foreach ($data['laris'] as $s) {
-                                        if ($s['id_barang'] == $d['id_barang']) {
+                                        if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
                                             echo "T-" . number_format($s['jumlah'], 2);
                                         }
                                     }
