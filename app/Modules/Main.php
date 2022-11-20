@@ -143,12 +143,12 @@ class Main extends Controller
       return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 0");
    }
 
-   function data_pakai()
+   function data_keranjang_pakai_master()
    {
       return $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
    }
 
-   function data_pakai_user()
+   function data_keranjang_pakai_user()
    {
       return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
    }
