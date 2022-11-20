@@ -1,5 +1,5 @@
 <?php if (count($data) <> 0) { ?>
-    <div class="content mb-2">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col mr-auto pb-2 pt-2">
@@ -10,7 +10,7 @@
                         foreach ($data as $d) {
                         ?>
                             <tr>
-                                <td>[ <?= strtoupper($d['id_user']) ?> ]<br><?= strtoupper($d['deskripsi']) ?></td>
+                                <td><?= strtoupper($d['deskripsi']) ?></td>
                                 <td>[ <?= $d['jumlah'] ?> ]</td>
                             </tr>
                         <?php

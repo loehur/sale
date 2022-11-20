@@ -9,7 +9,7 @@ foreach ($this->listSatuan as $ls) {
     }
 }
 ?>
-<div class="content pt-2 pb-2">
+<div class="content pt-2">
     <div class="container-fluid">
         <h6><?= "<b>" . strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) . "</b>" ?>,<br>Harga/<?= $sat ?>: Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?>, Stok: <b><?= number_format($data['sisa'], 2) . "</b> " . $sat ?></h6>
         <hr>
@@ -59,7 +59,7 @@ foreach ($this->listSatuan as $ls) {
                     <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart_pakai/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
                             <div class="col">
-                                <input type="number" value="1" min="1" class="form-control form-control-sm" name="tambah_pakai" max="<?= $data['sisa'] ?>" placeholder="" required>
+                                <input type="number" value="1" min="0.01" step="0.01" class="form-control form-control-sm" name="tambah_pakai" max="<?= $data['sisa'] ?>" placeholder="" required>
                             </div>
                             <div class="col pl-0">
                                 <button type="submit" class="btn btn-sm btn-danger btn-block">

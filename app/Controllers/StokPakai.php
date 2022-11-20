@@ -12,7 +12,7 @@ class StokPakai extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $data = $this->modul("Main")->data_pakai();
+      $data = $this->modul("Main")->data_keranjang_pakai_master();
       $this->view($this->content, $data);
    }
 

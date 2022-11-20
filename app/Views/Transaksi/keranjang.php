@@ -1,4 +1,4 @@
-    <div class="content mb-2">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col mr-auto pb-2 pt-2">
