@@ -240,6 +240,6 @@ class Main extends Controller
 
    function terlaris()
    {
-      return $this->model("Get")->cols_where_groubBy_orderBy("barang_jual", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "jumlah DESC");
+      return $this->model("Get")->cols_where_groubBy_orderBy("barang_jual", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
    }
 }
