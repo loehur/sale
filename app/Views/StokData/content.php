@@ -3,9 +3,18 @@
         <div class="row">
             <div class="col-md-12">
                 <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
-                <table class="table table-sm table-striped" style="max-height: 589px;">
+                <table class="table table-sm" style="max-height: 589px;">
                     <?php
+                    $id_user = "";
                     foreach ($data['stok'] as $d) {
+                        if ($id_user <> $d['id_user']) { ?>
+                            <tr class="table-borderless">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr class="table-success">
+                                <td colspan="2"><b><?= strtoupper($d['id_user']) ?></b></td>
+                            </tr>
+                        <?php }
                         $laku = 0;
                         foreach ($data['laris'] as $s) {
                             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
@@ -19,7 +28,7 @@
                                     <?= "[" . strtoupper($d['id_user'] . "] [" . $d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
                                 </td>
                                 <td align="right">
-                                    <?= $d['stok'] ?><br>
+                                    <b><?= $d['stok'] ?></b><br>
                                     <?php
                                     foreach ($data['laris'] as $s) {
                                         if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
@@ -31,7 +40,9 @@
                             </tr>
                         <?php }
                         ?>
-                    <?php  } ?>
+                    <?php
+                        $id_user = $d['id_user'];
+                    } ?>
                 </table>
             </div>
         </div>
