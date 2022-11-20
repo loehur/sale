@@ -28,10 +28,6 @@
 						<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap">
 							<i class="fas fa-download"></i><br>Stok Masuk</a>
 					</li>
-					<li class="nav-item">
-						<a href="<?= $this->BASE_URL ?>StokPakai" class="nav-link text-secondary text-nowrap">
-							<i class="fab fa-stack-overflow"></i><br>Stok Pakai</a>
-					</li>
 				</ul>
 			</nav>
 		</b>

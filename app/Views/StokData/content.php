@@ -25,7 +25,7 @@
                             <tr>
                                 <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                     <br>
-                                    <?= "[" . strtoupper($d['id_user'] . "] [" . $d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
+                                    <?= "[" . strtoupper($d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
                                 </td>
                                 <td align="right">
                                     <b><?= $d['stok'] ?></b><br>
