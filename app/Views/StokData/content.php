@@ -5,23 +5,33 @@
                 <label><b>Data Stok Barang dan Jumlah Penjualan</b></label>
                 <table class="table table-sm table-striped" style="max-height: 589px;">
                     <?php
-                    foreach ($data['stok'] as $d) { ?>
-                        <tr>
-                            <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
-                                <br>
-                                <?= "[" . strtoupper($d['id_user'] . "] [" . $d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
-                            </td>
-                            <td align="right">
-                                <?= $d['stok'] ?><br>
-                                <?php
-                                foreach ($data['laris'] as $s) {
-                                    if ($s['id_barang'] == $d['id_barang']) {
-                                        echo "T-" . number_format($s['jumlah'], 2);
+                    foreach ($data['stok'] as $d) {
+                        $laku = 0;
+                        foreach ($data['laris'] as $s) {
+                            if ($s['id_barang'] == $d['id_barang']) {
+                                $laku = $s['jumlah'];
+                                break;
+                            }
+                        }
+                        if ($laku > 0) { ?>
+                            <tr>
+                                <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
+                                    <br>
+                                    <?= "[" . strtoupper($d['id_user'] . "] [" . $d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
+                                </td>
+                                <td align="right">
+                                    <?= $d['stok'] ?><br>
+                                    <?php
+                                    foreach ($data['laris'] as $s) {
+                                        if ($s['id_barang'] == $d['id_barang']) {
+                                            echo "T-" . number_format($s['jumlah'], 2);
+                                        }
                                     }
-                                }
-                                ?>
-                            </td>
-                        </tr>
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php }
+                        ?>
                     <?php  } ?>
                 </table>
             </div>
