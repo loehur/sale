@@ -182,7 +182,7 @@ class Transaksi extends Controller
       $update = $this->model("Update")->update("barang_jual", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND used = 1 AND id_master ='" . $this->userData['id_user'] . "'");
       if ($update['errno'] == 0) {
          foreach ($data as $a) {
-            $this->modul("Main")->update_stok($a['id_barang']);
+            $this->modul("Main")->update_stok_master($a['id_user'], $a['id_barang']);
          }
          header("location: " . $this->BASE_URL . "StokPakai");
       } else {
