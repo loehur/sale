@@ -68,7 +68,6 @@
 
 </html>
 
-<script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
 <script>
 	var time = new Date().getTime();
 	$(document.body).bind("mousemove keypress", function(e) {
