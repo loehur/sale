@@ -66,9 +66,14 @@ class PengajuanHapus extends Controller
 
    function hapusSemua()
    {
+      $data = $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_master'] . "' AND op_status = 1 AND bin = 1");
+
       $where = "id_master = '" . $this->userData['id_user'] . "' AND bin = 1";
       $do =  $this->model('Delete')->where("barang_jual", $where);
       if ($do['errno'] == 0) {
+         foreach ($data as $a) {
+            $this->modul("Main")->update_stok_master($a['id_user'], $a['id_barang']);
+         }
          $this->list_master();
       } else {
          echo $do['error'];
