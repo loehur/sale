@@ -100,19 +100,15 @@ class Transaksi extends Controller
 
       $desc = $d['merk'] . " " . $d['model'] . " " . $d['deskripsi'];
       $harga = $d['harga'] * $tambah;
-      $margin = $d['margin'];
-      $margin_rp = $harga * ($margin / 100);
-      $fee = $margin_rp * ($this->userData['fee'] / 100);
-      $jual = $harga + $margin_rp;
 
       if (!is_array($d)) {
          print_r($d);
          exit();
       }
 
-      $table = "barang_jual";
-      $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, harga_jual, fee, op_status, used';
-      $values = "'" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . ",'" . $desc . "'," . $tambah . "," . $harga . "," . $jual . "," . $fee . ",0,1";
+      $table = "barang_pakai";
+      $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, op_status';
+      $values = "'" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . ",'" . $desc . "'," . $tambah . "," . $harga . ",0";
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {

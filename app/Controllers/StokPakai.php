@@ -18,7 +18,7 @@ class StokPakai extends Controller
 
    function hapusCart($id)
    {
-      $this->model("Delete")->where("barang_jual", "id =" . $id . " AND op_status = 0");
+      $this->model("Delete")->where("barang_pakai", "id =" . $id . " AND op_status = 0");
       $this->index();
    }
 }

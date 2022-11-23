@@ -13,7 +13,8 @@ class Main extends Controller
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_transfer = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_sumber = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status <> 2");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status <> 2");
-      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual;
+      $stok_pakai = $this->model("Sum")->col_where("barang_pakai", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status <> 2");
+      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual - $stok_pakai;
       return $sisa_stok;
    }
 
@@ -22,7 +23,8 @@ class Main extends Controller
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_transfer = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_sumber = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual;
+      $stok_pakai = $this->model("Sum")->col_where("barang_pakai", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual - $stok_pakai;
 
       $stok_masuk_antri = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $toko . "' AND id_barang = '" . $id_barang . "' AND op_status = 0");
       $stok['sisa'] = $sisa_stok;
@@ -30,22 +32,13 @@ class Main extends Controller
       return $stok;
    }
 
-   function barang_tunggal($kode_barang)
-   {
-      return $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
-   }
-
-   function sub_tunggal($id_sub)
-   {
-      return $this->model("Get")->where_row("barang_sub", "id_master = '" . $this->userData['id_user'] . "' AND id = '" . $id_sub . "'");
-   }
-
    function update_stok($id_barang, $rak = "")
    {
       //update stok
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $sisa_stok = $stok_masuk - $stok_jual;
+      $stok_pakai = $this->model("Sum")->col_where("barang_pakai", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $sisa_stok = $stok_masuk - $stok_jual - $stok_pakai;
 
       $id_stok = $this->userData['id_user'] . "_" . $id_barang;
 
@@ -76,7 +69,8 @@ class Main extends Controller
       //update stok
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $sisa_stok = $stok_masuk - $stok_jual;
+      $stok_pakai = $this->model("Sum")->col_where("barang_pakai", "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $sisa_stok = $stok_masuk - $stok_jual - $stok_pakai;
 
       $id_stok = $id_user . "_" . $id_barang;
 
@@ -100,6 +94,18 @@ class Main extends Controller
          $where = "id = '" . $id_stok . "'";
          $this->model("Update")->update("barang_stok", $set, $where);
       }
+   }
+
+   //============================================================================================================================================================//
+
+   function barang_tunggal($kode_barang)
+   {
+      return $this->model("Get")->where_row("barang_data", "id_master = '" . $this->userData['id_user'] . "' AND kode_barang = '" . $kode_barang . "'");
+   }
+
+   function sub_tunggal($id_sub)
+   {
+      return $this->model("Get")->where_row("barang_sub", "id_master = '" . $this->userData['id_user'] . "' AND id = '" . $id_sub . "'");
    }
 
    function list_stok()
@@ -171,17 +177,17 @@ class Main extends Controller
 
    function data_keranjang()
    {
-      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 0");
+      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
    }
 
    function data_keranjang_pakai_master()
    {
-      return $this->model("Get")->where("barang_jual", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
+      return $this->model("Get")->where("barang_pakai", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 0");
    }
 
    function data_keranjang_pakai_user()
    {
-      return $this->model("Get")->where("barang_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0 AND used = 1");
+      return $this->model("Get")->where("barang_pakai", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 0");
    }
 
    function data_transfer_keluar()
@@ -198,8 +204,8 @@ class Main extends Controller
       $totalTarikFee = $this->model("Sum")->col_where("kas", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND kas_mutasi = 0 AND kas_status <> 2 AND kas_jenis = 1");
       $totalTarikSup = $this->model("Sum")->col_where("kas", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND kas_mutasi = 0 AND kas_status <> 2 AND kas_jenis = 0");
 
-      $kasJualTotal = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND used = 0");
-      $kasFeeTotal = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1 AND used = 0");
+      $kasJualTotal = $this->model("Sum")->col_where("barang_jual", "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $kasFeeTotal = $this->model("Sum")->col_where("barang_jual", "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
       $kasSupTotal = $kasJualTotal - $kasFeeTotal;
 
       $kas['total'] = $kasJualTotal - $totalTarikFee - $totalTarikSup;
@@ -217,7 +223,15 @@ class Main extends Controller
       $tb_join = "barang_jual";
       $on = "barang_jual.id_barang = barang_data.id";
       $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' AND barang_jual.op_status = 1 AND barang_jual.insertTime LIKE '%" . $month . "%'";
-      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+      $data['jual'] = $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+
+      $table = "barang_data";
+      $tb_join = "barang_pakai";
+      $on = "barang_pakai.id_barang = barang_data.id";
+      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' AND barang_pakai.op_status = 1 AND barang_pakai.insertTime LIKE '%" . $month . "%'";
+      $data['pakai'] = $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+
+      return $data;
    }
 
    function riwayat_jual()

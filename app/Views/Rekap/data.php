@@ -17,10 +17,7 @@
                         $fee_total = 0;
                         $omset = 0;
                         $modalTotal = 0;
-                        foreach ($data['data'] as $dp) {
-                            if ($dp['used'] == 1) {
-                                continue;
-                            }
+                        foreach ($data['data']['jual'] as $dp) {
                             $margin = $dp['harga_jual'] - $dp['harga'] - $dp['fee'];
                         ?>
                             <tr>
@@ -56,10 +53,7 @@
                     <tbody>
                         <?php
                         $modalTotal = 0;
-                        foreach ($data['data'] as $dp) {
-                            if ($dp['used'] == 0) {
-                                continue;
-                            }
+                        foreach ($data['data']['pakai'] as $dp) {
                         ?>
                             <tr>
                                 <td class=""><?= strtoupper($dp['id_user'] . "#" . $dp['kode_barang']) ?></td>
