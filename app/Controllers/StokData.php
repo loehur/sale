@@ -13,7 +13,7 @@ class StokData extends Controller
    {
       $this->view_layout(["title" => __CLASS__]);
       $data['stok'] = $this->modul("Main")->list_stok_all();
-      $data = $this->modul("Main")->terlaris();
+      $data['laris'] = $this->modul("Main")->terlaris();
 
       foreach ($data['stok'] as $d) {
          foreach ($data['laris'] as $s) {

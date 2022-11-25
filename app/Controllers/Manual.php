@@ -16,5 +16,11 @@ class Manual extends Controller
       foreach ($data as $a) {
          $this->modul("Main")->update_stok_master($a['id_user'], $a['id_barang']);
       }
+
+      $data2 = $this->model("Get")->cols_where_groubBy("barang_pakai", "id_user, id_barang", "id_user = '" . $id_user . "'", "id_user, id_barang");
+
+      foreach ($data2 as $a) {
+         $this->modul("Main")->update_stok_master($a['id_user'], $a['id_barang']);
+      }
    }
 }
