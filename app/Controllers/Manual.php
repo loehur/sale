@@ -9,6 +9,8 @@ class Manual extends Controller
    }
    function UpdateStok($id_user)
    {
+      $this->model("Delete")->where("barang_stok", "id_user = '" . $id_user . "'");
+      
       $data = $this->model("Get")->cols_where_groubBy("barang_masuk", "id_user, id_barang", "id_user = '" . $id_user . "'", "id_user, id_barang");
 
       foreach ($data as $a) {
