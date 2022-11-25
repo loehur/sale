@@ -254,6 +254,24 @@ class Main extends Controller
 
    function terlaris()
    {
-      return $this->model("Get")->cols_where_groubBy_orderBy("barang_jual", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
+      $bj = $this->model("Get")->cols_where_groubBy_orderBy("barang_jual", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
+      $bp = $this->model("Get")->cols_where_groubBy_orderBy("barang_pakai", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
+      $new = [];
+
+      foreach ($bj as $key => $a) {
+         $same = false;
+         foreach ($bp as $b) {
+            if ($a['id_barang'] == $b['id_barang']) {
+               $same = true;
+               $a['jumlah'] += $b['jumlah'];
+               $new[$key] = $a;
+            }
+         }
+         if ($same == false) {
+            $new[$key] = $a;
+         }
+      }
+
+      return $new;
    }
 }
