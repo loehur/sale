@@ -19,10 +19,8 @@ class StokData extends Controller
          foreach ($data['laris'] as $s) {
             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
                $laku = $s['jumlah'];
-               if ($laku > 0) {
-                  $combine[$d['id_user']][$d['id_barang']] = $d;
-                  $combine[$d['id_user']][$d['id_barang']]['laris'] = $laku;
-               }
+               $combine[$d['id_user']][$d['id_barang']] = $d;
+               $combine[$d['id_user']][$d['id_barang']]['laris'] = $laku;
             }
          }
       }
