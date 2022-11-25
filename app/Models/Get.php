@@ -28,9 +28,19 @@ class Get
         return $this->db->count_where($table, $where);
     }
 
+    function cols_groubBy($table, $cols, $groupBy)
+    {
+        return $this->db->get_cols_groubBy($table, $cols, $groupBy);
+    }
+
     function cols_groubBy_orderBy($table, $cols, $groupBy, $orderBy)
     {
         return $this->db->get_cols_groubBy_orderBy($table, $cols, $groupBy, $orderBy);
+    }
+
+    function cols_where_groubBy($table, $where, $cols, $groupBy)
+    {
+        return $this->db->get_cols_where_groubBy($table, $where, $cols, $groupBy);
     }
 
     function cols_where_groubBy_orderBy($table, $where, $cols, $groupBy, $orderBy)

@@ -94,6 +94,21 @@ class Database extends DB_Config
         }
     }
 
+    public function get_cols_where_groubBy($table, $cols, $where, $groupBy)
+    {
+        $reply = [];
+        $query = "SELECT $cols FROM $table WHERE $where GROUP BY $groupBy";
+        $result = $this->mysqli->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
+            return $reply;
+        } else {
+            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
+        }
+    }
+
     public function get_cols_where_groubBy_orderBy($table, $cols, $where, $groupBy, $orderBy)
     {
         $reply = [];
