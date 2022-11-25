@@ -48,6 +48,8 @@ class Cek extends Controller
       print_r(json_encode($new, JSON_PRETTY_PRINT));
       echo "</pre>";
 
+      echo count($bj) . " ";
+      echo count($bp) . " ";
       echo count($new);
    }
 }
