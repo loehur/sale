@@ -68,13 +68,6 @@
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/stok_staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stok Masuk</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>StokTransfer" class="nav-link text-secondary text-nowrap">
-								<i class="fas fa-random"></i><br>Stok Transfer</a>
-						</li>
-						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/pengajuan" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Pengajuan</a>
 						</li>
 					</ul>
