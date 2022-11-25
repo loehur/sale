@@ -140,7 +140,16 @@ class Main extends Controller
       $table = "barang_stok";
       $tb_join = "barang_data";
       $on = "barang_stok.id_barang = barang_data.id";
-      $where = "barang_data.id_master = '" . $this->userData['id_user'] . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
+      $where = "barang_data.id_master = '" . $this->userData['id_master'] . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
+   function list_stok_user($id_user)
+   {
+      $table = "barang_stok";
+      $tb_join = "barang_data";
+      $on = "barang_stok.id_barang = barang_data.id";
+      $where = "barang_data.id_master = '" . $this->userData['id_master'] . "' AND barang_stok.id_user = '" . $id_user . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
@@ -260,16 +269,22 @@ class Main extends Controller
 
       foreach ($bj as $key => $a) {
          $same = false;
-         foreach ($bp as $b) {
+         foreach ($bp as $bpkey => $b) {
             if ($a['id_barang'] == $b['id_barang']) {
                $same = true;
                $a['jumlah'] += $b['jumlah'];
                $new[$key] = $a;
+               unset($bp[$bpkey]);
             }
          }
          if ($same == false) {
             $new[$key] = $a;
          }
+      }
+
+      $count = count($new);
+      foreach ($bp as $key => $sisa) {
+         $new[$count++] = $sisa;
       }
 
       return $new;
