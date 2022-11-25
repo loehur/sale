@@ -175,7 +175,7 @@ class Transaksi extends Controller
       $ref = $date . "-" . $rand;
 
       $data = $this->modul("Main")->data_keranjang_pakai_master();
-      $update = $this->model("Update")->update("barang_jual", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND used = 1 AND id_master ='" . $this->userData['id_user'] . "'");
+      $update = $this->model("Update")->update("barang_pakai", "op_status = 1, ref = '" . $ref . "'", "op_status = 0 AND id_master ='" . $this->userData['id_user'] . "'");
       if ($update['errno'] == 0) {
          foreach ($data as $a) {
             $this->modul("Main")->update_stok_master($a['id_user'], $a['id_barang']);
