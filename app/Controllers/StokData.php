@@ -13,14 +13,13 @@ class StokData extends Controller
    {
       $this->view_layout(["title" => __CLASS__]);
       $data['stok'] = $this->modul("Main")->list_stok_all();
-      $data['laris'] = $this->modul("Main")->terlaris();
+      $data = $this->modul("Main")->terlaris();
 
       foreach ($data['stok'] as $d) {
-         $combine[$d['id_user']][$d['id_barang']] = $d;
-
          foreach ($data['laris'] as $s) {
             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
                $laku = $s['jumlah'];
+               $combine[$d['id_user']][$d['id_barang']] = $d;
                $combine[$d['id_user']][$d['id_barang']]['laris'] = $laku;
             }
          }

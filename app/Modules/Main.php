@@ -272,7 +272,7 @@ class Main extends Controller
          foreach ($bp as $bpkey => $b) {
             if ($a['id_barang'] == $b['id_barang']) {
                $same = true;
-               $a['jumlah'] += $b['jumlah'];
+               $bj[$key][$a['jumlah']] += $b['jumlah'];
                $new[$key] = $a;
                unset($bp[$bpkey]);
             }
