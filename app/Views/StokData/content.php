@@ -6,8 +6,8 @@
             <?php
             $id_user = "";
             $counter = 0;
-                $run = false;
-                foreach ($data as $colom => $col) {
+            $run = false;
+            foreach ($data as $colom => $col) {
                 echo '<div class="col-md-6">';
                 foreach ($col as $id_user => $val) { ?>
                     <div>
@@ -24,10 +24,10 @@
                                         <br>
                                         <?= "[" . strtoupper($d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
                                     </td>
-                                    <td align="right">
+                                    <td align="right" nowrap>
                                         <b><?= $d['stok'] ?></b><br>
                                         <?php
-                                        echo "T-" . number_format($d['laris'], 2);
+                                        echo "T-" . number_format($d['laku'], 2);
                                         ?>
                                     </td>
                                 </tr>

@@ -263,31 +263,9 @@ class Main extends Controller
 
    function terlaris()
    {
-      $bj = $this->model("Get")->cols_where_groubBy_orderBy("barang_jual", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
-      $bp = $this->model("Get")->cols_where_groubBy_orderBy("barang_pakai", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
-      $new = [];
+      $data['bj'] = $this->model("Get")->cols_where_groubBy_orderBy("barang_jual", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
+      $data['bp'] = $this->model("Get")->cols_where_groubBy_orderBy("barang_pakai", "id_barang, id_user, SUM(jumlah) as jumlah", "id_master = '" . $this->userData['id_user'] . "' AND op_status = 1", "id_barang, id_user", "id_user ASC");
 
-      foreach ($bj as $key => $a) {
-         $same = false;
-         foreach ($bp as $bpkey => $b) {
-            if ($a['id_barang'] == $b['id_barang']) {
-               $same = true;
-               $bj[$key]['jumlah'] += $b['jumlah'];
-               $new[$key] = $a;
-               unset($bp[$bpkey]);
-            }
-         }
-         if ($same == false) {
-            $new[$key] = $a;
-         }
-      }
-
-      $count = count($new);
-      foreach ($bp as $key => $sisa) {
-         $count++;
-         $new[$count] = $sisa;
-      }
-
-      return $new;
+      return $data;
    }
 }
