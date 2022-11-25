@@ -65,6 +65,9 @@
 				<nav class="navbar table-info navbar-expand border-top fixed-bottom m-auto p-0" style="max-width: 750px;min-width: <?= $min_width ?>;">
 					<ul class="navbar-nav nav-justified w-100">
 						<li class="nav-item">
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/stok_staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>
+						</li>
+						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stok Masuk</a>
 						</li>
 						<li class="nav-item">
