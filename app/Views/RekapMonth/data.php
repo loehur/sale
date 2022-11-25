@@ -19,13 +19,8 @@
                         $omset = 0;
                         $modal = 0;
 
-                        foreach ($data['data'] as $dp) {
-                            if ($dp['used'] == 1) {
-                                continue;
-                            }
+                        foreach ($data['data']['jual'] as $dp) {
                             $margin = $dp['harga_jual'] - $dp['harga'] - $dp['fee'];
-                        ?>
-                        <?php
                             $margin_total += $margin;
                             $fee_total += $dp['fee'];
                             $omset += $dp['harga_jual'];
@@ -66,12 +61,7 @@
                         <?php
                         $rekap = [];
                         $modal = 0;
-                        foreach ($data['data'] as $dp) {
-                            if ($dp['used'] == 0) {
-                                continue;
-                            }
-                        ?>
-                        <?php
+                        foreach ($data['data']['pakai'] as $dp) {
                             $modal += $dp['harga'];
                             $rekap[$dp['id_user']]['modal'] = (isset($rekap[$dp['id_user']]['modal'])) ? $rekap[$dp['id_user']]['modal'] += $dp['harga'] : $dp['harga'];
                         }
