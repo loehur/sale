@@ -34,23 +34,10 @@
 				<nav class="navbar table-info navbar-expand border-top fixed-bottom m-auto p-0" style="max-width: 750px;min-width: <?= $min_width ?>;">
 					<ul class="navbar-nav nav-justified w-100">
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap"><i class="fas fa-users"></i><br>Preferensi</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap"><i class="fas fa-tags"></i><br>Stok Masuk</a>
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/stok_staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/pengajuan" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Pengajuan</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">
-								<i class="fas fa-wallet"></i><br>Stok Data
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap">
-								<i class="fas fa-chart-line"></i><br>Rekap
-							</a>
 						</li>
 					</ul>
 				</nav>

@@ -42,6 +42,5 @@ class StokData extends Controller
       }
 
       $this->view($this->content, $push);
-     
    }
 }
