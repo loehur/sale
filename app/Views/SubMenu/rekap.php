@@ -10,6 +10,11 @@
 							<i class="fas fa-calendar-alt"></i><br>Rekap Bulanan
 						</a>
 					</li>
+					<li class="nav-item">
+						<a href="<?= $this->BASE_URL ?>RekapModal" class="nav-link text-secondary text-nowrap">
+							<i class="fas fa-cubes"></i><br>Rekap Modal
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</b>
