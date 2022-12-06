@@ -20,7 +20,7 @@ foreach ($data as $s) {
 <div class="content">
     <div class="container-fluid">
         <form action="<?= $this->BASE_URL ?>RekapMonth/profit" method="post">
-            <div class="row">
+            <div class="row text-right">
                 <?php foreach ($modal as $key => $m) {
                 ?>
                     <div class="col mb-2">
