@@ -23,12 +23,12 @@ foreach ($data as $s) {
             <div class="row">
                 <?php foreach ($modal as $key => $m) {
                 ?>
-                    <div class="col">
-                        <span class="float-right"> <label class="float-right"><?= strtoupper($key) ?></label><br><b>Rp<?= number_format($m) ?></b></span>
+                    <div class="col mb-2">
+                        <span class="float-right"><?= strtoupper($key) ?><br><b>Rp<?= number_format($m) ?></b></span>
                     </div>
                 <?php } ?>
-                <div class="col">
-                    <span class="float-right"> <label class="float-right">TOTAL MODAL</label><br><b>Rp<?= number_format($akumModal) ?></b></span>
+                <div class="col mb-2">
+                    <span class="float-right">TOTAL MODAL<br><b>Rp<?= number_format($akumModal) ?></b></span>
                 </div>
         </form>
     </div>
