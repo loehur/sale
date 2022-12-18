@@ -19,28 +19,20 @@ foreach ($data as $s) {
 ?>
 <div class="content">
     <div class="container-fluid">
-        <form action="<?= $this->BASE_URL ?>RekapMonth/profit" method="post">
-            <div class="row text-right">
-                <?php foreach ($modal as $key => $m) {
-                ?>
-                    <div class="col mb-2">
-                        <span class="float-right"><?= strtoupper($key) ?><br><b>Rp<?= number_format($m) ?></b></span>
-                    </div>
-                <?php } ?>
-                <div class="col mb-2">
-                    <span class="float-right">TOTAL MODAL<br><b>Rp<?= number_format($akumModal) ?></b></span>
-                </div>
-        </form>
-    </div>
-</div>
-
-<hr>
-<div class="content">
-    <div class="container-fluid">
+        <label class="mb-2"><b>Modal Bahan Baku dan Penjualan Toko</b></label>
+        <hr>
         <div class="row">
-            <div class="col-auto mr-auto">
+            <?php foreach ($modal as $key => $m) {
+            ?>
+                <div class="col-12 mb-2">
+                    <?= strtoupper($key) ?><span class="float-right">Rp <?= number_format($m) ?></span>
+                </div>
+            <?php } ?>
 
+            <div class="col-12 mb-2">
+                <hr>
+                <b><span class="text-success">TOTAL MODAL</span><span class="float-right text-success">Rp <?= number_format($akumModal) ?></span></b>
             </div>
         </div>
+
     </div>
-</div>
