@@ -19,7 +19,19 @@ class StokData extends Controller
       $bp = $laku['bp'];
 
       foreach ($stok as $key => $d) {
+         $sisa = $d['stok'];
+         $user = $d['id_user'];
+
          $combine[$d['id_user']][$d['id_barang']] = $d;
+         $combine[$d['id_user']][$d['id_barang']]['stok_pengganti'] = 0;
+
+         if ($sisa == 0 && strlen($d['pengganti']) > 0) {
+            foreach ($stok as $p) {
+               if ($p['id_barang'] == $d['pengganti'] && $p['id_user'] == $user) {
+                  $combine[$d['id_user']][$d['id_barang']]['stok_pengganti'] = $p['stok'];
+               }
+            }
+         }
 
          foreach ($bj as $s) {
             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
@@ -47,7 +59,6 @@ class StokData extends Controller
          if (!isset($combine[$d['id_user']][$d['id_barang']]['laku'])) {
             unset($combine[$d['id_user']][$d['id_barang']]);
          }
-      
       }
 
       $push = [];
@@ -67,38 +78,6 @@ class StokData extends Controller
          }
       }
 
-      $this->view($this->content, $push);
-   }
-
-   function backup()
-   {
-      $this->view_layout(["title" => __CLASS__]);
-      $data['stok'] = $this->modul("Main")->list_stok_all();
-      $data['laris'] = $this->modul("Main")->terlaris();
-
-      foreach ($data['stok'] as $d) {
-         foreach ($data['laris'] as $s) {
-            if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
-               $laku = $s['jumlah'];
-               $combine[$d['id_user']][$d['id_barang']] = $d;
-               $combine[$d['id_user']][$d['id_barang']]['laris'] = $laku;
-            }
-         }
-      }
-
-      $push = [];
-      $col_1 = 0;
-      $col_2 = 0;
-
-      foreach ($combine as $arr => $val) {
-         if ($col_1 <= $col_2) {
-            $push[1][$arr] = $val;
-            $col_1 += count($val);
-         } else {
-            $push[2][$arr] = $val;
-            $col_2 += count($val);
-         }
-      }
 
       $this->view($this->content, $push);
    }

@@ -19,26 +19,26 @@ $a = $data['stok'];
                 <div class="col-auto mr-auto">
                     <form class="tambah" action="<?= $this->BASE_URL ?>StokTransfer/cart/<?= $a['id'] ?>" method="post">
                         <div class="row mb-2">
-                            <div class="col">
+                            <div class="col mt-auto">
+                                <label>Tujuan</label>
+                            </div>
+                            <div class="col-auto">
+                                <select id="tujuan_toko" class="form-control form-control-sm" name="tujuan" required>
+                                    <?php
+                                    foreach ($this->stafData as $a) {
+                                        if ($a['id_user'] <> $this->userData['id_user']) { ?>
+                                            <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko_tujuan'] == $a['id_user'] ? "selected" : "") ?>> <?= strtoupper($a['nama']) ?></option>
+                                    <?php }
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col mt-auto">
                                 <label>Jumlah</label>
                             </div>
                             <div class="col">
                                 <input type="number" value="1" min="0.01" step="0.01" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" required>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label>Tujuan</label>
-                            </div>
-                            <div class="col-auto">
-                                <select class="form-control form-control-sm" name="tujuan" required>
-                                    <?php
-                                    foreach ($this->stafData as $a) {
-                                        if ($a['id_user'] <> $this->userData['id_user']) { ?>
-                                            <option value="<?= $a['id_user'] ?>"> <?= strtoupper($a['nama']) ?></option>
-                                    <?php }
-                                    } ?>
-                                </select>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -74,6 +74,20 @@ $a = $data['stok'];
             type: $(this).attr("method"),
             success: function(res) {
                 location.reload(true);
+            },
+        });
+    });
+
+    $('select#tujuan_toko').on("change", function(event) {
+        var val = $(this).val();
+        $.ajax({
+            url: "<?= $this->BASE_URL ?>Input/updateLogTujuanToko/",
+            data: {
+                toko: val
+            },
+            type: "POST",
+            success: function() {
+
             },
         });
     });

@@ -18,17 +18,27 @@
                             <tr class="table-success">
                                 <td colspan="2"><b><?= strtoupper($id_user) ?></b></td>
                             </tr>
-                            <?php foreach ($val as $d) { ?>
+                            <?php foreach ($val as $d) {
+                                if (strlen($d['pengganti'] > 0) && $d['stok'] == 0 && $d['stok_pengganti'] > 0) {
+                                    continue;
+                                }
+                            ?>
                                 <tr>
                                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                         <br>
                                         <?= "[" . strtoupper($d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
+                                        <?php
+                                        if (strlen($d['pengganti'] > 0)) {
+                                            echo "<br>R-" . $d['pengganti'];
+                                        } ?>
                                     </td>
                                     <td align="right" nowrap>
                                         <b><?= $d['stok'] ?></b><br>
                                         <?php
                                         echo "T-" . number_format($d['laku'], 2);
-                                        ?>
+                                        if (strlen($d['pengganti'] > 0) && $d['stok'] == 0) {
+                                            echo "<br><b>" . $d['stok_pengganti'] . "</b>";
+                                        } ?>
                                     </td>
                                 </tr>
                             <?php } ?>

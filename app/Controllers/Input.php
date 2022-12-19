@@ -117,7 +117,7 @@ class Input extends Controller
       $tambah = $_POST["tambah"];
 
       $op = 0;
-    
+
       $table = "barang_masuk";
       $columns = 'id_master, id_barang, jumlah, id_user, op_status';
       $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->setting['toko'] . "'," . $op;
@@ -149,7 +149,11 @@ class Input extends Controller
 
    function updateLogToko()
    {
-      $id_user = $_POST['toko'];
-      $this->synchrone_non_db($id_user);
+      $this->synchrone_setting("toko", $_POST['toko']);
+   }
+
+   function updateLogTujuanToko()
+   {
+      $this->synchrone_setting("toko_tujuan", $_POST['toko']);
    }
 }
