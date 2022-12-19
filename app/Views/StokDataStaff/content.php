@@ -1,6 +1,6 @@
 <div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
-        <label class="text-danger"><b>Data Stok Barang (0)</b></label>
+        <label class="text-danger ml-1"><b>Data Stok Barang (0)</b></label>
 
         <div class="row">
             <div class="col-md-12">
@@ -19,13 +19,15 @@
                                 $stok_0 = false;
                             }
                             ?>
-                            <tr>
-                                <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
-                                </td>
-                                <td align="right">
-                                    <b><?= $stok ?></b>
-                                </td>
-                            </tr>
+                            <?php if (strlen($d['pengganti']) == 0) { ?>
+                                <tr>
+                                    <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
+                                    </td>
+                                    <td align="right">
+                                        <b><?= $stok ?></b>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         <?php
                         }
                         ?>
