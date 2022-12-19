@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-auto pr-0 pb-1">
                 <label><b>Kode Barang</b></label>
-                <input id="kode_barang" type="text" class="selectize-input" style="text-transform:uppercase;max-width: 220px;" maxlength="30">
+                <input id="kode_barang" type="text" class="selectize-input" value="<?= $data['kode_barang'] ?>" style="text-transform:uppercase;max-width: 220px;" maxlength="30">
             </div>
         </div>
         <div class="row mt-2">
@@ -31,7 +31,7 @@
                 <select class="tize load form-control form-control-sm p-0 m-0" required>
                     <option value="" selected disabled>...</option>
                     <?php foreach ($data as $a) { ?>
-                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></option>
+                        <option value="<?= $a['kode_barang'] ?>" <?= ($data['kode_barang'] == $a['kode_barang'] ? "selected" : "") ?>><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></option>
                     <?php } ?>
                 </select>
             </div>

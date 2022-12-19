@@ -83,6 +83,11 @@ class Controller extends Variables
         $_SESSION['list']['satuan'] = $this->model('Get')->all('barang_satuan');
     }
 
+    function updateToko($toko)
+    {
+        $this->synchrone_setting("toko", $toko);
+    }
+
     public function synchrone_setting($var, $log)
     {
         $_SESSION['setting'][$var] = $log;

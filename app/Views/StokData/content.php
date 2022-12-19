@@ -26,7 +26,7 @@
                                 <tr>
                                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                         <br>
-                                        <?= "[" . strtoupper($d['kode_barang']) . "] Rp" . number_format($d['harga']) ?>
+                                        <?= "<a href='" . $this->BASE_URL . "StokPengganti/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a> Rp" . number_format($d['harga']) ?>
                                         <?php
                                         if (strlen($d['pengganti'] > 0)) {
                                             echo "<br>R-" . $d['pengganti'];

@@ -9,10 +9,16 @@ class StokPengganti extends Controller
       $this->content = __CLASS__ . $this->content;
    }
 
-   function index()
+   function index($kode_barang = "", $id_user = "")
    {
       $this->view_layout(["title" => __CLASS__]);
       $data = $this->modul("Main")->list_stok_user($this->setting['toko']);
+      $data['kode_barang'] = $kode_barang;
+
+      if ($id_user <> "") {
+         $this->updateToko($id_user);
+      }
+      $this->data();
       $this->view($this->content, $data);
    }
 
