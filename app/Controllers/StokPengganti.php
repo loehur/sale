@@ -12,7 +12,7 @@ class StokPengganti extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $data = $this->modul("Main")->list_stok_all();
+      $data = $this->modul("Main")->list_stok_user($this->setting['toko']);
       $this->view($this->content, $data);
    }
 

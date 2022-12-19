@@ -117,6 +117,15 @@ class Main extends Controller
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
+   function list_stok_user($id_user)
+   {
+      $table = "barang_stok";
+      $tb_join = "barang_data";
+      $on = "barang_stok.id_barang = barang_data.id";
+      $where = "barang_data.id_master = '" . $this->userData['id_master'] . "' AND barang_stok.id_user = '" . $id_user . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
+      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
+   }
+
    function list_stok_masuk()
    {
       $table = "barang_data";
@@ -141,15 +150,6 @@ class Main extends Controller
       $tb_join = "barang_data";
       $on = "barang_stok.id_barang = barang_data.id";
       $where = "barang_data.id_master = '" . $this->userData['id_master'] . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
-      return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
-   }
-
-   function list_stok_user($id_user)
-   {
-      $table = "barang_stok";
-      $tb_join = "barang_data";
-      $on = "barang_stok.id_barang = barang_data.id";
-      $where = "barang_data.id_master = '" . $this->userData['id_master'] . "' AND barang_stok.id_user = '" . $id_user . "' ORDER BY barang_stok.id_user ASC, barang_stok.stok ASC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
