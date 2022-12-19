@@ -47,6 +47,7 @@ class StokPengganti extends Controller
       $id_barang = $this->model("Get")->where_row("barang_data", "kode_barang = '" . $kode_barang . "'")['id'];
 
       $kode_barang_r = $_POST["kode_barang_r"];
+
       $id_barang_r = $this->model("Get")->where_row("barang_data", "kode_barang = '" . $kode_barang_r . "'")['id'];
 
       $table = "barang_stok";

@@ -112,18 +112,18 @@
     });
 
     $("span#ganti").click(function() {
-        var kode_barang = $('input#kode_barang').val();
+        var barang = $('input#kode_barang').val();
         $.ajax({
             url: "<?= $this->BASE_URL ?>StokPengganti/ganti",
             data: {
                 toko: $('select#toko').val(),
-                kode_barang: kode_barang,
+                kode_barang: barang,
                 kode_barang_r: $('input#kode_barang2').val()
             },
             type: "POST",
             success: function(res) {
                 if (res == 1) {
-                    $("div#load").load("<?= $this->BASE_URL ?>StokPengganti/cek/" + kode_barang + "/" + id_user);
+                    $("div#load").load("<?= $this->BASE_URL ?>StokPengganti/cek/" + barang + "/" + id_user);
                 } else {
                     $("div#load").html(res);
                 }
