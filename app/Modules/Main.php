@@ -36,9 +36,10 @@ class Main extends Controller
    {
       //update stok
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $stok_transfer = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_sumber = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_pakai = $this->model("Sum")->col_where("barang_pakai", "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $sisa_stok = $stok_masuk - $stok_jual - $stok_pakai;
+      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual - $stok_pakai;
 
       $id_stok = $this->userData['id_user'] . "_" . $id_barang;
 
@@ -68,9 +69,10 @@ class Main extends Controller
    {
       //update stok
       $stok_masuk = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
+      $stok_transfer = $this->model("Sum")->col_where("barang_masuk", "jumlah", "id_sumber = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_jual = $this->model("Sum")->col_where("barang_jual", "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_pakai = $this->model("Sum")->col_where("barang_pakai", "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $sisa_stok = $stok_masuk - $stok_jual - $stok_pakai;
+      $sisa_stok = $stok_masuk - $stok_transfer - $stok_jual - $stok_pakai;
 
       $id_stok = $id_user . "_" . $id_barang;
 
