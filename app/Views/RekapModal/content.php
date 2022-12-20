@@ -19,18 +19,17 @@ foreach ($data as $s) {
 ?>
 <div class="content">
     <div class="container-fluid">
-        <label class="mb-2"><b>Modal Bahan Baku dan Penjualan Toko</b></label>
-        <hr>
-        <div class="row">
+        <label class="mb-3 ml-3"><b>Modal Bahan Baku dan Penjualan Toko</b></label>
+
+        <div class="row mr-1 ml-1">
             <?php foreach ($modal as $key => $m) {
             ?>
-                <div class="col-12 mb-2">
+                <div class="col-12 mb-2 pb-1 border-bottom">
                     <?= strtoupper($key) ?><span class="float-right">Rp <?= number_format($m) ?></span>
                 </div>
             <?php } ?>
 
             <div class="col-12 mb-2">
-                <hr>
                 <b><span class="text-success">TOTAL MODAL</span><span class="float-right text-success">Rp <?= number_format($akumModal) ?></span></b>
             </div>
         </div>
