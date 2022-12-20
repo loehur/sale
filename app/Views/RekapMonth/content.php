@@ -2,14 +2,6 @@
 <?php $currentMonth = date('m'); ?>
 <?php $currentYear = date('Y'); ?>
 
-<?php
-$modal = 0;
-foreach ($data as $s) {
-    if ($s['stok'] > 0) {
-        $modal += ($s['stok'] * $s['harga']);
-    }
-}
-?>
 <div class="content">
     <div class="container-fluid">
         <form action="<?= $this->BASE_URL ?>RekapMonth/profit" method="post">
@@ -72,9 +64,6 @@ foreach ($data as $s) {
                 </div>
                 <div class="col pr-0 mr-auto">
                     <button type="submit" class="btn btn-sm btn-primary position-absolute" style="bottom:0">Cek</button>
-                </div>
-                <div class="col">
-                    <span class="float-right"> <label class="float-right">Modal</label><br><b>Rp<?= number_format($modal) ?></b></span>
                 </div>
         </form>
     </div>
