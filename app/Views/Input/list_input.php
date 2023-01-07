@@ -14,7 +14,7 @@
                             } ?>
                             <tr>
                                 <td><small>[<?= $d['id_user'] ?>]</small><br><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
-                                <td>[<?= $d['jumlah'] . $sat ?>]</td>
+                                <td><small><?= $d['insertTime'] ?></small><br>[<?= $d['jumlah'] . $sat ?>]</td>
                                 <td align="right"></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Input/hapus_list/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>
