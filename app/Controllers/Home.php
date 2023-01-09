@@ -11,9 +11,15 @@ class Home extends Controller
 
    function index()
    {
+      if (isset($_POST['m'])) {
+         $month = $_POST['y'] . "-" . $_POST['m'];
+      } else {
+         $month = date("Y-m");
+      }
+
       $this->view_layout(["title" => __CLASS__]);
       $data['kas'] = $this->modul('Main')->kas();
-      $data['riwayat'] = $this->modul('Main')->riwayat_jual();
+      $data['riwayat'] = $this->modul('Main')->riwayat_jual($month);
       $this->view($this->content, $data);
    }
 }

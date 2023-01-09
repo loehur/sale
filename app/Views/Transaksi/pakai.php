@@ -5,21 +5,18 @@
                 <div class="col mr-auto pb-2 pt-2">
                     <label class="text-danger"><b>Pengajuan Pakai</b></label>
                     <table class="table table-sm rounded">
-                        <?php
-                        $total = 0;
-                        foreach ($data as $d) {
-                        ?>
-                            <tr>
-                                <td><?= strtoupper($d['deskripsi']) ?></td>
-                                <td>[ <?= $d['jumlah'] ?> ]</td>
-                            </tr>
-                        <?php
-                        } ?>
+                        <tr>
+                            <?php
+                            $total = 0;
+                            foreach ($data as $d) {
+                            ?>
+                                <td><?= strtoupper($d['deskripsi']) ?> [ <?= $d['jumlah'] ?> ]</td>
+                            <?php
+                            } ?>
+                        </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
-
 <?php } ?>

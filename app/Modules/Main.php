@@ -245,9 +245,12 @@ class Main extends Controller
       return $data;
    }
 
-   function riwayat_jual()
+   function riwayat_jual($date = null)
    {
-      $date = date("Y-m");
+      if ($date == null) {
+         $date = date("Y-m");
+      }
+
       $data = [];
 
       $table = "barang_data";
