@@ -142,7 +142,7 @@ class Main extends Controller
       $table = "barang_data";
       $tb_join = "barang_masuk";
       $on = "barang_masuk.id_barang = barang_data.id";
-      $where = "barang_masuk.id_master = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status <> 1 ORDER BY barang_masuk.id DESC";
+      $where = "barang_masuk.id_master = '" . $this->userData['id_user'] . "' AND barang_masuk.op_status <> 1 AND barang_masuk.id_sumber = '' ORDER BY barang_masuk.id DESC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
