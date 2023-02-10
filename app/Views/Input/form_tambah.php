@@ -12,7 +12,7 @@
                             <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
                                 <td align="right" class="pl-2"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
-                                <td align="right" class="pl-2"><small>Stok</small><br><?= $stok['sisa'] ?> <span class="text-danger">(+<?= $stok['antri'] ?>)</span></td>
+                                <td align="right" class="pl-2"><small>Stok</small><br><?= number_format($stok['sisa'], 2) ?> <span class="text-danger">(+<?= $stok['antri'] ?>)</span></td>
                             </tr>
                         </table>
                     </b>
