@@ -1,4 +1,10 @@
-<?php $stok = $data['stok']; ?>
+<?php $stok = $data['stok'];
+foreach ($this->listSatuan as $ls) {
+    if ($ls['id'] == $data['satuan']) {
+        $sat = $ls['satuan'];
+    }
+}
+?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -7,12 +13,12 @@
                     <b>
                         <table>
                             <tr>
-                                <td colspan="3"><?= "<b>" . strtoupper($data['merk'] . " " . $data['model'] . " " . $data['deskripsi']) . "</b>" ?></td>
+                                <td colspan="3"><?= "<b>" . strtoupper($data['merk'] . " " . $data['model'] . " " . $data['deskripsi']) . "</b>" . " <span class='text-primary'>(" . $sat  . ")</span>" ?></td>
                             </tr>
                             <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
                                 <td align="right" class="pl-2"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
-                                <td align="right" class="pl-2"><small>Stok</small><br><?= number_format($stok['sisa'], 2) ?> <span class="text-danger">(+<?= $stok['antri'] ?>)</span></td>
+                                <td align="right" class="pl-2"><small>Stok</small><br><?= number_format($stok['sisa'], 2) . " " . $sat ?> <span class="text-danger">(+<?= $stok['antri'] . " " . $sat  ?>)</span></td>
                             </tr>
                         </table>
                     </b>

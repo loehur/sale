@@ -113,7 +113,6 @@ class Input extends Controller
          exit();
       }
 
-      $rak = $_POST["rak"];
       $tambah = $_POST["tambah"];
 
       $op = 0;
