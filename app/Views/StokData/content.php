@@ -19,26 +19,18 @@
                                 <td colspan="2"><b><?= strtoupper($id_user) ?></b></td>
                             </tr>
                             <?php foreach ($val as $d) {
-                                if (strlen($d['pengganti'] > 0) && $d['stok'] == 0 && $d['stok_pengganti'] > 0) {
+                                if ($d['en'] == 0) {
                                     continue;
                                 }
                             ?>
                                 <tr>
                                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                         <br>
-                                        <?= "<a href='" . $this->BASE_URL . "StokPengganti/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a> Rp" . number_format($d['harga']) ?>
-                                        <?php
-                                        if (strlen($d['pengganti'] > 0)) {
-                                            echo "<br>R-" . $d['pengganti'];
-                                        } ?>
+                                        <?= "<a href='" . $this->BASE_URL . "StokOperasi/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a> Rp" . number_format($d['harga']) ?>
                                     </td>
                                     <td align="right" nowrap>
                                         <b><?= $d['stok'] ?></b><br>
-                                        <?php
-                                        echo "T-" . number_format($d['laku'], 2);
-                                        if (strlen($d['pengganti'] > 0) && $d['stok'] == 0) {
-                                            echo "<br><b>" . $d['stok_pengganti'] . "</b>";
-                                        } ?>
+                                        <?= "T-" . number_format($d['laku'], 2); ?>
                                     </td>
                                 </tr>
                             <?php } ?>

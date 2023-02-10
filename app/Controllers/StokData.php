@@ -19,19 +19,7 @@ class StokData extends Controller
       $bp = $laku['bp'];
 
       foreach ($stok as $key => $d) {
-         $sisa = $d['stok'];
-         $user = $d['id_user'];
-
          $combine[$d['id_user']][$d['id_barang']] = $d;
-         $combine[$d['id_user']][$d['id_barang']]['stok_pengganti'] = 0;
-
-         if ($sisa == 0 && strlen($d['pengganti']) > 0) {
-            foreach ($stok as $p) {
-               if ($p['id_barang'] == $d['pengganti'] && $p['id_user'] == $user) {
-                  $combine[$d['id_user']][$d['id_barang']]['stok_pengganti'] = $p['stok'];
-               }
-            }
-         }
 
          foreach ($bj as $s) {
             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {

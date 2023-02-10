@@ -55,9 +55,9 @@ class Main extends Controller
 
       if ($update_stok['errno'] == "1062") {
          if ($rak <> "") {
-            $set = "stok = " . $sisa_stok . ", rak = '" . $rak . "', pengganti = ''";
+            $set = "stok = " . $sisa_stok . ", rak = '" . $rak . "', en = 1";
          } else {
-            $set = "stok = " . $sisa_stok . ", pengganti = ''";
+            $set = "stok = " . $sisa_stok . ", en = 1";
          }
 
          $where = "id = '" . $id_stok . "'";
@@ -88,9 +88,9 @@ class Main extends Controller
 
       if ($update_stok['errno'] == "1062") {
          if ($rak <> "") {
-            $set = "stok = " . $sisa_stok . ", rak = '" . $rak . "', pengganti = ''";
+            $set = "stok = " . $sisa_stok . ", rak = '" . $rak . "', en = 1";
          } else {
-            $set = "stok = " . $sisa_stok . ", pengganti = ''";
+            $set = "stok = " . $sisa_stok . ", en = 1";
          }
 
          $where = "id = '" . $id_stok . "'";
