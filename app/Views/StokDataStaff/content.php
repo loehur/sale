@@ -12,7 +12,7 @@
                         foreach ($data as $d) {
                             $stok = $d['stok'];
 
-                            if ($stok <> 0 && $stok_0 == true) { ?>
+                            if ($stok >= 1 && $stok_0 == true) { ?>
                                 <tr>
                                     <td colspan="2"><br><label class="text-success"><b>Data Stok Barang (Ready)</b></label></td>
                                 </tr>
@@ -30,17 +30,15 @@
                                 continue;
                             }
 
-                            if (strlen($d['pengganti']) == 0) {
                             ?>
 
-                                <tr>
-                                    <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
-                                    </td>
-                                    <td align="right">
-                                        <b><?= $stok ?></b>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            <tr>
+                                <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
+                                </td>
+                                <td align="right">
+                                    <b><?= $stok ?></b>
+                                </td>
+                            </tr>
                         <?php
                         }
                         ?>
