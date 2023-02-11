@@ -66,32 +66,24 @@ class StokData extends Controller
          foreach ($val as $k) {
             if ($k['stok'] < 1) {
                $row = 0;
-               if (isset($push[$row][1][$arr])) {
-                  $push[$row][1][$arr][$k['id']] = $k;
-                  $col[$row][1] += 1;
-               } else {
-                  if ($col[$row][1] <= $col[$row][2]) {
-                     $col_active[$row] = 1;
-                  } else {
-                     $col_active[$row] = 2;
-                  }
-                  $push[$row][$col_active[$row]][$arr][$k['id']] = $k;
-                  $col[$row][$col_active[$row]] += 1;
-               }
             } else {
                $row = 1;
-               if (isset($push[$row][1][$arr])) {
-                  $push[$row][1][$arr][$k['id']] = $k;
-                  $col[$row][1] += 1;
+            }
+
+            if (isset($push[$row][1][$arr])) {
+               $push[$row][1][$arr][$k['id']] = $k;
+               $col[$row][1] += 1;
+            } else if (isset($push[$row][2][$arr])) {
+               $push[$row][2][$arr][$k['id']] = $k;
+               $col[$row][2] += 1;
+            } else {
+               if ($col[$row][1] <= $col[$row][2]) {
+                  $col_active[$row] = 1;
                } else {
-                  if ($col[$row][1] <= $col[$row][2]) {
-                     $col_active[$row] = 1;
-                  } else {
-                     $col_active[$row] = 2;
-                  }
-                  $push[$row][$col_active[$row]][$arr][$k['id']] = $k;
-                  $col[$row][$col_active[$row]] += 1;
+                  $col_active[$row] = 2;
                }
+               $push[$row][$col_active[$row]][$arr][$k['id']] = $k;
+               $col[$row][$col_active[$row]] += 1;
             }
          }
       }
