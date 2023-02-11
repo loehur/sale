@@ -35,8 +35,8 @@
                         <div class="col">
                             <label>Tipe</label>
                             <select class="form-control form-control-sm" name="user_tipe" required>
-                                <option value="10">Admin</option>
-                                <option value="100">Staff</option>
+                                <option value="10">Rekanan</option>
+                                <option value="100">Toko Cabang</option>
                             </select>
                         </div>
                     </div>
@@ -64,17 +64,16 @@
                     echo "<tbody>";
                     foreach ($data as $a) {
                         echo "<tr>";
-                        echo "<td><span>" . $a['id_user'] . "</span></td>";
-                        echo "<td><span>" . $a['nama'] . "</span></td>";
+                        echo "<td><span>" . $a['id_user'] . "</span><br><span>" . $a['nama'] . "</span></td>";
                         echo "<td>";
                         echo ($a['en'] == 1) ? "<span class='text-success'>Enabled</span>" : "Disabled";
                         echo "</td>";
                         echo "<td>";
-                        echo ($a['user_tipe'] == 10) ? "<span class='text-success'>Admin</span>" : "Staff";
+                        echo ($a['user_tipe'] == 10) ? "<span class='text-success'>Rekanan</span>" : "Toko Cabang";
                         echo "</td>";
                         echo "<td><span>" . $a['fee'] . "</span></td>";
-                        echo "<td><a class='text-success text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/user_tipe/10/" . $a['id_user'] . "'>Admin</a>
-                        <a class='text-danger text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/user_tipe/100/" . $a['id_user'] . "'>User</a>
+                        echo "<td><a class='text-success text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/user_tipe/10/" . $a['id_user'] . "'>Rekanan</a><br>
+                        <a class='text-danger text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/user_tipe/100/" . $a['id_user'] . "'>Toko Cabang</a>
                         </td>";
                         echo "<td><a class='text-success text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/en/1/" . $a['id_user'] . "'><i class='fas fa-check-circle'></i></a>
                         <a class='text-danger text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/en/0/" . $a['id_user'] . "'><i class='fas fa-times-circle'></i></a>

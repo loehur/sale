@@ -67,7 +67,7 @@
                         <div class="row mb-2">
                             <div class="col">
                                 <button type="submit" class="btn btn-sm btn-success btn-block">
-                                    Tarik Kas Fee
+                                    Setor Kas Fee
                                 </button>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                         <div class="row mb-2">
                             <div class="col">
                                 <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                    Tarik Kas Supplier
+                                    Setor Kas Supplier
                                 </button>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                         <div class="row mb-2">
                             <div class="col">
                                 <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                    Tarik Kas
+                                    Setor Kas
                                 </button>
                             </div>
                         </div>

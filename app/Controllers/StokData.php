@@ -18,9 +18,8 @@ class StokData extends Controller
       $bj = $laku['bj'];
       $bp = $laku['bp'];
 
-      foreach ($stok as $key => $d) {
+      foreach ($stok as $d) {
          $combine[$d['id_user']][$d['id_barang']] = $d;
-
          foreach ($bj as $s) {
             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {
                $laku = $s['jumlah'];
@@ -50,22 +49,52 @@ class StokData extends Controller
       }
 
       $push = [];
-      $col_1 = 0;
-      $col_2 = 0;
+
+      $col[0][1] = 0;
+      $col[0][2] = 0;
+      $col[1][1] = 0;
+      $col[1][2] = 0;
+
+      $col_active[0] = 1;
+      $col_active[1] = 1;
 
       foreach ($combine as $arr => $val) {
          if (count($val) == 0) {
             continue;
          }
-         if ($col_1 <= $col_2) {
-            $push[1][$arr] = $val;
-            $col_1 += count($val);
-         } else {
-            $push[2][$arr] = $val;
-            $col_2 += count($val);
+
+         foreach ($val as $k) {
+            if ($k['stok'] < 1) {
+               $row = 0;
+               if (isset($push[$row][1][$arr])) {
+                  $push[$row][1][$arr][$k['id']] = $k;
+                  $col[$row][1] += 1;
+               } else {
+                  if ($col[$row][1] <= $col[$row][2]) {
+                     $col_active[$row] = 1;
+                  } else {
+                     $col_active[$row] = 2;
+                  }
+                  $push[$row][$col_active[$row]][$arr][$k['id']] = $k;
+                  $col[$row][$col_active[$row]] += 1;
+               }
+            } else {
+               $row = 1;
+               if (isset($push[$row][1][$arr])) {
+                  $push[$row][1][$arr][$k['id']] = $k;
+                  $col[$row][1] += 1;
+               } else {
+                  if ($col[$row][1] <= $col[$row][2]) {
+                     $col_active[$row] = 1;
+                  } else {
+                     $col_active[$row] = 2;
+                  }
+                  $push[$row][$col_active[$row]][$arr][$k['id']] = $k;
+                  $col[$row][$col_active[$row]] += 1;
+               }
+            }
          }
       }
-
 
       $this->view($this->content, $push);
    }

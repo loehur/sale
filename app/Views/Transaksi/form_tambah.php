@@ -35,7 +35,7 @@ foreach ($this->listSatuan as $ls) {
         <hr>
         <?php
         if (isset($a['merk']) && $data['sisa'] > 0) { ?>
-            <h6>Penjualan Non Paket</h6>
+            <h6>Penjualan Non Paket | <span class="text-primary"><?= $sat  ?></span></h6>
             <div class="row" id="form_tambah">
                 <div class="col-md-4">
                     <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart/<?= $a['id'] ?>" method="post">
@@ -53,7 +53,7 @@ foreach ($this->listSatuan as $ls) {
                 </div>
             </div>
             <hr>
-            <h6>Pemakaian Operasional Usaha</h6>
+            <h6>Pemakaian Operasional Usaha | <span class="text-primary"><?= $sat  ?></span></h6>
             <div class="row" id="form_tambah" style="padding-bottom: 70px;">
                 <div class="col-md-4">
                     <form class="tambah" action="<?= $this->BASE_URL ?>Transaksi/cart_pakai/<?= $a['id'] ?>" method="post">

@@ -6,6 +6,9 @@
 $modal = [];
 $akumModal = 0;
 foreach ($data as $s) {
+    if ($s['stok'] > 10000) {
+        continue;
+    }
     if ($s['stok'] > 0) {
         if (isset($modal[$s['id_user']])) {
             $modal[$s['id_user']] += ($s['stok'] * $s['harga']);
