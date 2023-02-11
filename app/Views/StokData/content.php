@@ -26,7 +26,7 @@
                                 <td colspan="2"></td>
                             </tr>
                             <tr class="table-danger">
-                                <td colspan="2"><b><?= strtoupper($id_user) ?></b> | <?= count($val) ?></td>
+                                <td colspan="2"><b><?= strtoupper($id_user) ?></b></td>
                             </tr>
                             <?php foreach ($val as $d) {
                                 if (isset($d['en'])) {
