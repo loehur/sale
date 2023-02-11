@@ -22,7 +22,7 @@
                             ?>
                             <?php
 
-                            if ($s['stok'] > 10000) {
+                            if ($d['stok'] > 10000) {
                                 continue;
                             }
 

@@ -31,6 +31,9 @@
                                         continue;
                                     }
                                 }
+                                if ($d['stok'] > 10000) {
+                                    continue;
+                                }
                             ?>
                                 <tr>
                                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
