@@ -6,7 +6,7 @@
 $modal = [];
 $akumModal = 0;
 foreach ($data as $s) {
-    if ($s['stok'] > 10000) {
+    if ($s['stok'] > $this->max_stok) {
         continue;
     }
     if ($s['stok'] > 0) {

@@ -22,7 +22,7 @@
                             ?>
                             <?php
 
-                            if ($d['stok'] > 10000) {
+                            if ($d['stok'] > $this->max_stok) {
                                 continue;
                             }
 

@@ -22,6 +22,10 @@ class StokData extends Controller
          if ($d['en'] == 0) {
             continue;
          }
+         if ($d['stok'] > $this->max_stok) {
+            continue;
+         }
+
          $combine[$d['id_user']][$d['id_barang']] = $d;
          foreach ($bj as $s) {
             if ($s['id_barang'] == $d['id_barang'] && $s['id_user'] == $d['id_user']) {

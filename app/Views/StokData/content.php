@@ -1,9 +1,3 @@
-<pre>
-    <?php
-    //print_r($data);
-    ?>
-</pre>
-
 <div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
         <label class="text-danger"><b>Data Stok Barang Kosong</b></label>
@@ -34,7 +28,7 @@
                                         continue;
                                     }
                                 }
-                                if ($d['stok'] > 10000) {
+                                if ($d['stok'] > $this->max_stok) {
                                     continue;
                                 }
                             ?>
@@ -84,6 +78,10 @@
                                     if ($d['en'] == 0) {
                                         continue;
                                     }
+                                }
+
+                                if ($d['stok'] > $this->max_stok) {
+                                    continue;
                                 }
                             ?>
                                 <tr>
