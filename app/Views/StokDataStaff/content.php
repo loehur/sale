@@ -1,6 +1,6 @@
 <div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
-        <label class="text-danger ml-1"><b>Data Stok Barang (0)</b></label>
+        <label class="text-danger ml-1"><b>Data Stok Barang Kosong</b></label>
 
         <div class="row">
             <div class="col-md-12">
