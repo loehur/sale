@@ -16,7 +16,7 @@
             foreach ($data[0] as $colom => $col) {
                 echo '<div class="col-md-6">';
                 foreach ($col as $id_user => $val) {
-                    if (count($id_user) == 0) {
+                    if (count($val) == 0) {
                         continue;
                     }
             ?>
@@ -67,7 +67,7 @@
             foreach ($data[1] as $colom => $col) {
                 echo '<div class="col-md-6">';
                 foreach ($col as $id_user => $val) {
-                    if (count($id_user) == 0) {
+                    if (count($val) == 0) {
                         continue;
                     }
             ?>
