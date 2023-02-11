@@ -11,6 +11,7 @@
 
                         foreach ($data as $d) {
                             $stok = $d['stok'];
+
                             if ($stok <> 0 && $stok_0 == true) { ?>
                                 <tr>
                                     <td colspan="2"><br><label class="text-success"><b>Data Stok Barang (Ready)</b></label></td>
@@ -19,7 +20,19 @@
                                 $stok_0 = false;
                             }
                             ?>
-                            <?php if (strlen($d['pengganti']) == 0) { ?>
+                            <?php
+
+                            if ($s['stok'] > 10000) {
+                                continue;
+                            }
+
+                            if ($d['en'] == 0) {
+                                continue;
+                            }
+
+                            if (strlen($d['pengganti']) == 0) {
+                            ?>
+
                                 <tr>
                                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                     </td>

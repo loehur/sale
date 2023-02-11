@@ -8,10 +8,17 @@
                         $total = 0;
                         foreach ($data as $d) {
                             $harga_jual = $d['harga_jual'];
+
+                            $sat = "PCS";
+                            foreach ($this->listSatuan as $ls) {
+                                if ($ls['id'] == $d['satuan']) {
+                                    $sat = $ls['satuan'];
+                                }
+                            }
                         ?>
                             <tr>
                                 <td><?= strtoupper($d['deskripsi']) ?></td>
-                                <td>[<?= $d['jumlah'] ?>]</td>
+                                <td>[<?= $d['jumlah'] ?> <?= $sat ?>]</td>
                                 <td align="right">Rp<?= number_format($harga_jual) ?></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Transaksi/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>

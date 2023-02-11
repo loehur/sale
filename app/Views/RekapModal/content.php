@@ -23,7 +23,6 @@ foreach ($data as $s) {
 <div class="content">
     <div class="container-fluid">
         <label class="mb-3 ml-3"><b>Modal Bahan Baku dan Penjualan Toko</b></label>
-
         <div class="row mr-1 ml-1">
             <?php foreach ($modal as $key => $m) {
             ?>
