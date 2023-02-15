@@ -1,5 +1,13 @@
 <?php
 $a = $data['stok'];
+
+$sat = "PCS";
+foreach ($this->listSatuan as $ls) {
+    if ($ls['id'] == $a['satuan']) {
+        $sat = $ls['satuan'];
+    }
+}
+
 ?>
 <div class="content pt-2 pb-2">
     <div class="container-fluid">
@@ -8,7 +16,7 @@ $a = $data['stok'];
                 <b>
                     <?= strtoupper($a['merk']) ?> | <span class="text-danger"><?= strtoupper($a['model']) . " " . strtoupper($a['deskripsi']) ?></span>
                     | Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?>
-                    | Sisa: <?= $data['sisa'] ?>
+                    | Sisa: <?= number_format($data['sisa']) . " " . $sat ?>
                 </b>
             </div>
         </div>
