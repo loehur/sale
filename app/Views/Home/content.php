@@ -184,6 +184,9 @@
                                         <tr>
                                             <td align="right"><b>[ TOTAL ] <?= number_format($total) ?></b></td>
                                         </tr>
+                                        <tr>
+                                            <td align="right">.<br><br><br><br>.</td>
+                                        </tr>
                                     </table>
 
                                 </div>
