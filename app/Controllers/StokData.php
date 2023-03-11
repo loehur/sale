@@ -12,7 +12,7 @@ class StokData extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
-      $stok = $this->modul("Main")->list_stok_all();
+      $stok = $this->modul("Main")->list_stok_user($this->setting['toko']);
       $laku = $this->modul("Main")->terlaris();
 
       $bj = $laku['bj'];
@@ -51,7 +51,8 @@ class StokData extends Controller
 
          //JIKA TIDAK LAKU SEMBUNYIKAN
          if (!isset($combine[$d['id_user']][$d['id_barang']]['laku'])) {
-            unset($combine[$d['id_user']][$d['id_barang']]);
+            //unset($combine[$d['id_user']][$d['id_barang']]);
+            $combine[$d['id_user']][$d['id_barang']]['laku'] = 0;
          }
       }
 

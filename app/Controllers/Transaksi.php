@@ -132,9 +132,10 @@ class Transaksi extends Controller
       $fee = $margin_rp * ($this->userData['fee'] / 100);
       $jual = $harga + $margin_rp;
 
+      $sat = $d['satuan'];
       $table = "barang_jual";
-      $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, harga_jual, fee, op_status';
-      $values = "'" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . ",'" . $desc . "'," . $e['jumlah'] . "," . $harga . "," . $jual . "," . $fee . ",0";
+      $columns = 'id_master, id_user, id_barang, deskripsi, jumlah, harga, harga_jual, fee, op_status, satuan';
+      $values = "'" . $this->userData['id_master'] . "','" . $this->userData['id_user'] . "'," . $id_barang . ",'" . $desc . "'," . $e['jumlah'] . "," . $harga . "," . $jual . "," . $fee . ",0," . $sat;
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
