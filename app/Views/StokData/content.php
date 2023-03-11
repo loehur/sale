@@ -47,14 +47,26 @@
                                 if ($d['stok'] > $this->max_stok) {
                                     continue;
                                 }
+
+                                $sat = "PCS";
+                                foreach ($this->listSatuan as $ls) {
+                                    if ($ls['id'] == $d['satuan']) {
+                                        $sat = $ls['satuan'];
+                                    }
+                                }
+
+                                $harga = $d['harga'];
+                                $margin = $d['margin'];
+                                $harga_jual = $harga + ($harga * ($margin / 100));
                             ?>
                                 <tr>
                                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                                         <br>
-                                        <?= "<a href='" . $this->BASE_URL . "StokOperasi/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a> Rp" . number_format($d['harga']) ?>
+                                        <?= "<a href='" . $this->BASE_URL . "StokOperasi/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a>" ?>
+                                        <small><?= "M-" . number_format($harga) ?> <?= "J-" . number_format($harga_jual) ?></small>
                                     </td>
                                     <td align="right" nowrap>
-                                        <b><?= $d['stok'] ?></b><br>
+                                        <b><?= $d['stok'] ?></b> <small><?= $sat ?></small><br>
                                         <?= "T-" . number_format($d['laku'], 1); ?>
                                     </td>
                                 </tr>
@@ -99,14 +111,25 @@
                 if ($d['stok'] > $this->max_stok) {
                     continue;
                 }
+                $sat = "PCS";
+                foreach ($this->listSatuan as $ls) {
+                    if ($ls['id'] == $d['satuan']) {
+                        $sat = $ls['satuan'];
+                    }
+                }
+
+                $harga = $d['harga'];
+                $margin = $d['margin'];
+                $harga_jual = $harga + ($harga * ($margin / 100));
             ?>
                 <tr>
                     <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?>
                         <br>
-                        <?= "<a href='" . $this->BASE_URL . "StokOperasi/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a> Rp" . number_format($d['harga']) ?>
+                        <?= "<a href='" . $this->BASE_URL . "StokOperasi/index/" . $d['kode_barang'] . "/" . $id_user . "'>" . strtoupper($d['kode_barang']) . "</a>" ?>
+                        <small><?= "M-" . number_format($harga) ?> <?= "J-" . number_format($harga_jual) ?></small>
                     </td>
                     <td align="right" nowrap>
-                        <b><?= $d['stok'] ?></b><br>
+                        <b><?= $d['stok'] ?></b> <small><?= $sat ?></small><br>
                         <?= "T-" . number_format($d['laku'], 1); ?>
                     </td>
                 </tr>
