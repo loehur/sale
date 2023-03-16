@@ -2,19 +2,17 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col mr-auto">
-                    <label class="text-danger"><b>Pengajuan Pakai</b> <small>(Admin Checking)</small></label>
-                    <table class="table table-sm rounded">
-                        <tr>
-                            <?php
-                            $total = 0;
-                            foreach ($data as $d) {
-                            ?>
-                                <td><?= strtoupper($d['deskripsi']) ?> [ <?= $d['jumlah'] ?> ]</td>
-                            <?php
-                            } ?>
-                        </tr>
-                    </table>
+                <div class="col">
+                    <label class="text-danger mb-0"><b>Pengajuan Pakai</b> <small>(Admin Checking)</small></label><br>
+                    <small>
+                        <?php
+                        $total = 0;
+                        foreach ($data as $d) {
+                        ?>
+                            <span>[<?= $d['jumlah'] ?>] <?= strtoupper($d['deskripsi']) ?>, </span>
+                        <?php
+                        } ?>
+                    </small>
                 </div>
             </div>
         </div>
