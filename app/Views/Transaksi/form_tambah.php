@@ -96,7 +96,7 @@ foreach ($this->listSatuan as $ls) {
             data: $(this).serialize(),
             type: $(this).attr("method"),
             success: function(res) {
-                $("div#cart").load("<?= $this->BASE_URL ?>Transaksi/keranjang");
+                location.reload(true);
             },
         });
     });
