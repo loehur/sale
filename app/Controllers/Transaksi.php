@@ -59,7 +59,7 @@ class Transaksi extends Controller
    function cart($id_barang)
    {
       $tambah = $_POST["tambah"];
-      if ($tambah < 1) {
+      if ($tambah < 0.01) {
          echo "Tidak dapat Order 0";
          exit();
       }

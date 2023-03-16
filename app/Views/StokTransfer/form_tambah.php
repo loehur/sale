@@ -14,13 +14,11 @@ foreach ($this->listSatuan as $ls) {
         <div class="row">
             <div class="col-auto mr-auto mb-2">
                 <b>
-                    <?= strtoupper($a['merk']) ?> | <span class="text-danger"><?= strtoupper($a['model']) . " " . strtoupper($a['deskripsi']) ?></span>
-                    | Rp<?= number_format($a['harga'] + ($a['harga'] * ($a['margin'] / 100))) ?>
+                    <?= "<span class='text-danger'>" . strtoupper($a['merk']) ?> <?= strtoupper($a['model']) . " " . strtoupper($a['deskripsi']) ?></span>
                     | Sisa: <?= number_format($data['sisa']) . " " . $sat ?>
                 </b>
             </div>
         </div>
-        <hr>
         <?php
         if (isset($a['merk']) && $data['sisa'] > 0) { ?>
             <div class="row" id="form_tambah">

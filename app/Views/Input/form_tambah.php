@@ -17,8 +17,9 @@ foreach ($this->listSatuan as $ls) {
                             </tr>
                             <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
-                                <td align="right" class="pl-2"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
-                                <td align="right" class="pl-2"><small>Stok</small><br><?= number_format($stok['sisa'], 2) . " " . $sat ?> <span class="text-danger">(+<?= $stok['antri'] . " " . $sat  ?>)</span></td>
+                                <td align="right" class="pl-1"><small>Margin</small><br><?= number_format($data['harga'] * $data['margin'] / 100) ?></td>
+                                <td align="right" class="pl-1"><small>Jual</small><br><?= number_format($data['harga'] + ($data['harga'] * $data['margin'] / 100)) ?></td>
+                                <td align="right" class="pl-1"><small>Stok</small><br><?= number_format($stok['sisa'], 2) . " " . $sat ?> <span class="text-danger">(+<?= $stok['antri'] . " " . $sat  ?>)</span></td>
                             </tr>
                         </table>
                     </b>
@@ -35,11 +36,11 @@ foreach ($this->listSatuan as $ls) {
             <div class="col-auto mr-auto">
                 <form class="tambah" action="<?= $this->BASE_URL ?>Input/tambah_stok/<?= $data['id'] ?>" method="post">
                     <div class="row mb-2">
-                        <div class="col">
+                        <div class="col pr-0">
                             <input type="number" class="form-control form-control-sm" name="tambah" step="0.01" placeholder="Stok +" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control form-control-sm" name="rak" placeholder="Rak (Master Only)">
+                            <input type="text" class="form-control form-control-sm" name="rak" placeholder="Rak (Optional)">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -87,7 +88,7 @@ foreach ($this->listSatuan as $ls) {
                     $('button#cekBarang').click();
                     $("input#kode_barang").val("");
 
-                    setTimeout(kodeBarangFocus, 2000);
+                    setTimeout(kodeBarangFocus, 1000);
 
                 },
             });

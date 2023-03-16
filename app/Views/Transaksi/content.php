@@ -1,14 +1,12 @@
-<div class="content border pt-2 pb-2 table-primary">
+<div class="content border pt-2 pb-1 mt-2" style="background-color: aliceblue;">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-auto pr-0 pb-1">
-                <label><b>Kode Barang</b></label>
+            <div class="col-auto pr-0 mb-2" style="width: 150px;">
+                <label class="mb-0"><b>Kode Barang</b></label><br>
                 <input id="kode_barang" type="text" class="selectize-input" style="text-transform:uppercase;max-width: 220px;" maxlength="30">
             </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col mt-auto" style="width:100%; max-width:380px">
-                <label><b>Nama Barang</b></label>
+            <div class="col-auto" style="width:100%; max-width:380px">
+                <label class="mb-0"><b>Nama Barang</b></label>
                 <select class="tize form-control form-control-sm p-0 m-0" required>
                     <option value="" selected disabled>...</option>
                     <?php foreach ($data as $a) { ?>

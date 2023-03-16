@@ -155,7 +155,7 @@
     </div>
 <?php } ?>
 <hr>
-<div class="content">
+<div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 border pb-1">
@@ -165,15 +165,13 @@
                     echo "<tbody>";
                     foreach ($d['riwayat'] as $a) {
                         echo "<tr>";
-                        echo "<td class='text-info'>" . $a['keterangan'] . "</td>";
-                        echo "</tr>";
-                        echo "<tr>";
-                        echo "<td>[" . $a['id_user'] . "]</td>";
                         echo "<td>";
-                        echo ($a['kas_jenis'] == 0) ? "[Supplier]" : "[Fee]";
+                        echo $a['insertTime'] . "<br>";
+                        echo '<i class="fas fa-caret-right"></i> ';
+                        echo ($a['kas_jenis'] == 0) ? "Supplier" : "Fee";
                         echo "</td>";
+                        echo "<td class='text-info'>" . $a['keterangan'] . "<br><i class='fas fa-caret-right'></i> " . $a['id_user'] . "</td>";
                         echo "<td align='right'>" . number_format($a['jumlah']) . "</td>";
-                        echo "<td>" . $a['insertTime'] . "</td>";
                         echo "<td>";
                         switch ($a['kas_status']) {
                             case 1:

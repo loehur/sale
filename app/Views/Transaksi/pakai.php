@@ -2,8 +2,8 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col mr-auto pb-2 pt-2">
-                    <label class="text-danger"><b>Pengajuan Pakai</b></label>
+                <div class="col mr-auto">
+                    <label class="text-danger"><b>Pengajuan Pakai</b> <small>(Admin Checking)</small></label>
                     <table class="table table-sm rounded">
                         <tr>
                             <?php

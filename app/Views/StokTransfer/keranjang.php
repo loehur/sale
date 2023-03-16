@@ -16,9 +16,9 @@
 
                         ?>
                             <tr>
-                                <td><i class="fas fa-angle-double-right"></i> <?= strtoupper($d['id_user']) ?></td>
+                                <td nowrap><i class="fas fa-caret-right"></i> <?= strtoupper($d['id_user']) ?></td>
                                 <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
-                                <td><?= $d['jumlah'] . " " . $sat ?></td>
+                                <td nowrap><?= $d['jumlah'] . " " . $sat ?></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>StokTransfer/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>
                         <?php

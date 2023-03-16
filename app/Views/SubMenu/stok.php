@@ -3,7 +3,7 @@
 				<ul class="navbar-nav nav-justified w-100">
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap">
-							<i class="fas fa-folder-plus"></i><br>Stok Input</a>
+							<i class="fas fa-folder-plus"></i><br>Stok Input/Update</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>StokSub" class="nav-link text-secondary text-nowrap">
@@ -27,10 +27,6 @@
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>TerimaStok" class="nav-link text-secondary text-nowrap">
 							<i class="fas fa-download"></i><br>Stok Masuk</a>
-					</li>
-					<li class="nav-item">
-						<a href="<?= $this->BASE_URL ?>StokPengganti" class="nav-link text-secondary text-nowrap">
-							<i class="fas fa-redo"></i><br>Stok Pengganti</a>
 					</li>
 				</ul>
 			</nav>

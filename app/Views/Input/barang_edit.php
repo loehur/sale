@@ -66,7 +66,7 @@
                     <div class="row mb-2">
                         <div class="col">
                             <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                Simpan Barang
+                                Update Barang
                             </button>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                 type: $(this).attr("method"),
                 success: function(res) {
                     if (res == 1) {
-                        location.reload(true);
+                        $('button#cekBarang').click();
                     } else {
                         $("#info").hide();
                         $("#info").fadeIn(1000);
