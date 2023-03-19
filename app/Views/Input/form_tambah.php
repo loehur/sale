@@ -13,7 +13,7 @@ foreach ($this->listSatuan as $ls) {
                     <b>
                         <table>
                             <tr>
-                                <td colspan="3"><?= "<b>" . strtoupper($data['merk'] . " " . $data['model'] . " " . $data['deskripsi']) . "</b>" . " <span class='text-primary'>(" . $sat  . ")</span>" ?></td>
+                                <td colspan="4"><?= "<b>" . strtoupper($data['merk'] . " " . $data['model'] . " " . $data['deskripsi']) . "</b>" . " <span class='text-primary'>(" . $sat  . ")</span>" ?></td>
                             </tr>
                             <tr>
                                 <td align="right"><small>Harga</small><br><?= number_format($data['harga']) ?></td>
