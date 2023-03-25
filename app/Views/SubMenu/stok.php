@@ -1,9 +1,9 @@
 		<b>
-			<nav class="navbar border navbar-expand mx-3">
+			<nav class="navbar border navbar-expand mx-3 rounded">
 				<ul class="navbar-nav nav-justified w-100">
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>Input" class="nav-link text-secondary text-nowrap">
-							<i class="fas fa-folder-plus"></i><br>Stok Input/Update</a>
+							<i class="fas fa-folder-plus"></i><br>Stok<br>Input/Update</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>StokSub" class="nav-link text-secondary text-nowrap">
@@ -18,7 +18,7 @@
 				</ul>
 			</nav>
 			<br>
-			<nav class="navbar border navbar-expand mx-3">
+			<nav class="navbar border navbar-expand mx-3 rounded">
 				<ul class="navbar-nav nav-justified w-100">
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>StokTransfer" class="nav-link text-secondary text-nowrap">

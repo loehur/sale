@@ -13,7 +13,7 @@
                         </select>
                     </div>
                     <div class="col-auto">
-                        <h4 style="white-space: nowrap;" class="text-success"><br>INPUT STOK BARANG</h3>
+                        <h4 style="white-space: nowrap;" class="text-primary"><br>INPUT INVENTARIS</h3>
                     </div>
                 </div>
             </div>
@@ -60,31 +60,31 @@
         $("#info").hide();
         $('select.tize').selectize();
         $('input#kode_barang').focus();
-        $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
+        $("div#load2").load("<?= $this->BASE_URL . $this->ACTIVE_CONTROLLER ?>/list_input");
     });
 
     $('input#kode_barang').keypress(function(event) {
         if (event.keyCode == 13 && ($(this).val()).length > 0) {
-            $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + $(this).val());
+            $("div#load").load("<?= $this->BASE_URL . $this->ACTIVE_CONTROLLER ?>/cek/" + $(this).val());
         }
     });
 
     $('button#cekBarang').click(function() {
-        $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + $('input#kode_barang').val());
+        $("div#load").load("<?= $this->BASE_URL . $this->ACTIVE_CONTROLLER ?>/cek/" + $('input#kode_barang').val());
     });
 
     $('select.tize').selectize({
         onChange: function(value) {
             $('input#kode_barang').val(value);
             var kode_barang = $('input#kode_barang').val();
-            $("div#load").load("<?= $this->BASE_URL ?>Input/cek/" + kode_barang);
+            $("div#load").load("<?= $this->BASE_URL . $this->ACTIVE_CONTROLLER ?>/cek/" + kode_barang);
         }
     });
 
     $('select#toko').on("change", function(event) {
         var val = $(this).val();
         $.ajax({
-            url: "<?= $this->BASE_URL ?>Input/updateLogToko/",
+            url: "<?= $this->BASE_URL . $this->ACTIVE_CONTROLLER ?>/updateLogToko/",
             data: {
                 toko: val
             },

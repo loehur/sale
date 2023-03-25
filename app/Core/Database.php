@@ -256,9 +256,9 @@ class Database extends DB_Config
         }
     }
 
-    public function innerJoin2_where($table, $tb_join1, $on1, $tb_join2, $on2, $where)
+    public function innerJoin1_where($table, $tb_join, $on, $where)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join1 ON $on1 INNER JOIN $tb_join2 ON $on2 WHERE $where";
+        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $on WHERE $where";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];
@@ -270,9 +270,23 @@ class Database extends DB_Config
         }
     }
 
-    public function innerJoin1_where($table, $tb_join, $on, $where)
+    public function cols_innerJoin1_where($table, $cols, $tb_join, $on, $where)
     {
-        $query = "SELECT * FROM $table INNER JOIN $tb_join ON $on WHERE $where";
+        $query = "SELECT $cols FROM $table INNER JOIN $tb_join ON $on WHERE $where";
+        $result = $this->mysqli->query($query);
+        if ($result) {
+            $reply = [];
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
+            return $reply;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function innerJoin2_where($table, $tb_join1, $on1, $tb_join2, $on2, $where)
+    {
+        $query = "SELECT * FROM $table INNER JOIN $tb_join1 ON $on1 INNER JOIN $tb_join2 ON $on2 WHERE $where";
         $result = $this->mysqli->query($query);
         if ($result) {
             $reply = [];

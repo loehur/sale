@@ -2,10 +2,9 @@
 class Route extends Controller
 {
 
-    public $controller = '';
     protected $method = 'index';
     protected $param = [];
-
+    public $controller = '';
 
     public function __construct()
     {

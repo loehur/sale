@@ -18,6 +18,11 @@ class Join
         return $this->db->innerJoin1_where($table, $tb_join, $on, $where);
     }
 
+    function cols_join1_where($table, $cols, $tb_join, $on, $where)
+    {
+        return $this->db->cols_innerJoin1_where($table, $cols, $tb_join, $on, $where);
+    }
+
     function full1_where($table, $tb_join, $on, $where)
     {
         return $this->db->fullJoin1_where($table, $tb_join, $on, $where);
