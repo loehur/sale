@@ -70,10 +70,6 @@
                         </div>
                     </div>
                 </div>
-                <hr>
-                <p class="text-center">
-                    MDL-Sale Support<br>081268098300 / 085278114125 (Whatsapp Only)
-                </p>
             </div>
         </div>
     </div>
