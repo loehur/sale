@@ -62,11 +62,11 @@
                 </form>
                 <div class="mb-0">
                     <div class="row">
-                        <div class="col mr-auto">
-                            <a href="<?= $this->BASE_URL ?>Register" class="text-center">Daftar Baru</a>
+                        <div class="col">
+                            <!-- <a href="?= $this->BASE_URL ?>Register" class="text-center">Daftar Baru</a> -->
                         </div>
                         <div class="col">
-                            <a href="<?= $this->BASE_URL ?>Register/reset_pass" class="text-right text-info">Lupa Password</a>
+                            <!-- <a href="#" class="text-info">Lupa Password</a> -->
                         </div>
                     </div>
                 </div>
