@@ -1,6 +1,6 @@
 <?php
 
-class Session
+class Session extends Controller
 {
     public function check()
     {
