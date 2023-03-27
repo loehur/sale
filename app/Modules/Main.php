@@ -93,15 +93,11 @@ class Main extends Controller
    {
       //update stok
       $stok_masuk = $this->model("Sum")->col_where($this->barang_masuk, "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $stok_masuk_inven = $this->model("Sum")->col_where($this->barang_inven, "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-
       $stok_transfer = $this->model("Sum")->col_where($this->barang_masuk, "jumlah", "id_sumber = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-      $stok_transfer_inven = $this->model("Sum")->col_where($this->barang_inven, "jumlah", "id_sumber = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
-
       $stok_jual = $this->model("Sum")->col_where($this->barang_jual, "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
       $stok_pakai = $this->model("Sum")->col_where($this->barang_pakai, "jumlah", "id_user = '" . $id_user . "' AND id_barang = '" . $id_barang . "' AND op_status = 1");
 
-      $sisa_stok = ($stok_masuk + $stok_masuk_inven) - ($stok_transfer + $stok_transfer_inven) - $stok_jual - $stok_pakai;
+      $sisa_stok = ($stok_masuk) - ($stok_transfer) - $stok_jual - $stok_pakai;
 
       $id_stok = $id_user . "_" . $id_barang;
 
