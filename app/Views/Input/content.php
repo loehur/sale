@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
-                <div class="row mb-2">
-                    <div class="col">
+                <div class="row">
+                    <div class="col-auto">
                         <label><b>Pilih Toko</b></label>
                         <select id="toko" class="form-control form-control-sm" name="user_tipe" required>
                             <?php
@@ -12,8 +12,8 @@
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="col-auto">
-                        <h4 style="white-space: nowrap;" class="text-success"><br>INPUT STOK BARANG</h3>
+                    <div class="col">
+                        <h4 style="white-space: nowrap;" class="text-success"><br>STOK BARANG</h4>
                     </div>
                 </div>
             </div>
