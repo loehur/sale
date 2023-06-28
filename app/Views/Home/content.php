@@ -7,29 +7,20 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <?php if ($_SESSION['user_tipe'] <> 1) { ?>
-                    <p class="h6 text-danger"><strong><?= strtoupper($this->userData['nama']) ?></strong></p>
-                <?php } else { ?>
-                    <select name="id_user" id="toko" class="form-control form-control-sm" style="width: auto;">
-                        <?php
-                        foreach ($this->stafData as $a) { ?>
-                            <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
-                        <?php } ?>
-                    </select>
-                <?php } ?>
-            </div>
-            <div class="col-md-6">
-                <table class="table table-sm float-right table-borderless">
+            <div class="col">
+                <table class="table table-sm table-borderless table-striped">
                     <tr>
-                        <td align="right"><b>Kas Toko</b></td>
-                        <td align="right"><b>Rp <?= number_format($d['total']) ?></b></td>
+                        <td><b>Kas Toko</b></td>
+                        <td align="right"><b>Rp<?= number_format($d['total']) ?></b></td>
                     </tr>
-                    <?php if ($this->userData['user_tipe'] == 10) {
-                    ?>
+                    <?php if ($d['fee'] > 0) { ?>
                         <tr>
-                            <td align="right">Supplier</td>
-                            <td align="right"><?= number_format($d['sup']) ?></td>
+                            <td>Fee</td>
+                            <td align="right">Rp<?= number_format($d['fee']) ?></td>
+                        </tr>
+                        <tr>
+                            <td>Supplier</td>
+                            <td align="right">Rp<?= number_format($d['sup']) ?></td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -216,20 +207,6 @@
 <script src="<?= $this->ASSETS_URL ?>plugins/bootstrap-5.1/bootstrap.bundle.min.js"></script>
 
 <script>
-    $('select#toko').on("change", function(event) {
-        var val = $(this).val();
-        $.ajax({
-            url: "<?= $this->BASE_URL ?>Home/setID/",
-            data: {
-                toko: val
-            },
-            type: "POST",
-            success: function() {
-                location.reload(true);
-            },
-        });
-    });
-
     function Print(id) {
         var printContents = document.getElementById("print" + id).innerHTML;
         var originalContents = document.body.innerHTML;

@@ -2,23 +2,20 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <p class="h6 text-danger"><strong><?= $this->userData['nama'] ?></strong></p>
-            </div>
-            <div class="col-md-6">
-                <table class="table table-sm float-right">
+            <div class="col">
+                <table class="table table-sm table-borderless table-striped">
                     <tr>
-                        <td align="right"><b>Kas Toko</b></td>
-                        <td align="right"><b><?= number_format($d['total']) ?></b></td>
+                        <td><b>Kas Toko</b></td>
+                        <td align="right"><b>Rp<?= number_format($d['total']) ?></b></td>
                     </tr>
                     <?php if ($d['fee'] > 0) { ?>
                         <tr>
-                            <td align="right">Fee</td>
-                            <td align="right"><?= number_format($d['fee']) ?></td>
+                            <td>Fee</td>
+                            <td align="right">Rp<?= number_format($d['fee']) ?></td>
                         </tr>
                         <tr>
-                            <td align="right">Supplier</td>
-                            <td align="right"><?= number_format($d['sup']) ?></td>
+                            <td>Supplier</td>
+                            <td align="right">Rp<?= number_format($d['sup']) ?></td>
                         </tr>
                     <?php } ?>
                 </table>

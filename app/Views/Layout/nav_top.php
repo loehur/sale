@@ -13,7 +13,7 @@
 						<a href="<?= $this->BASE_URL ?>Penarikan" class="nav-link text-secondary text-nowrap"><i class="fas fa-receipt"></i><br>Setoran</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?= $this->BASE_URL ?>Blank" class="nav-link text-secondary text-nowrap"><i class="fas fa-user"></i><br>Akun</a>
+						<a href="<?= $this->BASE_URL ?>Akun" class="nav-link text-secondary text-nowrap"><i class="fas fa-user"></i><br>Akun</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>Login/logout" class="nav-link text-secondary"><i class="fas fa-sign-out-alt"></i><br>Logout</a>

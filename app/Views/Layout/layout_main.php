@@ -63,12 +63,47 @@
 
 	<?php require_once("layout_config.php"); ?>
 	<?php require_once("nav_top.php"); ?>
-	<div style="padding-top:70px"></div>
+	<?php if ($_SESSION['user_tipe'] <> 1) { ?>
+		<div style="padding-top:70px" class="row ml-2 pl-2">
+			<span class="h6 text-danger"><strong><?= strtoupper($this->userData['nama']) ?></strong></span>
+		</div>
+		<hr>
+	<?php } else { ?>
+		<div style="padding-top:65px" class="row pl-2">
+			<div class="col-auto pr-0">
+				<input class="border-0 rounded-0 form-control form-control-sm text-right" value="User Logged" disabled />
+			</div>
+			<div class="col-auto pl-0 border pr-0">
+				<select name="id_user" id="toko_master" class="border-0 form-control form-control-sm text-success" style="width: auto;">
+					<?php
+					foreach ($this->stafData as $a) { ?>
+						<option value="<?= $a['id_user'] ?>" <?= ($this->userData['id_user'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
+					<?php } ?>
+				</select>
+			</div>
+		</div>
+		<hr>
+	<?php } ?>
 </body>
 
 </html>
 
+<script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
 <script>
+	$('select#toko_master').on("change", function(event) {
+		var val = $(this).val();
+		$.ajax({
+			url: "<?= $this->BASE_URL ?>Home/setID/",
+			data: {
+				toko: val
+			},
+			type: "POST",
+			success: function() {
+				location.href = "<?= $this->BASE_URL ?>Home";
+			},
+		});
+	});
+
 	var time = new Date().getTime();
 	$(document.body).bind("mousemove keypress", function(e) {
 		time = new Date().getTime();
