@@ -11,8 +11,11 @@
                         <td align="right"><b>Kas Toko</b></td>
                         <td align="right"><b><?= number_format($d['total']) ?></b></td>
                     </tr>
-                    <?php if ($this->userData['user_tipe'] == 10) {
-                    ?>
+                    <?php if ($d['fee'] > 0) { ?>
+                        <tr>
+                            <td align="right">Fee</td>
+                            <td align="right"><?= number_format($d['fee']) ?></td>
+                        </tr>
                         <tr>
                             <td align="right">Supplier</td>
                             <td align="right"><?= number_format($d['sup']) ?></td>
@@ -34,10 +37,10 @@
     </div>
 </div>
 <hr>
-<?php if ($this->userData['user_tipe'] == 10) { ?>
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <?php if ($d['fee'] > 0) { ?>
                 <div class="col-md-6">
                     <form action="<?= $this->BASE_URL ?>Penarikan/tarik/1" method="post">
                         <div class="row mb-2">
@@ -67,93 +70,51 @@
                         <div class="row mb-2">
                             <div class="col">
                                 <button type="submit" class="btn btn-sm btn-success btn-block">
-                                    Setor Kas Fee
+                                    Cashout Fee
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6">
-                    <form action="<?= $this->BASE_URL ?>Penarikan/tarik/0" method="post">
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label>Jumlah</label>
-                            </div>
-                            <div class="col">
-                                <input type="number" class="form-control form-control-sm" name="jumlah" placeholder="Jumlah" required>
-                            </div>
+            <?php } ?>
+            <div class="col-md-6">
+                <form action="<?= $this->BASE_URL ?>Penarikan/tarik/0" method="post">
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <label>Jumlah</label>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label>Keterangan</label>
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-sm" name="ket" placeholder="Keterangan">
-                            </div>
+                        <div class="col">
+                            <input type="number" class="form-control form-control-sm" name="jumlah" placeholder="Jumlah" required>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label>Password</label>
-                            </div>
-                            <div class="col">
-                                <input type="password" class="form-control form-control-sm" name="pass" placeholder="Password" required>
-                            </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <label>Keterangan</label>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                    Setor Kas Supplier
-                                </button>
-                            </div>
+                        <div class="col">
+                            <input type="text" class="form-control form-control-sm" name="ket" placeholder="Keterangan">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <label>Password</label>
+                        </div>
+                        <div class="col">
+                            <input type="password" class="form-control form-control-sm" name="pass" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <button type="submit" class="btn btn-sm btn-primary btn-block">
+                                Cashout Supplier
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-<?php } else { ?>
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <form action="<?= $this->BASE_URL ?>Penarikan/tarik/0" method="post">
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label>Jumlah</label>
-                            </div>
-                            <div class="col">
-                                <input type="number" class="form-control form-control-sm" name="jumlah" placeholder="Jumlah" required>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label>Keterangan</label>
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-sm" name="ket" placeholder="Keterangan">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label>Password</label>
-                            </div>
-                            <div class="col">
-                                <input type="password" class="form-control form-control-sm" name="pass" placeholder="Password" required>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                    Setor Kas
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
+</div>
 <hr>
 <div class="content" style="padding-bottom: 70px;">
     <div class="container-fluid">

@@ -33,17 +33,8 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <label>Tipe</label>
-                            <select class="form-control form-control-sm" name="user_tipe" required>
-                                <option value="10">Rekanan</option>
-                                <option value="100">Toko Cabang</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
                             <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                Tambah User
+                                Tambah Outlate
                             </button>
                         </div>
                     </div>
@@ -66,15 +57,15 @@
                         echo "<tr>";
                         echo "<td><span>" . $a['id_user'] . "</span><br><span>" . $a['nama'] . "</span></td>";
                         echo "<td>";
-                        echo ($a['en'] == 1) ? "<span class='text-success'>Enabled</span>" : "Disabled";
-                        echo "</td>";
-                        echo "<td>";
-                        echo ($a['user_tipe'] == 10) ? "<span class='text-success'>Rekanan</span>" : "Toko Cabang";
+                        echo ($a['en'] == 1) ? "<span class='text-success'>Aktif</span>" : "<span class='text-danger'>Non Aktif</span>";
                         echo "</td>";
                         echo "<td><span>" . $a['fee'] . "</span></td>";
-                        echo "<td><a class='text-success text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/user_tipe/10/" . $a['id_user'] . "'>Rekanan</a><br>
-                        <a class='text-danger text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/user_tipe/100/" . $a['id_user'] . "'>Toko Cabang</a>
-                        </td>";
+
+                        $defaulPass = md5("abcdef");
+                        if ($a['password'] <> $defaulPass) {
+                            echo "<td><a class='text-success text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/" . $defaulPass . "/" . $a['id_user'] . "'>Reset Password</a></td>";
+                        }
+
                         echo "<td><a class='text-success text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/en/1/" . $a['id_user'] . "'><i class='fas fa-check-circle'></i></a>
                         <a class='text-danger text-decoration-none' href='" . $this->BASE_URL . "Staff/updateCell_Staff/en/0/" . $a['id_user'] . "'><i class='fas fa-times-circle'></i></a>
                         </td>";
@@ -88,6 +79,8 @@
             </div>
         </div>
     </div>
+</div>
+<div style="padding-bottom: 70px;">
 </div>
 
 

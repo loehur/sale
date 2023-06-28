@@ -44,6 +44,7 @@ class Login extends Controller
             //LOGIN
             $_SESSION['login_sale'] = TRUE;
             $_SESSION['user_data'] = $this->userData;
+            $_SESSION['user_tipe'] = $this->userData['user_tipe'];
 
             $this->synchrone();
             echo 1;

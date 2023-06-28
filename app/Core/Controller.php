@@ -4,7 +4,7 @@ require_once 'app/Config/Variables.php';
 
 class Controller extends Variables
 {
-    public $listSatuan = [];
+    public $listSatuan, $listToko;
     public function view_layout($data = [])
     {
         require_once "app/Views/Layout/layout_main.php";

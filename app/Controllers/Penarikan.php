@@ -41,7 +41,7 @@ class Penarikan extends Controller
             }
             break;
          case 1;
-            //CEK SISA CUCUP GAK
+            //CEK FEE CUCUP GAK
             if ($jumlah > $kas['fee']) {
                echo "Saldo Fee Tidak Cukup";
                exit();

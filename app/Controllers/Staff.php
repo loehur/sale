@@ -17,15 +17,15 @@ class Staff extends Controller
       $this->view($this->content, $data);
    }
 
-   public function updateCell_Staff($col, $value, $no_user)
+   public function updateCell_Staff($pass, $no_user)
    {
-      if ($this->userData['user_tipe'] <> 1) {
+      if ($this->userData['id_user'] <> $this->userData['id_master']) {
          echo "Forbidden Access";
          exit();
       }
 
-      $where = "id_user = '" . $no_user . "'";
-      $set = $col . " = " . $value;
+      $where = "id_user = '" . $no_user . "' AND id_master = '" . $this->userData['id_user'] . "'";
+      $set = "password = '" . $pass . "'";
       $update = $this->model('Update')->update("user", $set, $where);
       if (isset($update['errno'])) {
          if ($update['errno'] == 0) {

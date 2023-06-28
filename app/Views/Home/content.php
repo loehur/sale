@@ -8,7 +8,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <p class="h6 text-danger"><strong><?= strtoupper($this->userData['nama']) ?></strong></p>
+                <?php if ($_SESSION['user_tipe'] <> 1) { ?>
+                    <p class="h6 text-danger"><strong><?= strtoupper($this->userData['nama']) ?></strong></p>
+                <?php } else { ?>
+                    <select name="id_user" id="toko" class="form-control form-control-sm" style="width: auto;">
+                        <?php
+                        foreach ($this->stafData as $a) { ?>
+                            <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
+                        <?php } ?>
+                    </select>
+                <?php } ?>
             </div>
             <div class="col-md-6">
                 <table class="table table-sm float-right table-borderless">
@@ -207,6 +216,20 @@
 <script src="<?= $this->ASSETS_URL ?>plugins/bootstrap-5.1/bootstrap.bundle.min.js"></script>
 
 <script>
+    $('select#toko').on("change", function(event) {
+        var val = $(this).val();
+        $.ajax({
+            url: "<?= $this->BASE_URL ?>Home/setID/",
+            data: {
+                toko: val
+            },
+            type: "POST",
+            success: function() {
+                location.reload(true);
+            },
+        });
+    });
+
     function Print(id) {
         var printContents = document.getElementById("print" + id).innerHTML;
         var originalContents = document.body.innerHTML;

@@ -22,4 +22,10 @@ class Home extends Controller
       $data['riwayat'] = $this->modul('Main')->riwayat_jual($month);
       $this->view($this->content, $data);
    }
+
+   function setID()
+   {
+      $this->userData['id_user'] = $_POST['toko'];
+      $this->synchrone();
+   }
 }

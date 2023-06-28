@@ -57,14 +57,14 @@ class Register extends Controller
 
    function tambah_staff()
    {
-      if ($this->userData['user_tipe'] <> 1) {
+      if ($this->userData['id_user'] <> $this->userData['id_master']) {
          echo "Forbidden Access";
          exit();
       }
 
       $table = "user";
       $columns = 'id_user, nama, id_master, user_tipe, en, fee';
-      $values = "'" . $_POST["HP"] . "','" . $_POST["nama"] . "','" . $this->userData['id_master'] . "'," . $_POST['user_tipe'] . ",1," . $_POST['fee'];
+      $values = "'" . $_POST["HP"] . "','" . $_POST["nama"] . "','" . $this->userData['id_master'] . "',100,1," . $_POST['fee'];
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
