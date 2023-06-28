@@ -49,7 +49,7 @@ class TerimaStok extends Controller
       $this->view(__CLASS__ . "/cek_masuk", $data);
    }
 
-   function terima($terima, $id)
+   function terima($terima, $id, $sumber)
    {
       $rak = $_POST['rak'];
       $where = "id_user = '" . $this->userData['id_user'] . "' AND id = " . $id;
@@ -58,6 +58,7 @@ class TerimaStok extends Controller
       if ($do['errno'] == 0) {
          $id_barang = $this->modul("Main")->id_barang_masuk($id);
          $this->modul("Main")->update_stok($id_barang, $rak);
+         $this->modul("Main")->update_stok_master($sumber, $id_barang, $rak);
          echo $terima;
       } else {
          echo $do['error'];

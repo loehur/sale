@@ -18,6 +18,7 @@ class StokData extends Controller
       $bj = $laku['bj'];
       $bp = $laku['bp'];
 
+      $combine = [];
       foreach ($stok as $d) {
          if ($d['en'] == 0) {
             continue;

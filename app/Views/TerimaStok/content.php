@@ -57,7 +57,7 @@
                     <hr class="p-0 m-0">
                     <div class="mt-2">
                         <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
-                        <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
+                        <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>/<?= $a['id_sumber'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
                     </div>
                 <?php
                     echo "</div></div>";
