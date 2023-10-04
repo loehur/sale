@@ -4,7 +4,7 @@
 		?>
 
 			<b>
-				<nav class="navbar table-info navbar-expand border-top fixed-bottom m-auto p-0" style="max-width: 750px;min-width: <?= $min_width ?>;">
+				<nav class="navbar table-light shadow navbar-expand border-top fixed-bottom m-auto p-0" style="max-width: <?= $max_width ?>; min-width: <?= $min_width ?>;">
 					<ul class="navbar-nav nav-justified w-100">
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>Staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-users"></i><br>Outlate</a>
@@ -30,7 +30,7 @@
 		<?php } else { ?>
 
 			<b>
-				<nav class="navbar table-info navbar-expand border-top fixed-bottom m-auto p-0" style="max-width: 750px;min-width: <?= $min_width ?>;">
+				<nav class="navbar table-light shadow navbar-expand border-top fixed-bottom m-auto p-0" style="max-width: <?= $max_width ?>;min-width: <?= $min_width ?>;">
 					<ul class="navbar-nav nav-justified w-100">
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/stok_staff" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Stock</a>

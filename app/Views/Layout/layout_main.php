@@ -58,10 +58,9 @@
 	$method = "Blank";
 } ?>
 
+<?php require_once("layout_config.php"); ?>
 
-<body style="max-width: 752px; min-width:  <?= $min_width ?>;" class="m-auto small border border-bottom-0">
-
-	<?php require_once("layout_config.php"); ?>
+<body style="max-width: <?= $max_width ?>; min-width:  <?= $min_width ?>;" class="m-auto small border border-bottom-0">
 	<?php require_once("nav_top.php"); ?>
 	<?php if ($_SESSION['user_tipe'] <> 1) { ?>
 		<div style="padding-top:70px" class="row ml-2 pl-2">
