@@ -140,7 +140,7 @@ class Main extends Controller
       $table = "barang_stok";
       $tb_join = $this->barang_data;
       $on = "barang_stok.id_barang = barang_data.id";
-      $where = "barang_stok.id_user = '" . $this->userData['id_user'] . "'";
+      $where = "barang_stok.id_user = '" . $this->userData['id_user'] . "' ORDER BY barang_data.sort DESC";
       return $this->model("Join")->join1_where($table, $tb_join, $on, $where);
    }
 
@@ -238,7 +238,7 @@ class Main extends Controller
    function list_barang()
    {
       $table = $this->barang_data;
-      $where = "id_master = '" . $this->userData['id_user'] . "'";
+      $where = "id_master = '" . $this->userData['id_user'] . "' ORDER BY sort DESC";
       return $this->model("Get")->where($table, $where);
    }
 

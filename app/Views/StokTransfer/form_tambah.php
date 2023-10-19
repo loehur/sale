@@ -14,8 +14,8 @@ foreach ($this->listSatuan as $ls) {
         <div class="row">
             <div class="col-auto mr-auto mb-2">
                 <b>
-                    <?= "<span class='text-danger'>" . strtoupper($a['merk']) ?> <?= strtoupper($a['model']) . " " . strtoupper($a['deskripsi']) ?></span>
-                    | Sisa: <?= number_format($data['sisa']) . " " . $sat ?>
+                    <?= "<span class='text-danger px-2'>" . strtoupper($a['merk']) ?> <?= strtoupper($a['model']) . " " . strtoupper($a['deskripsi']) ?></span>
+                    <span class="text-primary border rounded border-primary px-2"> <?= number_format($data['sisa']) . " " . $sat ?></span>
                 </b>
             </div>
         </div>
@@ -30,9 +30,10 @@ foreach ($this->listSatuan as $ls) {
                             </div>
                             <div class="col-auto">
                                 <select id="tujuan_toko" class="form-control form-control-sm" name="tujuan" required>
+                                    <option value=""></option>
                                     <?php
                                     foreach ($this->stafData as $a) {
-                                        if ($a['id_user'] <> $this->userData['id_user']) { ?>
+                                        if ($a['id_user'] <> $this->userData['id_user'] && $a['user_tipe'] <> 1) { ?>
                                             <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko_tujuan'] == $a['id_user'] ? "selected" : "") ?>> <?= strtoupper($a['nama']) ?></option>
                                     <?php }
                                     } ?>

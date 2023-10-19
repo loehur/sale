@@ -68,7 +68,7 @@
 		</div>
 		<hr>
 	<?php } else { ?>
-		<div style="padding-top:65px" class="row pl-2">
+		<div style="padding-top:65px;" class="row w-100 m-0 border-0 mb-2 pl-2 pb-2 bg-light border-bottom">
 			<div class="col-auto pr-0">
 				<input class="border-0 rounded-0 form-control form-control-sm text-right" value="User Logged" disabled />
 			</div>
@@ -81,7 +81,6 @@
 				</select>
 			</div>
 		</div>
-		<hr>
 	<?php } ?>
 </body>
 

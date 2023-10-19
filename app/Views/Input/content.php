@@ -1,16 +1,18 @@
-<hr>
-<div class="content">
+<div class="content mb-2">
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
                 <div class="row">
                     <div class="col-auto">
-                        <label><b>Pilih Toko</b></label>
+                        <label><b>Toko Tujuan</b></label>
                         <select id="toko" class="form-control form-control-sm" name="user_tipe" required>
+                            <option value=""></option>
                             <?php
-                            foreach ($this->stafData as $a) { ?>
-                                <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
-                            <?php } ?>
+                            foreach ($this->stafData as $a) {
+                                if ($a['user_tipe'] <> 1) { ?>
+                                    <option value="<?= $a['id_user'] ?>" <?= ($this->setting['toko'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
+                            <?php }
+                            } ?>
                         </select>
                     </div>
                     <div class="col">
@@ -21,7 +23,6 @@
         </div>
     </div>
 </div>
-<hr>
 
 <div class="content">
     <div class="container-fluid">
@@ -47,7 +48,6 @@
         </div>
     </div>
 </div>
-<hr>
 <div id="load"></div>
 <div id="load2" style="padding-bottom: 70px;"></div>
 

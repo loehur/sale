@@ -85,6 +85,9 @@ class Transaksi extends Controller
 
       if ($do['errno'] == 0) {
          echo "+" . $tambah . " Keranjang, SUKSES!";
+         $set = "sort = sort+1";
+         $whereSort = "id = " . $id_barang;
+         $this->model('Update')->update("barang_data", $set, $whereSort);
       } else {
          print_r($do);
       }
@@ -115,6 +118,9 @@ class Transaksi extends Controller
 
       if ($do['errno'] == 0) {
          echo "+" . $tambah . " Pakai, SUKSES!";
+         $set = "sort = sort+1";
+         $whereSort = "id = " . $id_barang;
+         $this->model('Update')->update("barang_data", $set, $whereSort);
       } else {
          print_r($do);
       }

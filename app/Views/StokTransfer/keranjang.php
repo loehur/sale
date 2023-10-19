@@ -1,9 +1,9 @@
-    <div class="content mb-2">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col mr-auto pb-2 pt-2">
                     <label class="text-info"><b>Data Transfer Stok</b></label>
-                    <table class="table table-sm rounded">
+                    <table class="table table-sm rounded mb-0">
                         <?php
                         $total = 0;
                         foreach ($data as $d) {

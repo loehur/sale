@@ -113,19 +113,22 @@ class Input extends Controller
          exit();
       }
 
+      if ($this->setting['toko'] == $this->userData['id_master']) {
+         echo "Silahkan Pilih Toko Tujuan!";
+         exit();
+      }
+
       $tambah = $_POST["tambah"];
-
       $op = 0;
-
       $table = "barang_masuk";
       $columns = 'id_master, id_barang, jumlah, id_user, op_status';
       $values = "'" . $this->userData['id_master'] . "'," . $id_barang . "," . $tambah . ",'" . $this->setting['toko'] . "'," . $op;
       $do = $this->model('Insert')->cols($table, $columns, $values);
 
       if ($do['errno'] == 0) {
-         echo "+" . $tambah . " Stok, SUKSES!";
+         echo $do['errno'];
       } else {
-         print_r($do);
+         echo $do['error'];
       }
    }
 

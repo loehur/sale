@@ -16,12 +16,7 @@
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/inventaris" class="nav-link text-secondary text-nowrap"><i class="fas fa-layer-group"></i><br>Inventaris</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>SubMenu/i/approval" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Approval</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>SubMenu/i/rekap" class="nav-link text-secondary text-nowrap">
-								<i class="fas fa-chart-line"></i><br>Rekap
-							</a>
+							<a href="<?= $this->BASE_URL ?>Login/logout" class="nav-link text-secondary"><i class="fas fa-sign-out-alt"></i><br>Logout</a>
 						</li>
 					</ul>
 				</nav>
@@ -41,8 +36,10 @@
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/pengajuan" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Pengajuan</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?= $this->BASE_URL ?>Login/logout" class="nav-link text-secondary"><i class="fas fa-sign-out-alt"></i><br>Logout</a>
+						</li>
 					</ul>
 				</nav>
 			</b>
-
 		<?php } ?>

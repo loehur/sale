@@ -2,8 +2,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col mr-auto pb-2 pt-2">
-                    <label class="text-primary"><b>Proses Input</b></label>
-                    <table class="table table-striped table-sm table-light rounded table-responsive" style="max-height: 200px;">
+                    <table class="table table-sm">
                         <?php
                         foreach ($data as $d) {
                             $sat = "PCS";
@@ -13,8 +12,8 @@
                                 }
                             } ?>
                             <tr>
-                                <td><small>[<?= $d['id_user'] ?>]</small><br><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
-                                <td><small><?= $d['insertTime'] ?></small><br>[<?= $d['jumlah'] . $sat ?>]</td>
+                                <td><small class="text-primary"><b><?= $d['id_user'] ?></b></small><br><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
+                                <td><small><?= $d['insertTime'] ?></small><br><?= $d['jumlah'] . " " . $sat ?></td>
                                 <td align="right"></td>
                                 <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Input/hapus_list/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                             </tr>

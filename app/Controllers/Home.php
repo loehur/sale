@@ -11,6 +11,7 @@ class Home extends Controller
 
    function index()
    {
+
       if (isset($_POST['m'])) {
          $month = $_POST['y'] . "-" . $_POST['m'];
       } else {
@@ -18,6 +19,9 @@ class Home extends Controller
       }
 
       $this->view_layout(["title" => __CLASS__]);
+      if ($this->userData['id_user'] == $this->userData['id_master']) {
+         exit();
+      }
       $data['kas'] = $this->modul('Main')->kas();
       $data['riwayat'] = $this->modul('Main')->riwayat_jual($month);
       $this->view($this->content, $data);

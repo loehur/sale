@@ -5,7 +5,7 @@ foreach ($this->listSatuan as $ls) {
     }
 }
 ?>
-<div class="content">
+<div class="content mt-2 mb-0">
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto mr-auto">
@@ -25,6 +25,15 @@ foreach ($this->listSatuan as $ls) {
                     </b>
                     <div class="ml-auto p-1 float-right"><button data-kode_barang="<?= $data['kode_barang'] ?>" id="barang_edit" class="rounded border-light"><b>Edit</b></button></div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <div id="res" class="text-danger"></div>
             </div>
         </div>
     </div>
@@ -55,16 +64,6 @@ foreach ($this->listSatuan as $ls) {
         </div>
     </div>
 </div>
-<hr>
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-auto mr-auto">
-                <div id="info"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- SCRIPT -->
 <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
 <script src="<?= $this->ASSETS_URL ?>js/popper.min.js"></script>
@@ -84,12 +83,14 @@ foreach ($this->listSatuan as $ls) {
                 data: $(this).serialize(),
                 type: $(this).attr("method"),
                 success: function(res) {
-                    $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
-                    $('button#cekBarang').click();
-                    $("input#kode_barang").val("");
-
-                    setTimeout(kodeBarangFocus, 1000);
-
+                    if (res == 0) {
+                        $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
+                        $('button#cekBarang').click();
+                        $("input#kode_barang").val("");
+                        setTimeout(kodeBarangFocus, 500);
+                    } else {
+                        $("div#res").html(res);
+                    }
                 },
             });
         });
