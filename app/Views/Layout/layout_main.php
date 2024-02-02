@@ -8,6 +8,7 @@
 	<title>Sale | <?= $data['title'] ?></title>
 	<link rel="stylesheet" href="<?= $this->ASSETS_URL ?>plugins/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?= $this->ASSETS_URL ?>/css/bootstrap-4.3.1.min.css">
+	<link rel="stylesheet" href="<?= $this->ASSETS_URL ?>/plugins/bootstrap-5.1/bootstrap.min.css">
 	<link rel="stylesheet" href="<?= $this->ASSETS_URL ?>css/selectize.bootstrap3.min.css" rel="stylesheet" />
 
 

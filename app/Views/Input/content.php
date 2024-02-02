@@ -38,9 +38,9 @@
         <div class="row mt-2">
             <div class="col mt-auto" style="width:100%; max-width:380px">
                 <label><b>Nama Barang</b></label>
-                <select class="tize form-control form-control-sm p-0 m-0" required>
+                <select id="selBarang" class="tize form-control form-control-sm p-0 m-0" required>
                     <option value="" selected disabled>...</option>
-                    <?php foreach ($data as $a) { ?>
+                    <?php foreach ($data['main'] as $a) { ?>
                         <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></option>
                     <?php } ?>
                 </select>
@@ -58,8 +58,15 @@
 
 <script>
     $(document).ready(function() {
+        var par_kode_barang = "<?= $data['kode_barang'] ?>";
+
         $("#info").hide();
-        $('select.tize').selectize();
+        var selTize = $('select.tize').selectize();
+        if (par_kode_barang != 0) {
+            var selectize = selTize[0].selectize;
+            selectize.setValue(par_kode_barang);
+        }
+
         $('input#kode_barang').focus();
         $("div#load2").load("<?= $this->BASE_URL ?>Input/list_input");
     });

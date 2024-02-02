@@ -23,11 +23,12 @@
 <div id="load" style="padding-bottom: 70px;">
     <div class="content">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row px-2">
                 <?php
                 foreach ($data as $a) {
-                    echo "<div class='col-md-6'> <div class='t" . $a['id'] . " border mb-2 p-1'>";
-                    echo "<b>" . strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) . "</b><br>";
+                    echo "<div class='col-md-6 px-1 back-show s" . $a['kode_barang'] . "'> <div class='t" . $a['id'] . " shadow-sm border mb-2 p-2 rounded'>";
+                    echo "<span><b>" . strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) . "</b></span>";
+                    echo "<span class='float-right text-info'>" . $a['kode_barang'] . "</span><br>";
                     $sat = "PCS";
                     foreach ($this->listSatuan as $ls) {
                         if ($ls['id'] == $a['satuan']) {
@@ -49,15 +50,18 @@
 
 
                 ?>
-                    <div class="d-flex flex-row pt-0">
-                        <div class="p-2"><span class='text-success'>Tanggal/Jam</span><br><?= $a['insertTime'] ?></div>
-                        <div class="p-2"><span class='text-success'>Sumber</span><br><b><?= strtoupper($sumber) ?></b></div>
-                        <div class="p-2 text-right"><span class='text-success'>Jumlah</span><br><b><?= strtoupper($a['jumlah']) . " " . $sat ?></b></div>
+                    <div class="d-flex flex-row pt-0 mt-2">
+                        <div class="pr-2"><span class='text-success'>Tanggal/Jam</span><br><?= $a['insertTime'] ?></div>
+                        <div class="pr-2"><span class='text-success'>Sumber</span><br><b><?= strtoupper($sumber) ?></b></div>
+                        <div class="text-right"><span class='text-success'>Jumlah</span><br><b><?= strtoupper($a['jumlah']) . " " . $sat ?></b></div>
                     </div>
                     <hr class="p-0 m-0">
-                    <div class="mt-2">
-                        <input type="text" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
-                        <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>/<?= $a['id_sumber'] ?>"><button class="float-right rounded border-light"><b>Terima</b></button></a>
+                    <div class="mt-2 text-right">
+                        <input type="text" class="d-none" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
+                        <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>/<?= $a['id_sumber'] ?>"><button class="rounded border-light"><b>Terima</b></button></a>
+                        <?php if ($this->userData['user_tipe'] == 100) { ?>
+                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima_pakai/1/<?= $a['id'] ?>/<?= $a['id_sumber'] ?>/<?= $a['jumlah'] ?>"><button class="rounded border-light"><b>Terima Pakai</b></button></a>
+                        <?php } ?>
                     </div>
                 <?php
                     echo "</div></div>";
@@ -82,7 +86,9 @@
 
     $('input#kode_barang').keypress(function(event) {
         if (event.keyCode == 13 && ($(this).val()).length > 0) {
-            $("div#load").load("<?= $this->BASE_URL ?>TerimaStok/cek/" + $(this).val());
+            var kode_barang = $(this).val();
+            $(".back-show").addClass('d-none');
+            $(".s" + kode_barang).removeClass('d-none');
         }
     });
 
@@ -102,7 +108,8 @@
         onChange: function(value) {
             $('input#kode_barang').val(value);
             var kode_barang = $('input#kode_barang').val();
-            $("div#load").load("<?= $this->BASE_URL ?>TerimaStok/cek/" + kode_barang);
+            $(".back-show").addClass('d-none');
+            $(".s" + kode_barang).removeClass('d-none');
         }
     });
     $('a.terima').on("click", function(e) {

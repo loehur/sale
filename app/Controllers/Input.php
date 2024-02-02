@@ -9,10 +9,11 @@ class Input extends Controller
       $this->content = __CLASS__ . $this->content;
    }
 
-   function index()
+   function index($kode_barang = 0)
    {
       $this->view_layout(["title" => __CLASS__]);
-      $data = $this->modul("Main")->list_barang();
+      $data['main'] = $this->modul("Main")->list_barang();
+      $data['kode_barang'] = $kode_barang;
       $this->view($this->content, $data);
    }
 

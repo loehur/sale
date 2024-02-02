@@ -12,6 +12,11 @@ class StokData extends Controller
    function index()
    {
       $this->view_layout(["title" => __CLASS__]);
+      $this->load();
+   }
+
+   function load()
+   {
       $stok = $this->modul("Main")->list_stok_user($this->setting['toko']);
       $laku = $this->modul("Main")->terlaris();
 

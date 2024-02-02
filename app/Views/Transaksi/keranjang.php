@@ -18,7 +18,7 @@
                     ?>
                         <tr>
                             <td class="pl-0"><?= strtoupper($d['deskripsi']) ?></td>
-                            <td>[<?= $d['jumlah'] ?> <?= $sat ?>]</td>
+                            <td><?= $d['jumlah'] ?> <?= $sat ?></td>
                             <td align="right">Rp<?= number_format($harga_jual) ?></td>
                             <td class="pr-0"><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Transaksi/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
                         </tr>
