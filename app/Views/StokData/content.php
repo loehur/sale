@@ -11,7 +11,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="myInput" class="form-control form-control-sm mb-2" onkeyup="myFunction()" placeholder="Cari Stok ... " title="Ketikan Nama Stok ... ">
+                    <input type="text" id="myInput" class="form-control form-control-sm mb-2" onkeyup="luhurTableSearch()" placeholder="Cari Stok ... " title="Ketikan Nama Stok ... ">
                 </div>
             </div>
 
@@ -163,20 +163,54 @@
     <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
 
     <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
+        $(document).ready(function() {});
+
+        function luhurTableSearch() {
+            var input, filter, table, tr, td, i, txtValue, filterCount;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
+            filterCount = filter.length;
+
             table = document.getElementById("myTable");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    txtValue = td.textContent.toUpperCase() || td.innerText.toUpperCase();
+                    var match = false;
+                    var cekFind = [];
+                    var sortCek = 0;
+
+                    for (let k = 0; k < filter.length; k++) {
+                        cekFind[k] = 0;
+                        for (let j = sortCek; j < txtValue.length; j++) {
+                            if (filter.charAt(k) == txtValue.charAt(j)) {
+                                cekFind[k] = 1;
+                                sortCek = j;
+                                break;
+                            }
+                        }
+
+                        if (cekFind[k] == 0) {
+                            match = false;
+                            break;
+                        } else {
+                            const sumFind = cekFind.reduce((partialSum, a) => partialSum + a, 0);
+                            if (sumFind == filterCount) {
+                                match = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (filter.length == 0) {
                         tr[i].style.display = "";
                     } else {
-                        tr[i].style.display = "none";
+                        if (match == true) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
                     }
                 }
             }
