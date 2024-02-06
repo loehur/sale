@@ -56,11 +56,11 @@
                         <div class="text-right"><span class='text-success'>Jumlah</span><br><b><?= strtoupper($a['jumlah']) . " " . $sat ?></b></div>
                     </div>
                     <hr class="p-0 m-0">
-                    <div class="mt-2 text-right">
+                    <div class="mt-2">
                         <input type="text" class="d-none" style="text-align: center;font-weight:bold;text-transform:uppercase;width:60px" placeholder="RAK" name="rak<?= $a['id'] ?>">
                         <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima/1/<?= $a['id'] ?>/<?= $a['id_sumber'] ?>"><button class="rounded border-light"><b>Terima</b></button></a>
                         <?php if ($this->userData['user_tipe'] == 100) { ?>
-                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima_pakai/1/<?= $a['id'] ?>/<?= $a['id_sumber'] ?>/<?= $a['jumlah'] ?>"><button class="rounded border-light"><b>Terima Pakai</b></button></a>
+                            <a class="terima" data-id="<?= $a['id'] ?>" href="<?= $this->BASE_URL ?>TerimaStok/terima_pakai/1/<?= $a['id'] ?>/<?= $a['jumlah'] ?>/<?= $a['id_sumber'] ?>"><button class="rounded border-light float-end"><b>Terima Pakai</b></button></a>
                         <?php } ?>
                     </div>
                 <?php
