@@ -76,9 +76,11 @@
 			<div class="col-auto pl-0 border pr-0">
 				<select name="id_user" id="toko_master" class="border-0 form-control form-control-sm text-success" style="width: auto;">
 					<?php
-					foreach ($this->stafData as $a) { ?>
-						<option value="<?= $a['id_user'] ?>" <?= ($this->userData['id_user'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
-					<?php } ?>
+					foreach ($this->stafData as $a) {
+						if ($a['en'] == 1) { ?>
+							<option value="<?= $a['id_user'] ?>" <?= ($this->userData['id_user'] == $a['id_user'] ? "selected" : "") ?>><?= strtoupper($a['nama']) ?></option>
+					<?php }
+					} ?>
 				</select>
 			</div>
 		</div>
