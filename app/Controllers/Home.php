@@ -32,4 +32,26 @@ class Home extends Controller
       $this->userData['id_user'] = $_POST['toko'];
       $this->synchrone();
    }
+
+   function nontunai()
+   {
+      $ref = $_POST['ref'];
+      $jumlah = $_POST['jumlah'];
+      $metode = $_POST['metode'];
+      $note = $_POST['note'];
+      //cek max bayar
+      $max = $this->modul("Main")->trx_bill($ref);
+      if ($jumlah > $max) {
+         echo "Pembayaran melebihi jumlah tagihan!";
+         exit();
+      }
+      $cols = "ref, jumlah, metode, note, id_user";
+      $vals = "'" . $ref . "'," . $jumlah . ",'" . $metode . "','" . $note . "','" . $this->userData['id_user'] . "'";
+      $do = $this->model('Insert')->cols("nontunai", $cols, $vals);
+      if ($do == 0) {
+         echo 0;
+      } else {
+         echo $do['error'];
+      }
+   }
 }

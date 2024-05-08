@@ -2,7 +2,7 @@
 
 class Main extends Controller
 {
-   public $barang_masuk, $barang_inven, $barang_jual, $barang_pakai, $inven_jual, $inven_rusak, $barang_data;
+   public $barang_masuk, $barang_inven, $barang_jual, $barang_pakai, $inven_jual, $inven_rusak, $barang_data, $tb_nontunai;
    function __construct()
    {
       $this->session()->check();
@@ -17,6 +17,7 @@ class Main extends Controller
       $this->inven_rusak = "inventaris_pakai";
 
       $this->barang_data = "barang_data";
+      $this->tb_nontunai = "nontunai";
    }
 
    function stok_dikurang_cart($id_barang)
@@ -279,14 +280,22 @@ class Main extends Controller
 
       $kasJualTotal = $this->model("Sum")->col_where($this->barang_jual, "harga_jual", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
       $kasFeeTotal = $this->model("Sum")->col_where($this->barang_jual, "fee", "id_user = '" . $this->userData['id_user'] . "' AND op_status = 1");
+      $nontunai = $this->model("Sum")->col_where($this->tb_nontunai, "jumlah", "id_user = '" . $this->userData['id_user'] . "' AND tr_status <> 2");
       $kasSupTotal = $kasJualTotal - $kasFeeTotal;
 
-      $kas['total'] = $kasJualTotal - $totalTarikFee - $totalTarikSup;
+      $kas['total'] = $kasJualTotal - $totalTarikFee - $totalTarikSup - $nontunai;
       $kas['fee'] = $kasFeeTotal - $totalTarikFee;
       $kas['sup'] = $kasSupTotal - $totalTarikSup;
 
       $kas['riwayat'] = $this->model("Get")->where("kas", "id_user = '" . $this->userData['id_user'] . "' ORDER BY id DESC LIMIT 10");
       return $kas;
+   }
+
+   function trx_bill($ref)
+   {
+      $data = $this->model("Sum")->col_where($this->barang_jual, "harga_jual", "ref = '" . $ref . "'");
+      $data2 = $this->model("Sum")->col_where($this->tb_nontunai, "jumlah", "ref = '" . $ref . "' AND tr_status <> 2");
+      return $data - $data2;
    }
 
    function rekap($month)
@@ -321,7 +330,6 @@ class Main extends Controller
       $where = "barang_jual.id_user = '" . $this->userData['id_user'] . "' AND barang_jual.op_status = 1 AND barang_jual.updateTime LIKE '%" . $date . "%' ORDER BY barang_jual.id DESC";
       $get = $this->model("Join")->join1_where($table, $tb_join, $on, $where);
 
-      $no = 0;
       foreach ($get as $g) {
          $data[$g['ref']][$g['id']] = $g;
       }
