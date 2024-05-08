@@ -140,10 +140,18 @@
                         }
                         $sisa_bill = $total - $pNT;
                         ?>
-                        <tr class="border-top">
-                            <td colspan="2" class="py-2"><b>TOTAL</b> <button data-bs-toggle="modal" data-max="<?= $sisa_bill ?>" data-ref="<?= $k['ref'] ?>" data-bs-target="#exampleModal" class="float-end nTunai ms-2 border-0 bg-light rounded shadow-sm">+ Nontunai</button></td>
-                            <td align="right" class="py-2"><b><?= number_format($total) ?></b></td>
-                        </tr>
+
+                        <?php if ($this->userData['user_tipe'] == 100) { ?>
+                            <tr class="border-top">
+                                <td colspan="2" class="py-2"><b>TOTAL</b> <button data-bs-toggle="modal" data-max="<?= $sisa_bill ?>" data-ref="<?= $k['ref'] ?>" data-bs-target="#exampleModal" class="float-end nTunai ms-2 border-0 bg-light rounded shadow-sm">+ Nontunai</button></td>
+                                <td align="right" class="py-2"><b><?= number_format($total) ?></b></td>
+                            </tr>
+                        <?php } else { ?>
+                            <tr class="border-top">
+                                <td colspan="2" class="py-2"><b>TOTAL</b></td>
+                                <td align="right" class="py-2"><b><?= number_format($total) ?></b></td>
+                            </tr>
+                        <?php } ?>
                         <?php
                         if (count($nTunai) > 0) { ?>
                             <tr class="border-top">

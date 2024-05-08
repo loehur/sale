@@ -9,8 +9,9 @@
                         foreach ($data['antri'] as $d) {
                         ?>
                             <tr>
-                                <td><?= $d['metode'] ?><br><small><?= $d['note'] ?></small></td>
-                                <td class="text-end"><?= substr($d['insertTime'], 0, -3) ?><br><b><?= number_format($d['jumlah']) ?></b></td>
+                                <td><?= $d['id_user'] ?><br><?= substr($d['insertTime'], 0, -3) ?></td>
+                                <td class="text-end"><?= $d['metode'] ?><br><b><?= number_format($d['jumlah']) ?></b><br><small><?= $d['note'] ?></small></td>
+
                                 <td class="text-end">
                                     <a class='text-success' href="<?= $this->BASE_URL ?>NonTunai/confirm/<?= $d['nontunai_id'] ?>/1"> Terima</a>
                                     <div class="btn-group">
@@ -32,13 +33,16 @@
                         foreach ($data['done'] as $dd) {
                         ?>
                             <tr class="<?= ($dd['tr_status'] == 1) ? "table-success" : "table-danger"; ?>">
-                                <td><?= $dd['metode'] ?><br><small><?= $dd['note'] ?></small></td>
-                                <td class="text-end"><?= substr($dd['insertTime'], 0, -3) ?><br><b><?= number_format($dd['jumlah']) ?></b></td>
-                                <td class="text-end">
-                                    <?php
-                                    $nt_st = ($dd['tr_status'] == 1) ? "Success" : "Ditolak";
-                                    ?>
-                                    <?= $nt_st ?>
+                                <td><?= $d['id_user'] ?><br><?= substr($d['insertTime'], 0, -3) ?></td>
+                                <td class="text-end"><?= $d['metode'] ?><br><b><?= number_format($d['jumlah']) ?></b><br><small><?= $d['note'] ?></small></td>
+
+                                <td class="text-center" style="vertical-align: middle;">
+                                    <span class="border rounded border-light px-2 bg-white">
+                                        <?php
+                                        $nt_st = ($dd['tr_status'] == 1) ? "Success" : "Ditolak";
+                                        ?>
+                                        <?= $nt_st ?>
+                                    </span>
                                 </td>
                             </tr>
                         <?php
