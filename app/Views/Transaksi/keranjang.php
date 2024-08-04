@@ -20,7 +20,7 @@
                             <td class="pl-0"><?= strtoupper($d['deskripsi']) ?></td>
                             <td><?= $d['jumlah'] ?> <?= $sat ?></td>
                             <td align="right">Rp<?= number_format($harga_jual) ?></td>
-                            <td class="pr-0"><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Transaksi/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
+                            <td class="pr-0"><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Transaksi/hapusCart/<?= $d['id'] ?>"><i class="bi bi-trash"></i></a></td>
                         </tr>
                     <?php
                         $total += $harga_jual;
@@ -36,7 +36,7 @@
                     <?php }
                     ?>
                 </table>
-                <div class="ml-auto mb-1 mt-1 float-right"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="btn-info">Check Out</button></a></div>
+                <div class="ms-auto mb-1 mt-1 float-end"><a class="terima" href="<?= $this->BASE_URL ?>Transaksi/cekOut"><button class="btn btn-sm btn-success">Check Out</button></a></div>
             </div>
         </div>
     </div>

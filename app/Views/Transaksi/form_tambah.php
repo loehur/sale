@@ -26,7 +26,7 @@ foreach ($this->listSatuan as $ls) {
                                 <td class="pl-0"><?= strtoupper($s['nama_sub']) ?></td>
                                 <td align="right" nowrap><?= number_format($s['jumlah'], 2) . " " . $sat  ?></td>
                                 <td align="right">Rp<?= number_format(($a['harga'] * $s['jumlah']) * ($s['margin'] / 100) + ($a['harga'] * $s['jumlah'])) ?></td>
-                                <td><a href="<?= $this->BASE_URL ?>Transaksi/cart_sub/<?= $a['id'] ?>/<?= $s['id'] ?>"><i class="text-success fas fa-plus-square"></i></a></td>
+                                <td><a href="<?= $this->BASE_URL ?>Transaksi/cart_sub/<?= $a['id'] ?>/<?= $s['id'] ?>"><i class="bi bi-plus-circle-dotted"></i></a></td>
                             </tr>
                     <?php }
                     } ?>
@@ -46,9 +46,9 @@ foreach ($this->listSatuan as $ls) {
                             <div class="col-auto pl-0 pr-2 pt-1">
                                 <input type="number" style="width: 70px;" value="1" step="0.01" min="0.01" class="form-control form-control-sm" name="tambah" max="<?= $data['sisa'] ?>" placeholder="" required>
                             </div>
-                            <div class="col-auto pl-0 pt-1">
-                                <button type="submit" class="btn btn-sm btn-info">
-                                    <i class="fas fa-plus-square"></i>
+                            <div class="col-auto ps-0 pt-1">
+                                <button type="submit" class="btn btn-sm btn-info text-light">
+                                    <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
                         </div>
@@ -65,7 +65,7 @@ foreach ($this->listSatuan as $ls) {
                             <div class="col-auto pr-2">
                                 <input type="number" style="width: 70px;" value="1" min="0.01" step="0.01" class="form-control form-control-sm" name="tambah_pakai" max="<?= $data['sisa'] ?>" placeholder="" required>
                             </div>
-                            <div class="col-auto pl-0">
+                            <div class="col-auto ps-0">
                                 <button type="submit" class="btn btn-sm btn-danger btn-block">
                                     <i class="fas fa-plus-square"></i> Pakai
                                 </button>
