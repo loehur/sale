@@ -1,8 +1,8 @@
 		<b>
-			<nav class="navbar table-light shadow-sm navbar-expand mr-auto ml-auto border-bottom p-0 fixed-top" style="max-width: <?= $max_width ?>; min-width: <?= $min_width ?>;">
+			<nav class="navbar table-light shadow-sm navbar-expand me-auto ms-auto border-bottom p-0 fixed-top" style="max-width: <?= $max_width ?>; min-width: <?= $min_width ?>;">
 				<ul class="navbar-nav nav-justified w-100">
 					<li class="nav-item">
-						<a href="<?= $this->BASE_URL ?>Home" class="nav-link text-secondary text-nowrap"><i class="fas fa-money-check"></i><br>Home</a>
+						<a href="<?= $this->BASE_URL ?>Home" class="nav-link text-secondary text-nowrap"><i class="bi bi-house"></i><br>Home</a>
 					</li>
 					<?php
 					if ($this->userData['id_user'] <> $this->userData['id_master']) { ?>
@@ -19,11 +19,11 @@
 						</li>
 					<?php  } else { ?>
 						<li class="nav-item">
-							<a href="<?= $this->BASE_URL ?>SubMenu/i/approval" class="nav-link text-secondary text-nowrap"><i class="fas fa-check-double"></i><br>Approval</a>
+							<a href="<?= $this->BASE_URL ?>SubMenu/i/approval" class="nav-link text-secondary text-nowrap"><i class="bi bi-ui-checks"></i><br>Approval</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?= $this->BASE_URL ?>SubMenu/i/rekap" class="nav-link text-secondary text-nowrap">
-								<i class="fas fa-chart-line"></i><br>Rekap
+								<i class="bi bi-graph-up"></i><br>Rekap
 							</a>
 						</li>
 					<?php } ?>

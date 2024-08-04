@@ -89,7 +89,7 @@ class Transaksi extends Controller
          $whereSort = "id = " . $id_barang;
          $this->model('Update')->update("barang_data", $set, $whereSort);
       } else {
-         print_r($do);
+         $this->model('Log')->write($do['error']);
       }
    }
 
@@ -122,7 +122,7 @@ class Transaksi extends Controller
          $whereSort = "id = " . $id_barang;
          $this->model('Update')->update("barang_data", $set, $whereSort);
       } else {
-         print_r($do);
+         $this->model('Log')->write($do['error']);
       }
    }
 

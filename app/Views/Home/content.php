@@ -34,7 +34,7 @@
     <div class="container-fluid">
         <form action="<?= $this->BASE_URL ?>Home/index" method="post">
             <div class="row">
-                <div class="col-auto pr-0">Month
+                <div class="col-auto pe-0">Month
                     <select name="m" class="form-control form-control-sm" onchange="hideAll()" style="width: auto;">
                         <option class="text-right" value="01" <?php if ($currentMonth == '01') {
                                                                     echo 'selected';
@@ -74,7 +74,7 @@
                                                                 } ?>>12</option>
                     </select>
                 </div>
-                <div class="col-auto pr-0">Year
+                <div class="col-auto pe-0">Year
                     <select name="y" class="form-control form-control-sm" onchange="hideAll()" style="width: auto;">
                         <?php
 
@@ -88,9 +88,10 @@
                         ?>
                     </select>
                 </div>
-                <div class="col pr-0 mr-auto">
-                    <button type="submit" class="btn btn-sm btn-primary position-absolute" style="bottom:0">Cek</button>
+                <div class="col pe-0 me-auto">
+                    <button type="submit" class="btn btn-sm btn-outline-primary shadow-none h-100" style="bottom:0">Cek</button>
                 </div>
+            </div>
         </form>
     </div>
 </div>
