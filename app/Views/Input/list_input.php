@@ -15,7 +15,7 @@
                                 <td><small class="text-primary"><b><?= $d['id_user'] ?></b></small><br><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
                                 <td><small><?= $d['insertTime'] ?></small><br><?= $d['jumlah'] . " " . $sat ?></td>
                                 <td align="right"></td>
-                                <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Input/hapus_list/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
+                                <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>Input/hapus_list/<?= $d['id'] ?>"><i class="bi bi-trash"></i></a></td>
                             </tr>
                         <?php
                         } ?>

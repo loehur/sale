@@ -11,7 +11,7 @@
                             <tr>
                                 <td>[ <?= strtoupper($d['id_user']) ?> ]<br><?= strtoupper($d['deskripsi']) ?></td>
                                 <td>[ <?= $d['jumlah'] ?> ]</td>
-                                <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>StokPakai/hapusCart/<?= $d['id'] ?>"><i class='fas fa-times-circle'></i></a></td>
+                                <td><a class='text-danger text-decoration-none' href="<?= $this->BASE_URL ?>StokPakai/hapusCart/<?= $d['id'] ?>"><i class="bi bi-recycle"></i></a></td>
                             </tr>
                         <?php
                         } ?>
