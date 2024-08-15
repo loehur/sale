@@ -1,5 +1,5 @@
 		<b>
-			<nav class="navbar table-light shadow-sm navbar-expand me-auto ms-auto border-bottom p-0 fixed-top" style="max-width: <?= $max_width ?>; min-width: <?= $min_width ?>;">
+			<nav class="navbar bg-light shadow-sm navbar-expand me-auto ms-auto border-bottom p-0 fixed-top" style="max-width: <?= $max_width ?>; min-width: <?= $min_width ?>;">
 				<ul class="navbar-nav nav-justified w-100">
 					<li class="nav-item">
 						<a href="<?= $this->BASE_URL ?>Home" class="nav-link text-secondary text-nowrap"><i class="bi bi-house"></i><br>Home</a>

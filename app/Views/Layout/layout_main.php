@@ -69,10 +69,10 @@
 		<hr>
 	<?php } else { ?>
 		<div style="padding-top:65px;" class="row w-100 m-0 border-0 mb-2 pl-2 pb-2 bg-light border-bottom">
-			<div class="col-auto pr-0">
+			<div class="col-auto pe-0">
 				<input class="border-0 rounded-0 form-control form-control-sm text-right" value="User Logged" disabled />
 			</div>
-			<div class="col-auto pl-0 border pr-0">
+			<div class="col-auto ps-0 border pr-0">
 				<select name="id_user" id="toko_master" class="border-0 form-control form-control-sm text-success" style="width: auto;">
 					<?php
 					foreach ($this->stafData as $a) {
