@@ -105,7 +105,7 @@
                 $total = 0;
             ?>
                 <div class="col-md-6 border pb-1 pt-1 mb-2">
-                    <a href="" class="text-primary" onclick="Print('<?= $ak ?>')"><i class="fas fa-print"></i></a>
+                    <a href="" class="text-primary" onclick="Print('<?= $ak ?>')"><i class="bi bi-printer"></i></a>
                     <span class="text-info"><?= "Transaction. " . $ak; ?></span>
                     <table class="table table-borderless table-sm mb-0 pb-0">
                         <?php
