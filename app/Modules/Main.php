@@ -125,6 +125,10 @@ class Main extends Controller
 
          $where = "id = '" . $id_stok . "'";
          $this->model("Update")->update("barang_stok", $set, $where);
+      } else {
+         if ($update_stok['errno'] <> 0) {
+            $this->model('Log')->write($update_stok['error']);
+         }
       }
    }
 
