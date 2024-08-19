@@ -78,10 +78,6 @@ class Main extends Controller
 
       $update_stok = $this->model("Insert")->cols("barang_stok", $cols, $vals);
 
-      if ($update_stok['errno'] == 0) {
-         $this->model('Log')->write($update_stok['error']);
-      }
-
       if ($update_stok['errno'] == "1062") {
          if ($rak <> "") {
             $set = "stok = " . $sisa_stok . ", rak = '" . $rak . "', en = 1";
@@ -91,6 +87,10 @@ class Main extends Controller
 
          $where = "id = '" . $id_stok . "'";
          $this->model("Update")->update("barang_stok", $set, $where);
+      } else {
+         if ($update_stok['errno'] <> 0) {
+            $this->model('Log')->write($update_stok['error']);
+         }
       }
    }
 
