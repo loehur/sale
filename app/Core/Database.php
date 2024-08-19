@@ -51,6 +51,7 @@ class Database extends DB_Config
         }
     }
 
+
     public function get_where_row($table, $where)
     {
         $reply = [];
@@ -58,6 +59,21 @@ class Database extends DB_Config
         $result = $this->mysqli->query($query);
         $reply = $result->fetch_assoc();
         if ($result) {
+            return $reply;
+        } else {
+            return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
+        }
+    }
+
+    public function get_cols_where($table, $cols, $where)
+    {
+        $reply = [];
+        $query = "SELECT $cols FROM $table WHERE $where";
+        $result = $this->mysqli->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc())
+                $reply[] = $row;
             return $reply;
         } else {
             return array('query' => $query, 'error' => $this->mysqli->error, 'errno' => $this->mysqli->errno);
