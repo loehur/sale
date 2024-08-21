@@ -33,8 +33,8 @@
                         foreach ($data['done'] as $dd) {
                         ?>
                             <tr class="<?= ($dd['tr_status'] == 1) ? "table-success" : "table-danger"; ?>">
-                                <td><?= $d['id_user'] ?><br><?= substr($d['insertTime'], 0, -3) ?></td>
-                                <td class="text-end"><?= $d['metode'] ?><br><b><?= number_format($d['jumlah']) ?></b><br><small><?= $d['note'] ?></small></td>
+                                <td><?= $dd['id_user'] ?><br><?= substr($dd['insertTime'], 0, -3) ?></td>
+                                <td class="text-end"><?= $dd['metode'] ?><br><b><?= number_format($dd['jumlah']) ?></b><br><small><?= $dd['note'] ?></small></td>
                                 <td class="text-center" style="vertical-align: middle;">
                                     <span class="border rounded border-light px-2 bg-white">
                                         <?php
