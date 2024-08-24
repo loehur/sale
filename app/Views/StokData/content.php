@@ -158,91 +158,91 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- SCRIPT -->
-    <script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
+<!-- SCRIPT -->
+<script src="<?= $this->ASSETS_URL ?>js/jquery-3.6.0.min.js"></script>
 
-    <script>
-        $(document).ready(function() {});
+<script>
+    $(document).ready(function() {});
 
-        function luhurTableSearch() {
-            var input, filter, table, tr, td, i, txtValue, filterCount;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            filterCount = filter.length;
+    function luhurTableSearch() {
+        var input, filter, table, tr, td, i, txtValue, filterCount;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        filterCount = filter.length;
 
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent.toUpperCase() || td.innerText.toUpperCase();
-                    var match = false;
-                    var cekFind = [];
-                    var sortCek = 0;
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent.toUpperCase() || td.innerText.toUpperCase();
+                var match = false;
+                var cekFind = [];
+                var sortCek = 0;
 
-                    for (let k = 0; k < filter.length; k++) {
-                        cekFind[k] = 0;
-                        for (let j = sortCek; j < txtValue.length; j++) {
-                            if (filter.charAt(k) == txtValue.charAt(j)) {
-                                cekFind[k] = 1;
-                                sortCek = j;
-                                break;
-                            }
-                        }
-
-                        if (cekFind[k] == 0) {
-                            match = false;
+                for (let k = 0; k < filter.length; k++) {
+                    cekFind[k] = 0;
+                    for (let j = sortCek; j < txtValue.length; j++) {
+                        if (filter.charAt(k) == txtValue.charAt(j)) {
+                            cekFind[k] = 1;
+                            sortCek = j;
                             break;
-                        } else {
-                            const sumFind = cekFind.reduce((partialSum, a) => partialSum + a, 0);
-                            if (sumFind == filterCount) {
-                                match = true;
-                                break;
-                            }
                         }
                     }
 
-                    if (filter.length == 0) {
+                    if (cekFind[k] == 0) {
+                        match = false;
+                        break;
+                    } else {
+                        const sumFind = cekFind.reduce((partialSum, a) => partialSum + a, 0);
+                        if (sumFind == filterCount) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (filter.length == 0) {
+                    tr[i].style.display = "";
+                } else {
+                    if (match == true) {
                         tr[i].style.display = "";
                     } else {
-                        if (match == true) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
+                        tr[i].style.display = "none";
                     }
                 }
             }
         }
+    }
 
-        $('select#toko').on("change", function(event) {
-            var val = $(this).val();
-            $.ajax({
-                url: "<?= $this->BASE_URL ?>Input/updateLogToko/",
-                data: {
-                    toko: val
-                },
-                type: "POST",
-                success: function() {
-                    location.reload(true);
-                },
-            });
+    $('select#toko').on("change", function(event) {
+        var val = $(this).val();
+        $.ajax({
+            url: "<?= $this->BASE_URL ?>Input/updateLogToko/",
+            data: {
+                toko: val
+            },
+            type: "POST",
+            success: function() {
+                location.reload(true);
+            },
         });
+    });
 
-        $("a.stop_stok").click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "<?= $this->BASE_URL ?>StokOperasi/stop_stok",
-                type: 'POST',
-                data: {
-                    id: $(this).attr("data-id"),
-                    user: $(this).attr("data-user")
-                },
-                success: function() {
-                    $("div#load").load("<?= $this->BASE_URL ?>StokData/load");
-                }
-            });
+    $("a.stop_stok").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "<?= $this->BASE_URL ?>StokOperasi/stop_stok",
+            type: 'POST',
+            data: {
+                id: $(this).attr("data-id"),
+                user: $(this).attr("data-user")
+            },
+            success: function() {
+                location.reload(true);
+            }
         });
-    </script>
-</div>
+    });
+</script>
