@@ -63,7 +63,7 @@
                     </select>
                 </div>
                 <div class="col pr-0 mr-auto">
-                    <button type="submit" class="btn btn-sm btn-primary position-absolute" style="bottom:0">Cek</button>
+                    <button type="submit" class="btn btn-sm btn-primary" style="bottom:0">Cek</button>
                 </div>
         </form>
     </div>

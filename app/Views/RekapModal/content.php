@@ -27,7 +27,7 @@ foreach ($data as $s) {
             <?php foreach ($modal as $key => $m) {
             ?>
                 <div class="col-12 mb-2 pb-1 border-bottom">
-                    <?= strtoupper($key) ?><span class="float-right">Rp <?= number_format($m) ?></span>
+                    <?= strtoupper($key) ?><span class="float-end">Rp <?= number_format($m) ?></span>
                 </div>
             <?php } ?>
 
