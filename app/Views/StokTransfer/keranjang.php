@@ -16,6 +16,7 @@
 
                         ?>
                             <tr>
+                                <td>#<?= $d['id'] ?></td>
                                 <td nowrap><i class="fas fa-caret-right"></i> <?= strtoupper($d['id_user']) ?></td>
                                 <td><?= strtoupper($d['merk'] . " " . $d['model'] . " " . $d['deskripsi']) ?></td>
                                 <td nowrap><?= $d['jumlah'] . " " . $sat ?></td>
