@@ -41,7 +41,7 @@
                 <select id="selBarang" class="tize form-control form-control-sm p-0 m-0" required>
                     <option value="" selected disabled>...</option>
                     <?php foreach ($data['main'] as $a) { ?>
-                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi']) ?></option>
+                        <option value="<?= $a['kode_barang'] ?>"><?= strtoupper($a['merk'] . " " . $a['model'] . " " . $a['deskripsi'] . ", " . $a['kode_barang']) ?></option>
                     <?php } ?>
                 </select>
             </div>
